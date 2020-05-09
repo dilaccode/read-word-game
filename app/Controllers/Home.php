@@ -18,7 +18,7 @@ class Home extends BaseController
 		echo view('Home',$data);
 		echo view('Footer');
 	}
-
+	/// GET StrChildViewed : word1_word2_word3, _ split
 	public function word($word='empty',$Parent = "")
 	{
 		$model = new WordModel();
@@ -32,6 +32,45 @@ class Home extends BaseController
 		
 		$IsChildPage = strlen($Parent) > 0;
 		$classWordColor = $IsChildPage ? "w3-text-green" : 'w3-text-blue';
+		// list child viewed		
+		$ListChildViewed = array();
+		$StrChildViewed = "";
+		if(isset($_GET['StrChildViewed'])) 
+			$StrChildViewed = $_GET['StrChildViewed'];
+		if(strlen($StrChildViewed)>0)
+			$ListChildViewed = explode("_",$StrChildViewed);
+		if($IsChildPage && !in_array($word,$ListChildViewed)){
+			array_push($ListChildViewed,$word);
+		}
+		$StrChildViewedNew = implode("_",$ListChildViewed);		
+		// process viewed (parent page)	
+		$meanArrayStatusNEW = array();
+		foreach($wordObj->meanArrayStatus as $WordMeanStatus){
+			$WordMeanStatus->IsViewed = FALSE;
+			if(in_array($WordMeanStatus->word,$ListChildViewed)){
+				$WordMeanStatus->IsViewed = TRUE;
+			}
+			array_push($meanArrayStatusNEW,$WordMeanStatus);
+		}
+		$wordObj->meanArrayStatus = $meanArrayStatusNEW;
+		// percent viewed / exp
+			// unique word
+		$ArrayMeanStatusExistUnique = array();
+		foreach($wordObj->meanArrayStatus as $WordMeanStatus){
+			$ArrayUniqueTemp = array_column($ArrayMeanStatusExistUnique,"word");
+			if(!in_array($WordMeanStatus->word,$ArrayUniqueTemp)){
+                array_push($ArrayMeanStatusExistUnique,$WordMeanStatus);
+			}
+		}
+			// calculate percent
+		$CountChildExist=0;
+		$Percent = 0;
+		foreach($ArrayMeanStatusExistUnique as $WordMeanStatus){
+			if($WordMeanStatus->isExist) $CountChildExist++;
+		}
+		if($CountChildExist>0){
+			$Percent = round(count($ListChildViewed)/$CountChildExist*100,0);
+		}
 		//
 		$data= array(
 			'wordObj'=> $wordObj,
@@ -39,7 +78,8 @@ class Home extends BaseController
 			'IsChildPage' => $IsChildPage,
 			'Parent' => $Parent,
 			'classWordColor'=> $classWordColor,
-			// 'Stats' => $model->GetStats(),
+			'StrChildViewedNew' => $StrChildViewedNew,
+			'Percent' => $Percent,
 		);
 		//	
 

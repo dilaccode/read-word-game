@@ -33,6 +33,10 @@ a {
 .btn-word{
     padding: 3px 4px !important;
 }
+.btn-word-viewed{
+    background-color: white !important;
+    color: black !important;
+}
 </style>
 <!-- / CSS small -->
 
