@@ -29,7 +29,7 @@
             LEARN SUCCESS
             <br>
             <span class="w3-text-blue">
-                <i class="fa fa-plus"></i>10 EXP
+                <i class="fa fa-plus"></i><?php echo $Exp; ?> EXP
             </span>
             <br>
             <a  href="/public"
@@ -55,11 +55,11 @@
         <div class="mean-links w3-padding-small">
             <div class="w3-large w3-padding-small">
                 <?php if ($IsChildPage): ?>
-                    <i class="fa fa-arrow-left w3-text-blue"></i>
-                    Back
+                    <!-- <i class="fa fa-arrow-left w3-text-blue"></i> -->
+                    <span class="w3-text-blue">NEXT</span>
                 <?php else: ?>
                     <i class="fa fa-arrow-down w3-text-green"></i>
-                    Read More
+                    <span class="w3-text-green">CLICK, READ ALL GREEN BUTTON</span>
                     <i class="fa fa-arrow-down w3-text-green"></i>
                 <?php endif; ?>
             </div>
@@ -72,6 +72,7 @@
                         class="w3-btn w3-blue w3-round-large"
                         style="margin-bottom: 0.3em;">
                             <?php echo $Parent ?>
+                            <i class="fa fa-arrow-right"></i>
                     </a>
                 <?php else: ?>
                     <?php foreach ($wordObj->meanArrayStatus as $WordMean): ?>
@@ -105,14 +106,16 @@
     <!-- /.word container -->
 
     <div style="padding-top:1em"
-         class="w3-border-left w3-border-right w3-border-green ">
+         class="w3-border-left w3-border-right w3-border-indigo ">
                             
     </div>
 
     <!-- home -->
-    <div class="w3-border-left w3-border-right w3-border-top w3-border-green">
-        <a href="/public" class="w3-large w3-text-green">
-            <i class="fa fa-home"></i> HOME
+    <div class="w3-border-left w3-border-right w3-border-top w3-border-indigo
+                w3-left-align"
+         style="padding-top: 0.5em; padding-left: 0.5em;">
+        <a href="/public" class="w3-large w3-indigo w3-btn w3-round btn-word">
+            <i class="fa fa-arrow-left"></i> HOME
         </a>
     </div>
 <!-- / w3-container -->

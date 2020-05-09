@@ -1,9 +1,9 @@
 <div class="w3-container w3-center ">
-    <div class='w3-xxlarge w3-green upper'>
+    <div class='w3-xxlarge w3-indigo upper'>
         Learn Word
     </div>
     <!-- recommend words -->
-    <div class="w3-border w3-border-green w3-padding-small w3-left-align">
+    <div class="w3-border w3-border-indigo w3-padding-small w3-left-align">
         <div class="w3-xlarge ">
             Start with some words:<br>
             <span class="w3-large w3-center">

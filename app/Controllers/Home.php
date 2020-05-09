@@ -73,6 +73,7 @@ class Home extends BaseController
 		}
 			// override Percent for child page
 		$Percent = $IsChildPage ? $_GET['Percent'] : $Percent;
+		$Exp = count($ListChildViewed) * RATE_VIEW_WORD_EXP;
 		//
 		$data= array(
 			'wordObj'=> $wordObj,
@@ -84,6 +85,7 @@ class Home extends BaseController
 			'Percent' => $Percent,
 						// skip calculate Percent child page
 			'IsLearnSucess' => !$IsChildPage && (int) $Percent === 100,
+			'Exp' => $Exp,
 		);
 		//	
 
