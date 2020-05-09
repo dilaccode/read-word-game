@@ -19,7 +19,7 @@ class Home extends BaseController
 		echo view('Footer');
 	}
 
-	public function word($word='empty')
+	public function word($word='empty',$Parent = "")
 	{
 		$model = new WordModel();
 
@@ -29,38 +29,21 @@ class Home extends BaseController
 		if($len>=7) $classWordSize = 'w3-xxxlarge';
 		if($len>=10) $classWordSize = 'w3-xxlarge';
 		if($len>=13) $classWordSize = 'w3-xlarge';
-		// process mean with link
-		$meanArrayRaw = explode(" ",$wordObj->mean);
-		$meanArrayRawResult = array();
-		foreach($meanArrayRaw as $WordRaw){
-			$WordRawResult = $WordRaw; // default
-			foreach($wordObj->meanArrayStatus as $WordHaveStatus){
-				$searchArr = array("(",")",".",",",";","  ");
-				$replaceArr = array("","","","","","");
-				$WordRawClean  = str_replace($searchArr,$replaceArr,$WordRaw);
-				$isEqual = $WordRawClean == $WordHaveStatus->word;
-				if($isEqual){
-					if($WordHaveStatus->isExist){
-						$link = "<a href='/public/home/word/$WordHaveStatus->word'>$WordHaveStatus->word</a>";
-						$WordRawResult = str_replace($WordHaveStatus->word,$link,$WordRaw);
-					}
-				}else{ 
-					// skip
-				}				
-			}
-			array_push($meanArrayRawResult,$WordRawResult);
-		}
 		
-		$wordObj->meanWithLinks = implode(" ",$meanArrayRawResult);
+		$IsChildPage = strlen($Parent) > 0;
+		$classWordColor = $IsChildPage ? "w3-text-green" : 'w3-text-blue';
 		//
 		$data= array(
 			'wordObj'=> $wordObj,
 			'classWordSize'=> $classWordSize,
-			'LowSeeWords'=> $model->GetLowSeeWords(3),
-			'Stats' => $model->GetStats(),
+			'IsChildPage' => $IsChildPage,
+			'Parent' => $Parent,
+			'classWordColor'=> $classWordColor,
+			// 'Stats' => $model->GetStats(),
 		);
+		//	
 
-		// print_r($data);die();
+		// var_dump($data);die();
 		
 		echo view('Header');
 		echo view('Word',$data);

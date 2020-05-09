@@ -8,6 +8,13 @@
     - show related word as button
     - back to main word > it mean view relate word no view more.
     - easy exp system, bonus user for excited
+5. more improve
+    - [ ] update word mean (definition)
+    - [ ] add new mean (definition) for empty word
+        - collect empty word
+        - show on file or page
+        - use Google Diction find mean
+        - import to system
 ## 1. database 
 1. word table
     * word
