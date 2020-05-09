@@ -1,6 +1,13 @@
 # logic design temp
 ## 2. improve to like game application
-
+1. focus learn 1 word for master
+2. exp/level system
+3. UX improve
+4. **=> remove click on mean, replate new process:**
+    - show mean no links
+    - show related word as button
+    - back to main word > it mean view relate word no view more.
+    - easy exp system, bonus user for excited
 ## 1. database 
 1. word table
     * word
