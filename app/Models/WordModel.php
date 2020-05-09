@@ -52,11 +52,6 @@ class WordModel extends Model
         ORDER BY RAND() limit $amount")
         ->getResult();
     }
-    public function GetStats(){
-        return $this->db->query("select min(count) as level,
-         max(count) as highest 
-         from word")
-        ->getRow(1);
-    }
+    
     
 }

@@ -1,17 +1,19 @@
 <?php namespace App\Controllers;
 
 use App\Models\WordModel;
+use App\Models\ExpModel;
 
 class Home extends BaseController
 {
 	public function index()
 	{
-		$model = new WordModel();
+		$WM = new WordModel();
+		$EM = new ExpModel();
 		$data = array(
-			'LowSeeWords'=> $model->GetLowSeeWords(),
-			'Stats' => $model->GetStats(),
+			'LowSeeWords'=> $WM->GetLowSeeWords(),
+			'TotalExp' => $EM->GetTotalExp(),
 		);
-
+		
 		// print_r($data);die();
 
 		echo view('Header');
@@ -21,9 +23,10 @@ class Home extends BaseController
 	/// GET StrChildViewed : word1_word2_word3, _ split
 	public function word($word='empty',$Parent = "")
 	{
-		$model = new WordModel();
+		$WM = new WordModel();
+		$EM = new ExpModel();
 
-		$wordObj =  $model->GetWord($word);
+		$wordObj =  $WM->GetWord($word);
 		$len = strlen($wordObj->word);
 		$classWordSize = 'w3-jumbo';
 		if($len>=7) $classWordSize = 'w3-xxxlarge';
@@ -73,7 +76,15 @@ class Home extends BaseController
 		}
 			// override Percent for child page
 		$Percent = $IsChildPage ? $_GET['Percent'] : $Percent;
+			// exp
 		$Exp = count($ListChildViewed) * RATE_VIEW_WORD_EXP;
+		$IsLearnSucess = !$IsChildPage && (int) $Percent === 100;
+		if($IsLearnSucess){
+			$EM->Add((object)array(
+				'wordId'=> $wordObj->id,
+				'exp'=> $Exp,
+			));
+		}
 		//
 		$data= array(
 			'wordObj'=> $wordObj,
@@ -84,7 +95,7 @@ class Home extends BaseController
 			'StrChildViewedNew' => $StrChildViewedNew,
 			'Percent' => $Percent,
 						// skip calculate Percent child page
-			'IsLearnSucess' => !$IsChildPage && (int) $Percent === 100,
+			'IsLearnSucess' => $IsLearnSucess,
 			'Exp' => $Exp,
 		);
 		//	

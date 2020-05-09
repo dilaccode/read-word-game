@@ -1,18 +1,19 @@
 <div class="w3-container w3-center ">
     <!-- word container -->
     <div class="word-container w3-border-top 
-    w3-border-left w3-border-right w3-border-blue">
+    w3-border-left w3-border-right w3-border-indigo">
         <!-- top bar  -->
         <div>
             <!-- progress -->
-            <div class="w3-border-bottom w3-border-blue">
-                <div class="w3-container w3-blue w3-center w3-small" 
+            <div class="w3-border-bottom w3-border-indigo">
+                <div class="w3-container w3-indigo w3-center w3-small" 
                 style="width:<?php echo $Percent?>%">
                     <?php echo $Percent?>%
                 </div>
             </div>
              <!-- views -->
-            <div class="w3-large w3-padding-small w3-right-align"> 
+            <div class="w3-large w3-padding-small 
+                        w3-right-align w3-text-indigo"> 
                 <i class="fa fa-eye"></i> <?php echo $wordObj->count ?>
             </div>
         </div>
@@ -41,7 +42,7 @@
         </div>
         <!-- mean (definition) -->
         <div class='mean w3-xlarge upper w3-left-align'>
-            <div class="w3-medium w3-green" 
+            <div class="w3-medium w3-indigo" 
             style="margin-right: 0.5em; margin-top: 0.5em;
                     float: left; padding: 0.25em;">
                 mean
@@ -56,7 +57,7 @@
             <div class="w3-large w3-padding-small">
                 <?php if ($IsChildPage): ?>
                     <!-- <i class="fa fa-arrow-left w3-text-blue"></i> -->
-                    <span class="w3-text-blue">NEXT</span>
+                    <span class="w3-text-indigo">NEXT</span>
                 <?php else: ?>
                     <i class="fa fa-arrow-down w3-text-green"></i>
                     <span class="w3-text-green">CLICK, READ ALL GREEN BUTTON</span>
@@ -110,7 +111,7 @@
                             
     </div>
 
-    <!-- home -->
+    <!-- fotter -->
     <div class="w3-border-left w3-border-right w3-border-top w3-border-indigo
                 w3-left-align"
          style="padding-top: 0.5em; padding-left: 0.5em;">
@@ -118,6 +119,7 @@
             <i class="fa fa-arrow-left"></i> HOME
         </a>
     </div>
+
 <!-- / w3-container -->
 </div>
 

@@ -24,5 +24,13 @@
             <?php endforeach; ?>
         </div>
     </div>
+
+    <!-- fotter -->
+    <div class="w3-border-left w3-border-right w3-border-indigo
+                w3-left-align w3-text-indigo w3-large"
+         style="padding-top: 0.5em; padding-left: 0.5em;">
+       Your have <?php echo number_format($TotalExp) ?> EXP
+    </div>
+
 <!-- / w3-container -->
 </div>
