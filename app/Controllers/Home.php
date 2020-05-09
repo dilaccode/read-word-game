@@ -79,7 +79,8 @@ class Home extends BaseController
 			'Parent' => $Parent,
 			'classWordColor'=> $classWordColor,
 			'StrChildViewedNew' => $StrChildViewedNew,
-			'Percent' => $Percent,
+			'Percent' =>$IsChildPage ? $_GET['Percent'] : $Percent,
+						// skip calculate Percent child page 
 		);
 		//	
 

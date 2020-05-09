@@ -5,9 +5,8 @@
         <!-- top bar  -->
         <div>
             <!-- progress -->
-            <div class="w3-border-bottom w3-border-green"
-                style="<?php echo $IsChildPage ? 'visibility:hidden;':'' ?>">
-                <div class="w3-container w3-green w3-center w3-small" 
+            <div class="w3-border-bottom w3-border-blue">
+                <div class="w3-container w3-blue w3-center w3-small" 
                 style="width:<?php echo $Percent?>%">
                     <?php echo $Percent?>%
                 </div>
@@ -69,7 +68,8 @@
                         if($WordMean->isExist) {
                             $ClassStatus = "w3-green";
                             $link =  "/public/home/word/$WordMean->word/$Parent"
-                             ."?StrChildViewed=$StrChildViewedNew"; // GET
+                             ."?StrChildViewed=$StrChildViewedNew"
+                             ."&Percent=$Percent"; // GET
                         }
                         if($WordMean->IsViewed) {
                             $ClassStatus = "btn-word-viewed";

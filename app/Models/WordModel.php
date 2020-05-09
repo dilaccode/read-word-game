@@ -49,7 +49,7 @@ class WordModel extends Model
     public function GetLowSeeWords($amount=5){
         return $this->db->query("select word,count from word 
         where count = (select min(count) from word)
-        limit $amount")
+        ORDER BY RAND() limit $amount")
         ->getResult();
     }
     public function GetStats(){
