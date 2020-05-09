@@ -46,7 +46,7 @@ class WordModel extends Model
         where word='$word'")->getRow(1);
         return isset($wordObj);
     }
-    public function GetLowSeeWords($amount=5){
+    public function GetLowSeeWords($amount=3){
         return $this->db->query("select word,count from word 
         where count = (select min(count) from word)
         ORDER BY RAND() limit $amount")
