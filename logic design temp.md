@@ -1,5 +1,7 @@
 # logic design temp
-## database 
+## 2. improve to like game application
+
+## 1. database 
 1. word table
     * word
     * mean
