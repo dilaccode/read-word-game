@@ -19,6 +19,7 @@ bk database,  commit code, db to git
 ```bash
 C:\xampp\mysql\bin\mysqldump.exe --user=root --password= --host=localhost --port=3306 --result-file="C:\xampp\htdocs\database\word_database.sql" --databases "word" & git add -A & git commit -m "work backup: code, db" & git push
 ```
+# [Logic design temp](https://github.com/dilaccode/word-like-game/blob/master/logic%20design%20temp.md)
 # Relate project
 - [word click on mean](https://github.com/dilaccode/word)
 - [Word count idea](https://github.com/quangcongvn/word-count)
