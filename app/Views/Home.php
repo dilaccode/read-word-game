@@ -1,28 +1,28 @@
 <div class="w3-container w3-center ">
-    <div class='w3-xxlarge w3-text-green upper'>
+    <div class='w3-xxlarge w3-green upper'>
         Learn Word
     </div>
     <!-- recommend words -->
-    <div class="w3-border w3-border-green w3-padding-small">
-        <div class="w3-xlarge w3-left-align">
+    <div class="w3-border w3-border-green w3-padding-small w3-left-align">
+        <div class="w3-xlarge ">
             Start with some words:<br>
-            <span class="w3-large">(click on words below)</span>
+            <span class="w3-large w3-center">
+                <i class="fa fa-arrow-down w3-text-blue"></i>
+                Click on words below
+                <i class="fa fa-arrow-down w3-text-blue"></i>
+            </span>
         </div>
-        <div class="w3-xxlarge upper w3-text-blue">
+        <div class="w3-xxlarge upper w3-text-blue"
+             style ="margin-left: 0.15em;">
             <?php foreach ($LowSeeWords as $Word): ?>
-                <a href="/public/home/word/<?php echo $Word->word ?>">
+                <a href="/public/home/word/<?php echo $Word->word ?>"
+                    class="w3-btn w3-blue btn-word w3-round"
+                    style="margin-bottom: 0.2em;">
                     <?php echo $Word->word ?>
                 </a>
                 <br>
             <?php endforeach; ?>
         </div>
     </div>
-    <!-- level -->
-    <div class="w3-border-left w3-border-right w3-border-green w3-large w3-left-align w3-padding-small">
-        Your level: <?php echo $Stats->level ?>.<br>
-        Highest word saw: <?php echo $Stats->highest ?>.
-    </div>
-
-
 <!-- / w3-container -->
 </div>

@@ -71,6 +71,8 @@ class Home extends BaseController
 		if($CountChildExist>0){
 			$Percent = round(count($ListChildViewed)/$CountChildExist*100,0);
 		}
+			// override Percent for child page
+		$Percent = $IsChildPage ? $_GET['Percent'] : $Percent;
 		//
 		$data= array(
 			'wordObj'=> $wordObj,
@@ -79,8 +81,9 @@ class Home extends BaseController
 			'Parent' => $Parent,
 			'classWordColor'=> $classWordColor,
 			'StrChildViewedNew' => $StrChildViewedNew,
-			'Percent' =>$IsChildPage ? $_GET['Percent'] : $Percent,
-						// skip calculate Percent child page 
+			'Percent' => $Percent,
+						// skip calculate Percent child page
+			'IsLearnSucess' => !$IsChildPage && (int) $Percent === 100,
 		);
 		//	
 
