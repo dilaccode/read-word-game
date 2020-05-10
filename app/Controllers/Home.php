@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 
+use App\Models\SimpleModel;
 use App\Models\WordModel;
 use App\Models\ExpModel;
 
@@ -9,6 +10,8 @@ class Home extends BaseController
 	{
 		$WM = new WordModel();
 		$EM = new ExpModel();
+		$SM = new SimpleModel();
+		
 		$data = array(
 			'LowSeeWords'=> $WM->GetLowSeeWords(),
 			'TotalExp' => $EM->GetTotalExp(),
