@@ -2,19 +2,21 @@
 
 use App\Models\SimpleModel;
 use App\Models\WordModel;
-use App\Models\ExpModel;
 
 class Home extends BaseController
 {
 	public function index()
 	{
 		$WM = new WordModel();
-		$EM = new ExpModel();
 		$SM = new SimpleModel();
+
+		// exp
+		$TotalExp = $SM->Query("select sum(Exp) as Total from Exp")
+		->getRow(1)->Total;
 		
 		$data = array(
 			'LowSeeWords'=> $WM->GetLowSeeWords(),
-			'TotalExp' => $EM->GetTotalExp(),
+			'TotalExp' => $TotalExp,
 		);
 		
 		// print_r($data);die();
@@ -27,7 +29,7 @@ class Home extends BaseController
 	public function word($word='empty',$Parent = "")
 	{
 		$WM = new WordModel();
-		$EM = new ExpModel();
+		$SM = new SimpleModel();
 
 		$wordObj =  $WM->GetWord($word);
 		$len = strlen($wordObj->word);
@@ -83,9 +85,9 @@ class Home extends BaseController
 		$Exp = count($ListChildViewed) * RATE_VIEW_WORD_EXP;
 		$IsLearnSucess = !$IsChildPage && (int) $Percent === 100;
 		if($IsLearnSucess){
-			$EM->Add((object)array(
-				'wordId'=> $wordObj->id,
-				'exp'=> $Exp,
+			$SM->AddObj('Exp',(object)array(
+				'WordId'=> $wordObj->id,
+				'Exp'=> $Exp,
 			));
 		}
 		//
