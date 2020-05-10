@@ -6,10 +6,10 @@ class WordModel extends Model
 {
     protected $table = 'word';
 
-    public function getWords()
-    {
-        return $this->findAll();
-    }
+    // public function getWords()
+    // {
+    //     return $this->findAll();
+    // }
     public function GetWord($word){
         $wordObj = (object) $this->where('word', $word)
                    ->first();

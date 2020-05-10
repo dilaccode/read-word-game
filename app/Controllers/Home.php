@@ -7,15 +7,21 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		$WM = new WordModel();
 		$SM = new SimpleModel();
 
-		// exp
+		// Words
+		$Amount = 3;
+		$ListLowSeeWords = $SM->Query("select word,count from word 
+        where count = (select min(count) from word)
+        ORDER BY RAND() limit $Amount")
+        ->getResult();
+
+		// Exp
 		$TotalExp = $SM->Query("select sum(Exp) as Total from Exp")
 		->getRow(1)->Total;
-		
+
 		$data = array(
-			'LowSeeWords'=> $WM->GetLowSeeWords(),
+			'LowSeeWords'=> $ListLowSeeWords,
 			'TotalExp' => $TotalExp,
 		);
 		
@@ -24,6 +30,9 @@ class Home extends BaseController
 		echo view('Header');
 		echo view('Home',$data);
 		echo view('Footer');
+	}
+	private function test(){
+		echo 123;
 	}
 	/// GET StrChildViewed : word1_word2_word3, _ split
 	public function word($word='empty',$Parent = "")
