@@ -1,6 +1,6 @@
 <div class="w3-container w3-center ">
-    <!-- word container -->
-    <div class="word-container w3-border-top 
+    <!-- Word container -->
+    <div class="Word-container w3-border-top 
     w3-border-left w3-border-right w3-border-indigo">
         <!-- top bar  -->
         <div>
@@ -14,13 +14,13 @@
              <!-- views -->
             <div class="w3-large w3-padding-small 
                         w3-right-align w3-text-indigo"> 
-                <i class="fa fa-eye"></i> <?php echo $wordObj->count ?>
+                <i class="fa fa-eye"></i> <?php echo $WordObj->Count ?>
             </div>
         </div>
        
-        <!-- word -->       
-        <div class='<?php echo $classWordSize.' '.$classWordColor ?> upper'>
-            <?php echo $wordObj->word ?>
+        <!-- Word -->       
+        <div class='<?php echo $ClassWordSize.' '.$ClassWordColor ?> upper'>
+            <?php echo $WordObj->Word ?>
         </div>
         <!-- learn success -->
         <div class="learn-success w3-xxlarge w3-text-green"
@@ -40,20 +40,20 @@
                 <i class="fa fa-arrow-right"></i>
             </a>
         </div>
-        <!-- mean (definition) -->
-        <div class='mean w3-xlarge upper w3-left-align'>
+        <!-- Mean (definition) -->
+        <div class='Mean w3-xlarge upper w3-left-align'>
             <div class="w3-medium w3-indigo" 
             style="margin-right: 0.5em; margin-top: 0.5em;
                     float: left; padding: 0.25em;">
-                mean
+                Mean
             </div>
             <div style="padding: 0.33em;">
-                <?php echo $wordObj->mean; ?>
+                <?php echo $WordObj->Mean; ?>
             </div>
         </div>
 
-        <!-- mean (definition) links -->
-        <div class="mean-links w3-padding-small">
+        <!-- Mean (definition) links -->
+        <div class="Mean-links w3-padding-small">
             <div class="w3-large w3-padding-small">
                 <?php if ($IsChildPage): ?>
                     <!-- <i class="fa fa-arrow-left w3-text-blue"></i> -->
@@ -66,37 +66,37 @@
             </div>
             <div class="w3-xlarge upper">
                 <?php if ($IsChildPage): ?>
-                    <?php $link = "/public/home/word/$Parent"
+                    <?php $Link = "/public/home/Word/$Parent"
                         ."?StrChildViewed=$StrChildViewedNew"; // GET
                     ?>
-                    <a  href="<?php echo $link ?>"
+                    <a  href="<?php echo $Link ?>"
                         class="w3-btn w3-blue w3-round-large"
                         style="margin-bottom: 0.3em;">
                             <?php echo $Parent ?>
                             <i class="fa fa-arrow-right"></i>
                     </a>
                 <?php else: ?>
-                    <?php foreach ($wordObj->meanArrayStatus as $WordMean): ?>
+                    <?php foreach ($WordObj->MeanArrayStatus as $WordMean): ?>
                         <?php
-                            $Parent = $wordObj->word;
-                            $link = "#";
-                            $ClassStatus = "btn-word-viewed"; // case no mean (definition)
-                            if($WordMean->isExist) {
+                            $Parent = $WordObj->Word;
+                            $Link = "#";
+                            $ClassStatus = "btn-Word-viewed"; // case no Mean (definition)
+                            if($WordMean->IsExist) {
                                 $ClassStatus = "w3-green";
-                                $link =  "/public/home/word/$WordMean->word/$Parent"
+                                $Link =  "/public/home/Word/$WordMean->Word/$Parent"
                                 ."?StrChildViewed=$StrChildViewedNew"
                                 ."&Percent=$Percent"; // GET
                             }
                             if($WordMean->IsViewed) {
-                                $ClassStatus = "btn-word-viewed";
-                                $link = "#";
+                                $ClassStatus = "btn-Word-viewed";
+                                $Link = "#";
                             }
                         ?>
-                        <a  href="<?php echo $link ?>"
-                        class="w3-btn btn-word <?php echo $ClassStatus ?>
+                        <a  href="<?php echo $Link ?>"
+                        class="w3-btn btn-Word <?php echo $ClassStatus ?>
                         w3-round"
                         style="margin-bottom: 0.2em;">
-                            <?php echo $WordMean->word ?>
+                            <?php echo $WordMean->Word ?>
                         </a>
                     <?php endforeach; ?>    
                 <?php endif; ?>
@@ -104,7 +104,7 @@
         </div>
 
     </div> 
-    <!-- /.word container -->
+    <!-- /.Word container -->
 
     <div style="padding-top:1em"
          class="w3-border-left w3-border-right w3-border-indigo ">
@@ -115,7 +115,7 @@
     <div class="w3-border-left w3-border-right w3-border-top w3-border-indigo
                 w3-left-align"
          style="padding-top: 0.5em; padding-left: 0.5em;">
-        <a href="/public" class="w3-large w3-indigo w3-btn w3-round btn-word">
+        <a href="/public" class="w3-large w3-indigo w3-btn w3-round btn-Word">
             <i class="fa fa-arrow-left"></i> HOME
         </a>
     </div>
@@ -127,8 +127,8 @@
 <script>
      $(document).ready(function(){
         <?php if($IsLearnSucess): ?>
-            $(".mean").hide();
-            $(".mean-links").hide();
+            $(".Mean").hide();
+            $(".Mean-links").hide();
             $(".learn-success").fadeIn();
         <?Php endif; ?> 
      });

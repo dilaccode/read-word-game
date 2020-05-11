@@ -11,8 +11,8 @@ class Home extends BaseController
 
 		// Words
 		$Amount = 3;
-		$ListLowSeeWords = $SM->Query("select word,count from word 
-        where count = (select min(count) from word)
+		$ListLowSeeWords = $SM->Query("select Word,Count from Word 
+        where Count = (select min(Count) from Word)
         ORDER BY RAND() limit $Amount")
         ->getResult();
 
@@ -20,35 +20,33 @@ class Home extends BaseController
 		$TotalExp = $SM->Query("select sum(Exp) as Total from Exp")
 		->getRow(1)->Total;
 
-		$data = array(
+		$Data = array(
 			'LowSeeWords'=> $ListLowSeeWords,
 			'TotalExp' => $TotalExp,
 		);
 		
-		// print_r($data);die();
+		// print_r($Data);die();
 
 		echo view('Header');
-		echo view('Home',$data);
+		echo view('Home',$Data);
 		echo view('Footer');
 	}
-	private function test(){
-		echo 123;
-	}
-	/// GET StrChildViewed : word1_word2_word3, _ split
-	public function word($word='empty',$Parent = "")
-	{
-		$WM = new WordModel();
-		$SM = new SimpleModel();
 
-		$wordObj =  $WM->GetWord($word);
-		$len = strlen($wordObj->word);
-		$classWordSize = 'w3-jumbo';
-		if($len>=7) $classWordSize = 'w3-xxxlarge';
-		if($len>=10) $classWordSize = 'w3-xxlarge';
-		if($len>=13) $classWordSize = 'w3-xlarge';
+	/// GET StrChildViewed : word1_word2_word3, _ split
+	public function Word($Word='empty',$Parent = "")
+	{
+		$SM = new SimpleModel();
+	
+		$WordObj =  $this->GetWord($Word);
+
+		$Len = strlen($WordObj->Word);
+		$ClassWordSize = 'w3-jumbo';
+		if($Len>=7) $ClassWordSize = 'w3-xxxlarge';
+		if($Len>=10) $ClassWordSize = 'w3-xxlarge';
+		if($Len>=13) $ClassWordSize = 'w3-xlarge';
 		
 		$IsChildPage = strlen($Parent) > 0;
-		$classWordColor = $IsChildPage ? "w3-text-green" : 'w3-text-blue';
+		$ClassWordColor = $IsChildPage ? "w3-text-green" : 'w3-text-blue';
 		// list child viewed		
 		$ListChildViewed = array();
 		$StrChildViewed = "";
@@ -56,26 +54,26 @@ class Home extends BaseController
 			$StrChildViewed = $_GET['StrChildViewed'];
 		if(strlen($StrChildViewed)>0)
 			$ListChildViewed = explode("_",$StrChildViewed);
-		if($IsChildPage && !in_array($word,$ListChildViewed)){
-			array_push($ListChildViewed,$word);
+		if($IsChildPage && !in_array($Word,$ListChildViewed)){
+			array_push($ListChildViewed,$Word);
 		}
 		$StrChildViewedNew = implode("_",$ListChildViewed);		
 		// process viewed (parent page)	
-		$meanArrayStatusNEW = array();
-		foreach($wordObj->meanArrayStatus as $WordMeanStatus){
+		$MeanArrayStatusNEW = array();
+		foreach($WordObj->MeanArrayStatus as $WordMeanStatus){
 			$WordMeanStatus->IsViewed = FALSE;
-			if(in_array($WordMeanStatus->word,$ListChildViewed)){
+			if(in_array($WordMeanStatus->Word,$ListChildViewed)){
 				$WordMeanStatus->IsViewed = TRUE;
 			}
-			array_push($meanArrayStatusNEW,$WordMeanStatus);
+			array_push($MeanArrayStatusNEW,$WordMeanStatus);
 		}
-		$wordObj->meanArrayStatus = $meanArrayStatusNEW;
+		$WordObj->MeanArrayStatus = $MeanArrayStatusNEW;
 		// percent viewed / exp
-			// unique word
+			// unique Word
 		$ArrayMeanStatusExistUnique = array();
-		foreach($wordObj->meanArrayStatus as $WordMeanStatus){
-			$ArrayUniqueTemp = array_column($ArrayMeanStatusExistUnique,"word");
-			if(!in_array($WordMeanStatus->word,$ArrayUniqueTemp)){
+		foreach($WordObj->MeanArrayStatus as $WordMeanStatus){
+			$ArrayUniqueTemp = array_column($ArrayMeanStatusExistUnique,"Word");
+			if(!in_array($WordMeanStatus->Word,$ArrayUniqueTemp)){
                 array_push($ArrayMeanStatusExistUnique,$WordMeanStatus);
 			}
 		}
@@ -83,29 +81,29 @@ class Home extends BaseController
 		$CountChildExist=0;
 		$Percent = 0;
 		foreach($ArrayMeanStatusExistUnique as $WordMeanStatus){
-			if($WordMeanStatus->isExist) $CountChildExist++;
+			if($WordMeanStatus->IsExist) $CountChildExist++;
 		}
 		if($CountChildExist>0){
-			$Percent = round(count($ListChildViewed)/$CountChildExist*100,0);
+			$Percent = round(Count($ListChildViewed)/$CountChildExist*100,0);
 		}
 			// override Percent for child page
 		$Percent = $IsChildPage ? $_GET['Percent'] : $Percent;
 			// exp
-		$Exp = count($ListChildViewed) * RATE_VIEW_WORD_EXP;
+		$Exp = Count($ListChildViewed) * RATE_VIEW_WORD_EXP;
 		$IsLearnSucess = !$IsChildPage && (int) $Percent === 100;
 		if($IsLearnSucess){
 			$SM->AddObj('Exp',(object)array(
-				'WordId'=> $wordObj->id,
+				'WordId'=> $WordObj->Id,
 				'Exp'=> $Exp,
 			));
 		}
 		//
-		$data= array(
-			'wordObj'=> $wordObj,
-			'classWordSize'=> $classWordSize,
+		$Data= array(
+			'WordObj'=> $WordObj,
+			'ClassWordSize'=> $ClassWordSize,
 			'IsChildPage' => $IsChildPage,
 			'Parent' => $Parent,
-			'classWordColor'=> $classWordColor,
+			'ClassWordColor'=> $ClassWordColor,
 			'StrChildViewedNew' => $StrChildViewedNew,
 			'Percent' => $Percent,
 						// skip calculate Percent child page
@@ -114,11 +112,52 @@ class Home extends BaseController
 		);
 		//	
 
-		// var_dump($data);die();
+		// var_dump($Data);die();
 		
 		echo view('Header');
-		echo view('Word',$data);
+		echo view('Word',$Data);
 		echo view('Footer');
 	}
+
+	/// ============================================
+	/// WORD
+	private function GetWord($Word){
+		$SM = new SimpleModel();
+
+		$WordObj = $SM->Query("select * from Word where Word='$Word'")
+			->getRow(1);
+        // update stat
+		$WordObj->Count++;
+		$SM->UpdateObj("Word",$WordObj);
+        // process Mean to array mark exist status
+        $WordObj->MeanArrayStatus=$this->GetExistWordsStatus($WordObj->Mean);
+        //
+        return $WordObj;
+    }
+    /// return Mean (sentence) as array (Word,IsExist)
+    private function GetExistWordsStatus($Mean){
+        $SearchArr = array("(",")",".",",",";","  ");
+        $ReplaceArr = array(" "," "," "," "," "," ");
+        // split
+        $Mean = str_replace($SearchArr,$ReplaceArr,$Mean);
+        $MeanArr = explode(" ",$Mean);
+        $MeanArrResult = array();
+        foreach($MeanArr as $Word){
+            if(strlen($Word)>0){
+                array_push($MeanArrResult,(object)array(
+                    'Word'=>$Word,
+                    'IsExist' => $this->checkWorkExist($Word),
+                ));
+            }
+        }
+        return $MeanArrResult;
+    }
+    /// return TRUE/FALSE
+    private function checkWorkExist($Word){
+		$SM = new SimpleModel();
+        $WordObj =  $SM->Query("select * from Word
+        where Word='$Word'")->getRow(1);
+        return isset($WordObj);
+    }
 	
 }
