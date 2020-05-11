@@ -24,4 +24,6 @@ C:\xampp\mysql\bin\mysqldump.exe --user=root --password= --host=localhost --port
 - [word click on mean](https://github.com/dilaccode/word)
 - [Word count idea](https://github.com/quangcongvn/word-count)
 
-zz
+# Development Mode
+CodeIgniter.php line 483... **but slow**
+// define('ENVIRONMENT', 'development');

@@ -467,20 +467,20 @@ class CodeIgniter
 	 */
 	protected function detectEnvironment()
 	{
-		// // Make sure ENVIRONMENT isn't already set by other means.
-		// if (! defined('ENVIRONMENT'))
-		// {
-		// 	// running under Continuous Integration server?
-		// 	if (getenv('CI') !== false)
-		// 	{
-		// 		define('ENVIRONMENT', 'testing');
-		// 	}
-		// 	else
-		// 	{
-		// 		define('ENVIRONMENT', $_SERVER['CI_ENVIRONMENT'] ?? 'production');
-		// 	}
-		// }
-		define('ENVIRONMENT', 'development');
+		// Make sure ENVIRONMENT isn't already set by other means.
+		if (! defined('ENVIRONMENT'))
+		{
+			// running under Continuous Integration server?
+			if (getenv('CI') !== false)
+			{
+				define('ENVIRONMENT', 'testing');
+			}
+			else
+			{
+				define('ENVIRONMENT', $_SERVER['CI_ENVIRONMENT'] ?? 'production');
+			}
+		}
+		// define('ENVIRONMENT', 'development');
 	}
 
 	//--------------------------------------------------------------------
