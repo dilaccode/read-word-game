@@ -73,6 +73,11 @@ class Word extends BaseController
 				'WordId'=> $WordObj->Id,
 				'Exp'=> $Exp,
 			));
+			// update learn time
+			$WordObjForUpdate = $SM->Find("Word",$WordObj->Id);
+			var_dump($WordObjForUpdate); die();
+			$$WordObjForUpdate->LearnTime++;
+			$SM->UpdateObj("Word",$WordObjForUpdate);
 		}
 		//
 		$Data= array(
@@ -104,7 +109,7 @@ class Word extends BaseController
 		$WordObj = $SM->Query("select * from Word where Word='$Word'")
 			->getRow(1);
         // update stat
-		$WordObj->Count++;
+		$WordObj->View++;
 		$SM->UpdateObj("Word",$WordObj);
         // process Mean to array mark exist status
         $WordObj->MeanArrayStatus=$this->GetExistWordsStatus($WordObj->Mean);

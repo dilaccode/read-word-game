@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\SimpleModel;
+use App\Models\TestModel;
 
 class Home extends BaseController
 {
@@ -8,11 +9,13 @@ class Home extends BaseController
 	{
 		$SM = new SimpleModel();
 
+		$TM = new TestModel();
+		$TM->FindObj("Word",NULL);die();
+
 		// Words
 		$Amount = 3;
-		$ListLowSeeWords = $SM->Query("select Word,Count from Word 
-        where Count = (select min(Count) from Word)
-        ORDER BY RAND() limit $Amount")
+		$ListLowSeeWords = $SM->Query("select * from Word 
+		order by LearnTime, WordLength limit $Amount")
         ->getResult();
 
 		// Exp

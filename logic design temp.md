@@ -1,4 +1,10 @@
 # logic design temp
+(Add new on top)
+## 4. problems (temp, will delete)
+1. delete/edit wrong word/mean
+## 3. optimize game for easy first
+- view short word first, view longer word later
+- make achievement / level
 ## 2. improve to like game application
 1. focus learn 1 word for master
 2. exp/level system

@@ -1,8 +1,5 @@
 <div class="w3-container">
   <h2>System Stats</h2>
-  <!-- <p>The w3-table-all class combines the w3-table, w3-bordered, w3-striped, and 
-  w3-border classes:</p> -->
-
   <table class="w3-table-all w3-large">
     <!-- fileds -->
     <tr class="">
@@ -14,5 +11,22 @@
       <td>Words</td>
       <td><?php echo $TotalWords ?></td>
     </tr>
+  </table>
+
+  <!-- Word Length Count -->
+  <h2>Word Length Count</h2>
+  <table class="w3-table-all w3-large">
+    <!-- fileds -->
+    <tr class="">
+      <th>Word Length</th>
+      <th>Count</th>
+    </tr>
+    <!-- data -->
+    <?php foreach($ListWordsLengthCount as $WordLengthCount):?>
+      <tr>
+        <td><?php echo $WordLengthCount->WordLength; ?></td>
+        <td><?php echo number_format($WordLengthCount->Count); ?></td>
+      </tr>
+    <?php endforeach;?>
   </table>
 </div>

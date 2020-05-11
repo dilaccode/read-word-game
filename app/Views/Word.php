@@ -14,7 +14,7 @@
              <!-- views -->
             <div class="w3-large w3-padding-small 
                         w3-right-align w3-text-indigo"> 
-                <i class="fa fa-eye"></i> <?php echo $WordObj->Count ?>
+                <i class="fa fa-eye"></i> <?php echo $WordObj->View ?>
             </div>
         </div>
        

@@ -4,11 +4,14 @@ use CodeIgniter\Model;
 
 class SimpleModel extends Model
 {    
-    
+    protected $table = 'no use ple';
+
     // /// CRUD
     
     // // Find
     public function FindObj($Table,$Id){
+        echo 123; die();
+        var_dump("select * from $Table where id=$Id");die();
         return (object) $this->db->query("select * from $Table where id=$Id")
                 ->getRow(1);
     }
@@ -30,6 +33,7 @@ class SimpleModel extends Model
         return $this->db->mysqli->insert_id;
     }
     // // Update
+    /// Should update original object: get from database and modify is right
     public function UpdateObj($Table,$Obj){
         $Obj = (object)$Obj;
         $Id=$Obj->Id;
@@ -46,6 +50,9 @@ class SimpleModel extends Model
         }
         $Sql.= " where id=$Id";
         $this->db->query($Sql);
+        // fix bug; remove Id after update object / & reference zzzz.ple
+        $Obj->Id = $Id;
+        //
         return $this->db->mysqli->affected_rows;
     }
     // // Delete

@@ -10,8 +10,11 @@ class Admin extends BaseController
 
 		$TotalWords = $SM->Query("select count(*) as Total from Word")
 						->getRow(1)->Total;
+		$ListWordsLengthCount = $SM->Query("select WordLength,count(WordLength) as Count from Word
+		group by WordLength")->getResult();
 		$StatsData = array(
 			'TotalWords' =>  number_format($TotalWords),
+			'ListWordsLengthCount' => $ListWordsLengthCount,
 		);
 
 		echo view("Header");
@@ -36,4 +39,20 @@ class Admin extends BaseController
 		echo view("Message", $Data);
 		echo view("Footer");
 	}
+	// public function CountWordsLength(){
+	// 	$SM = new SimpleModel();
+
+	// 	$Result = $SM->Query("select WordLength,count(WordLength) from Word
+	// 	group by WordLength");
+	// 	$Message = "<pre>".print_r($Result->getResult(),true)."</pre>";
+	// 	$Data = array(
+	// 		'Title' => "Update Words Length",
+	// 		'Message'=> $Message,
+	// 		'NextActionText'=>"<i class=\"fa fa-arrow-left\"></i> Back To Admin",
+	// 		'NextActionLink'=>"/public/Admin",
+	// 	  );
+	// 	echo view("Header");
+	// 	echo view("Message", $Data);
+	// 	echo view("Footer");
+	// }
 }
