@@ -1,22 +1,20 @@
 <?php namespace App\Models;
 
-use CodeIgniter\Model;
-
-class SimpleModel extends Model
+class SimpleModel
 {    
-    protected $table = 'no use ple';
+    private $db;
+    function __construct() {
+        $this->db = \Config\Database::connect();
+    }
 
     // /// CRUD
-    
     // // Find
-    public function FindObj($Table,$Id){
-        echo 123; die();
-        var_dump("select * from $Table where id=$Id");die();
+    public function Find($Table,$Id){
         return (object) $this->db->query("select * from $Table where id=$Id")
                 ->getRow(1);
     }
     // Add, return: success: id, fail: 0
-    public function AddObj($Table,$Obj){
+    public function Add($Table,$Obj){
         $ListKey = array();
         $ListValue = array();
         foreach ($Obj as $Key => $Value) {
@@ -34,7 +32,7 @@ class SimpleModel extends Model
     }
     // // Update
     /// Should update original object: get from database and modify is right
-    public function UpdateObj($Table,$Obj){
+    public function Update($Table,$Obj){
         $Obj = (object)$Obj;
         $Id=$Obj->Id;
         unset($Obj->Id);
@@ -56,7 +54,7 @@ class SimpleModel extends Model
         return $this->db->mysqli->affected_rows;
     }
     // // Delete
-    public function DeleteObj($Table,$Id){
+    public function Delete($Table,$Id){
         $Sql = "delete from $Table where id=$Id";
         $this->db->query($Sql);
         return $this->db->mysqli->affected_rows;

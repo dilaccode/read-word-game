@@ -4,7 +4,7 @@ use App\Models\SimpleModel;
 
 class Word extends BaseController
 {
-	public function index($valll)
+	public function index()
 	{
 			
 	}
@@ -69,15 +69,14 @@ class Word extends BaseController
 		$Exp = Count($ListChildViewed) * RATE_VIEW_WORD_EXP;
 		$IsLearnSucess = !$IsChildPage && (int) $Percent === 100;
 		if($IsLearnSucess){
-			$SM->AddObj('Exp',(object)array(
+			$SM->Add('Exp',(object)array(
 				'WordId'=> $WordObj->Id,
 				'Exp'=> $Exp,
 			));
 			// update learn time
 			$WordObjForUpdate = $SM->Find("Word",$WordObj->Id);
-			var_dump($WordObjForUpdate); die();
-			$$WordObjForUpdate->LearnTime++;
-			$SM->UpdateObj("Word",$WordObjForUpdate);
+			$WordObjForUpdate->LearnTime++;
+			$SM->Update("Word",$WordObjForUpdate);
 		}
 		//
 		$Data= array(
@@ -110,7 +109,7 @@ class Word extends BaseController
 			->getRow(1);
         // update stat
 		$WordObj->View++;
-		$SM->UpdateObj("Word",$WordObj);
+		$SM->Update("Word",$WordObj);
         // process Mean to array mark exist status
         $WordObj->MeanArrayStatus=$this->GetExistWordsStatus($WordObj->Mean);
         //

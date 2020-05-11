@@ -39,20 +39,5 @@ class Admin extends BaseController
 		echo view("Message", $Data);
 		echo view("Footer");
 	}
-	// public function CountWordsLength(){
-	// 	$SM = new SimpleModel();
-
-	// 	$Result = $SM->Query("select WordLength,count(WordLength) from Word
-	// 	group by WordLength");
-	// 	$Message = "<pre>".print_r($Result->getResult(),true)."</pre>";
-	// 	$Data = array(
-	// 		'Title' => "Update Words Length",
-	// 		'Message'=> $Message,
-	// 		'NextActionText'=>"<i class=\"fa fa-arrow-left\"></i> Back To Admin",
-	// 		'NextActionLink'=>"/public/Admin",
-	// 	  );
-	// 	echo view("Header");
-	// 	echo view("Message", $Data);
-	// 	echo view("Footer");
-	// }
+	
 }

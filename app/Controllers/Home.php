@@ -1,16 +1,12 @@
 <?php namespace App\Controllers;
 
 use App\Models\SimpleModel;
-use App\Models\TestModel;
 
 class Home extends BaseController
 {
 	public function index()
 	{
 		$SM = new SimpleModel();
-
-		$TM = new TestModel();
-		$TM->FindObj("Word",NULL);die();
 
 		// Words
 		$Amount = 3;
