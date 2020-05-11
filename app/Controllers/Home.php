@@ -10,8 +10,26 @@ class Home extends BaseController
 
 		// Words
 		$Amount = 3;
-		$ListLowSeeWords = $SM->Query("select * from Word 
-		order by LearnTime, WordLength limit $Amount")
+		$AmountForceLearn = 1;
+		$AmountRandom = $Amount - $AmountForceLearn;
+
+		/// ALL SHORT WORD FIRST
+		// $ListLowSeeWords = $SM->Query("select * from Word 
+		// order by LearnTime, WordLength limit $Amount")
+
+		/// get min length, min learn time
+		$MinWordLength = $SM->Query("select WordLength as Min from word
+		order by LearnTime, WordLength limit 1")->getRow(1)->Min;
+		$MaxWordLength = $MinWordLength + 4;
+
+		$ListWordsForceLearn = $SM->Query("select * from Word 
+		where WordLength = $MinWordLength
+		order by RAND() limit $AmountForceLearn")
+		->getResult();
+		
+		$ListWordsRandom = $SM->Query("select * from Word 
+		where (WordLength >= $MinWordLength AND WordLength <= $MaxWordLength)
+		order by RAND() limit $AmountRandom")
         ->getResult();
 
 		// Exp
@@ -19,7 +37,7 @@ class Home extends BaseController
 		->getRow(1)->Total;
 
 		$Data = array(
-			'LowSeeWords'=> $ListLowSeeWords,
+			'ListWords'=> array_merge($ListWordsForceLearn,$ListWordsRandom),
 			'TotalExp' => $TotalExp,
 		);
 		
