@@ -3,8 +3,11 @@
 ## 4. problems (temp, will delete)
 1. delete/edit wrong word/mean
 ## 3. optimize game for easy first
-- view short word first, view longer word later
-- make achievement / level
+- [x] simple model, split controller
+- [x] view short word first, view longer word later
+    - [ ]mix 2,3,4 letter word...
+- [ ] make achievement / level
+- [ ] image
 ## 2. improve to like game application
 1. focus learn 1 word for master
 2. exp/level system
