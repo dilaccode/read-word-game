@@ -66,7 +66,7 @@
             </div>
             <div class="w3-xlarge upper">
                 <?php if ($IsChildPage): ?>
-                    <?php $Link = "/public/home/Word/$Parent"
+                    <?php $Link = "/public/Word/View/$Parent"
                         ."?StrChildViewed=$StrChildViewedNew"; // GET
                     ?>
                     <a  href="<?php echo $Link ?>"
@@ -83,7 +83,7 @@
                             $ClassStatus = "btn-Word-viewed"; // case no Mean (definition)
                             if($WordMean->IsExist) {
                                 $ClassStatus = "w3-green";
-                                $Link =  "/public/home/Word/$WordMean->Word/$Parent"
+                                $Link =  "/public/Word/View/$WordMean->Word/$Parent"
                                 ."?StrChildViewed=$StrChildViewedNew"
                                 ."&Percent=$Percent"; // GET
                             }
