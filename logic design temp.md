@@ -5,9 +5,9 @@
 ## 3. optimize game for easy first
 - [x] simple model, split controller
 - [x] view short word first, view longer word later
-    - [ ] mix 2,3,4 letter word...
+    - [x] mix 2,3,4 letter word...
 - [ ] make achievement / level
-- [ ] image
+- [DELETE] image : so much work
 ## 2. improve to like game application
 1. focus learn 1 word for master
 2. exp/level system
