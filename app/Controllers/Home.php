@@ -18,17 +18,17 @@ class Home extends BaseController
 		// order by LearnTime, WordLength limit $Amount")
 
 		/// get min length, min learn time
-		$MinWordLength = $SM->Query("select WordLength as Min from word
-		order by LearnTime, WordLength limit 1")->getRow(1)->Min;
-		$MaxWordLength = $MinWordLength + 4;
+		$MinWord = $SM->Query("select LearnTime as MinLearn, WordLength as MinLength from word
+		order by LearnTime, WordLength limit 1")->getRow(1);
+		$MinWord->MaxLength = $MinWord->MinLength + 4;
 
 		$ListWordsForceLearn = $SM->Query("select * from Word 
-		where WordLength = $MinWordLength
+		where LearnTime = $MinWord->MinLearn AND WordLength = $MinWord->MinLength 
 		order by RAND() limit $AmountForceLearn")
 		->getResult();
 		
 		$ListWordsRandom = $SM->Query("select * from Word 
-		where (WordLength >= $MinWordLength AND WordLength <= $MaxWordLength)
+		where (WordLength >= $MinWord->MinLength AND WordLength <= $MinWord->MaxLength)
 		order by RAND() limit $AmountRandom")
         ->getResult();
 

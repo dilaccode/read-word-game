@@ -63,11 +63,13 @@ class Word extends BaseController
 		if($CountChildExist>0){
 			$Percent = round(Count($ListChildViewed)/$CountChildExist*100,0);
 		}
+		$IsNoWordOnMean = $CountChildExist===0; // empty 
 			// override Percent for child page
 		$Percent = $IsChildPage ? $_GET['Percent'] : $Percent;
 			// exp
 		$Exp = Count($ListChildViewed) * RATE_VIEW_WORD_EXP;
-		$IsLearnSucess = !$IsChildPage && (int) $Percent === 100;
+		$IsLearnSucess = !$IsChildPage && (int) $Percent === 100
+						|| $IsNoWordOnMean;
 		if($IsLearnSucess){
 			$SM->Add('Exp',(object)array(
 				'WordId'=> $WordObj->Id,
