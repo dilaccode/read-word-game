@@ -5,7 +5,7 @@
 ## 3. optimize game for easy first
 - [x] simple model, split controller
 - [x] view short word first, view longer word later
-    - [ ]mix 2,3,4 letter word...
+    - [ ] mix 2,3,4 letter word...
 - [ ] make achievement / level
 - [ ] image
 ## 2. improve to like game application
