@@ -56,8 +56,15 @@ class SimpleModel extends Model
     }
     
     /// --------------
-    /// Return query result, ->getResult(), ->getRow(X),
+    /// Return query result, 
+    ///     ->getResult(), ->getRow(X),
+    ///     Add:
+    ///         ->AmountRows (affected_rows)
+    //          ->AddId (insert_id)
     public function Query($sql){
-        return $this->db->query($sql);
+        $result =  $this->db->query($sql);
+        $result->AmountRows = $this->db->mysqli->affected_rows;
+        $result->AddId = $this->db->mysqli->insert_id;
+        return $result;
     }
 }
