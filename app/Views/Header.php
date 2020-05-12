@@ -40,6 +40,9 @@ a {
 .WordMark{
     padding: 0 0.2em;
 }
+.WordMeanMarkViewed{
+    float:right;
+}
 </style>
 <!-- / CSS small -->
 

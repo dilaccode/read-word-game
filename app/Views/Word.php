@@ -79,6 +79,7 @@
                             $Link = "#";
                             $ClassStatus = "btn-Word-viewed"; // case no Mean (definition)
                             $ClassShowAnimation = "";
+                            $StrCheckViewed = "";
                             if(!$WordMeanStatus->IsViewed) {
                                 $ClassStatus = "w3-green";
                                 $ClassShowAnimation = "showBtn$ShowIndex";
@@ -89,13 +90,15 @@
                                 ."&PercentCurrent=$PercentNew"
                                 // for anti random again
                                 ."&$UrlGETDataListWordMeansInit"; 
+                            }else{
+                                $StrCheckViewed = "<i class='fa fa-check w3-text-green'></i>";
                             }                           
                         ?>
                         <a  href="<?php echo $Link ?>"
                         class="<?php echo $ClassShowAnimation ?> w3-btn btn-Word <?php echo $ClassStatus ?>
                         w3-round"
                         style="margin-bottom: 0.2em;">
-                            <?php echo $WordMeanStatus->Word ?>
+                            <?php echo $WordMeanStatus->Word ?><i class='fa fa-check w3-text-green'></i>
                         </a>
                     <?php endforeach; ?>    
                 <?php endif; ?>
