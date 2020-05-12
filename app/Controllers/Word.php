@@ -68,6 +68,15 @@ class Word extends BaseController
 			$WordObjForUpdate->LearnTime++;
 			$SM->Update("Word",$WordObjForUpdate);
 		}
+		// markup select word
+		$ShowIndex = 1;
+		foreach($WordObj->ArrayWordMeansStatus as $WordMeanStatus){
+			if(!$WordMeanStatus->IsViewed){
+				$WordObj->Mean = str_replace($WordMeanStatus->Word,
+				"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>",$WordObj->Mean);
+				$ShowIndex++;
+			}
+		}
 		//
 		$Data= array(
 			'WordObj'=> $WordObj,

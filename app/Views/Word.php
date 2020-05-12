@@ -72,13 +72,17 @@
                             <i class="fa fa-arrow-right"></i>
                     </a>
                 <?php else: ?>
+                    <?php $ShowIndex = 1; ?>
                     <?php foreach ($WordObj->ArrayWordMeansStatus as $WordMeanStatus): ?>
                         <?php 
                             $Parent = $WordObj->Word;
                             $Link = "#";
                             $ClassStatus = "btn-Word-viewed"; // case no Mean (definition)
+                            $ClassShowAnimation = "";
                             if(!$WordMeanStatus->IsViewed) {
                                 $ClassStatus = "w3-green";
+                                $ClassShowAnimation = "showBtn$ShowIndex";
+                                $ShowIndex++;
                                 $Link =  "/public/Word/View/$WordMeanStatus->Word/$Parent"
                                 ."?$UrlGETDataListWordsViewed"
                                 // update new Percent for pass to child page
@@ -88,7 +92,7 @@
                             }                           
                         ?>
                         <a  href="<?php echo $Link ?>"
-                        class="w3-btn btn-Word <?php echo $ClassStatus ?>
+                        class="<?php echo $ClassShowAnimation ?> w3-btn btn-Word <?php echo $ClassStatus ?>
                         w3-round"
                         style="margin-bottom: 0.2em;">
                             <?php echo $WordMeanStatus->Word ?>
@@ -131,7 +135,33 @@
 <!-- Page script -->
 <script>
      $(document).ready(function(){
-         TimeBeat = 10; // miliseconds
+        /// animation show mark and show word means
+        $(".showBtn1").css("visibility","hidden");
+        setTimeout(function(){ 
+            $(".show1").addClass("w3-border w3-border-green w3-round");
+        }, 500);
+        setTimeout(function(){ 
+            $(".showBtn1").css("visibility","visible");
+        }, 700);
+
+        $(".showBtn2").css("visibility","hidden");
+        setTimeout(function(){ 
+            $(".show2").addClass("w3-border w3-border-green w3-round");
+        }, 1500);
+        setTimeout(function(){ 
+            $(".showBtn2").css("visibility","visible");
+        }, 1700);
+
+        $(".showBtn3").css("visibility","hidden");
+        setTimeout(function(){ 
+            $(".show3").addClass("w3-border w3-border-green w3-round");
+        }, 2000);
+        setTimeout(function(){ 
+            $(".showBtn3").css("visibility","visible");
+        }, 2200);
+
+        /// progres bar
+        TimeBeat = 10; // miliseconds
         <?php if(!$IsChildPage): ?>
             // animation percent progress bar
             PercentTemp = <?php echo $PercentCurrent ?>;

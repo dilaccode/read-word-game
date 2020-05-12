@@ -21,7 +21,7 @@
 <!-- CSS small -->
 <style>
 body {
-    line-height: 1.1 !important;
+    line-height: 1.4 !important;
 }
 a {
     /* text-decoration: none; */
@@ -36,6 +36,9 @@ a {
 .btn-word-viewed{
     background-color: white !important;
     color: black !important;
+}
+.WordMark{
+    padding: 0 0.2em;
 }
 </style>
 <!-- / CSS small -->
