@@ -3,15 +3,8 @@
     <div class="Word-container w3-border-top 
     w3-border-left w3-border-right w3-border-indigo">
         <!-- top bar  -->
-        <div>
-            <!-- progress -->
-            <div class="w3-border-bottom w3-border-indigo">
-                <div class="w3-container w3-indigo w3-center w3-small" 
-                style="width:<?php echo $Percent?>%">
-                    <?php echo $Percent?>%
-                </div>
-            </div>
-             <!-- views -->
+        <div>           
+            <!-- views -->
             <div class="w3-large w3-padding-small 
                         w3-right-align w3-text-indigo"> 
                 <i class="fa fa-eye"></i> <?php echo $WordObj->View ?>
@@ -103,6 +96,14 @@
             </div>
         </div>
 
+        <!-- progress -->
+        <div class="ProgressBar w3-border-top w3-border-bottom w3-border-indigo">
+            <div class="ProgressBarPercent w3-container w3-indigo w3-center w3-medium" 
+            style="width:<?php echo $Percent?>%">
+                <?php echo $Percent?>%
+            </div>
+        </div>
+
     </div> 
     <!-- /.Word container -->
 
@@ -112,7 +113,7 @@
     </div>
 
     <!-- fotter -->
-    <div class="w3-border-left w3-border-right w3-border-top w3-border-indigo
+    <div class="w3-border-left w3-border-right w3-border-indigo
                 w3-left-align"
          style="padding-top: 0.5em; padding-left: 0.5em;">
         <a href="/public" class="w3-large w3-indigo w3-btn w3-round btn-Word">
@@ -130,6 +131,17 @@
             $(".Mean").hide();
             $(".Mean-links").hide();
             $(".learn-success").fadeIn();
-        <?Php endif; ?> 
+        <?Php endif; ?>
+
+        // animation percent progress bar
+        // PercentTemp=0;
+        // setInterval(function(){
+        //     if(PercentTemp<=100){
+        //         $(".ProgressBarPercent").css("width",PercentTemp+"%");
+        //         $(".ProgressBarPercent").text(PercentTemp+"%");
+        //         PercentTemp+=1;
+        //     }
+        // }, 10);
+        
      });
 </script>

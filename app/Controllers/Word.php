@@ -124,15 +124,18 @@ class Word extends BaseController
         // split
         $Mean = str_replace($SearchArr,$ReplaceArr,$Mean);
         $MeanArr = explode(" ",$Mean);
-        $MeanArrResult = array();
-        foreach($MeanArr as $Word){
-            if(strlen($Word)>0){
+		$MeanArrResult = array();
+		$AmountMeansAllow = 3;
+		$CountMeansAllow = 1;
+        foreach($MeanArr as $Word){			
+            if(strlen($Word)>0 && $CountMeansAllow <= $AmountMeansAllow){
                 array_push($MeanArrResult,(object)array(
                     'Word'=>$Word,
                     'IsExist' => $this->checkWorkExist($Word),
-                ));
+				));
+				$CountMeansAllow++;
             }
-        }
+		}
         return $MeanArrResult;
     }
     /// return TRUE/FALSE
