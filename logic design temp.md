@@ -1,12 +1,17 @@
 # logic design temp
 (Add new on top)
+## 5. Design update: simple and gamealizeeeeee
+    1. make more simple
+    2. design new way to play
 ## 4. problems (temp, will delete)
 1. delete/edit wrong word/mean
+    - > admin mode
 ## 3. optimize game for easy first
 - [x] simple model, split controller
 - [x] view short word first, view longer word later
     - [x] mix 2,3,4 letter word...
 - [ ] make achievement / level
+    - > move to 5.
 - [DELETE] image : so much work
 ## 2. improve to like game application
 1. focus learn 1 word for master
