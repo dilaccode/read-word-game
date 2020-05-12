@@ -60,7 +60,8 @@
             <div class="w3-xlarge upper">
                 <?php if ($IsChildPage): ?>
                     <?php $Link = "/public/Word/View/$Parent"
-                        ."?StrChildViewed=$StrChildViewedNew"; // GET
+                        ."?StrChildViewed=$StrChildViewedNew" // GET
+                        ."&PercentCurrent=$PercentCurrent"; // GET
                     ?>
                     <a  href="<?php echo $Link ?>"
                         class="w3-btn w3-blue w3-round-large"
@@ -78,7 +79,8 @@
                                 $ClassStatus = "w3-green";
                                 $Link =  "/public/Word/View/$WordMean->Word/$Parent"
                                 ."?StrChildViewed=$StrChildViewedNew"
-                                ."&Percent=$Percent"; // GET
+                                ."&PercentCurrent=$PercentNew"; 
+                                // update new Percent for pass to child page
                             }
                             if($WordMean->IsViewed) {
                                 $ClassStatus = "btn-Word-viewed";
@@ -99,8 +101,10 @@
         <!-- progress -->
         <div class="ProgressBar w3-border-top w3-border-bottom w3-border-indigo">
             <div class="ProgressBarPercent w3-container w3-indigo w3-center w3-medium" 
-            style="width:<?php echo $Percent?>%">
-                <?php echo $Percent?>%
+            style="width:<?php echo $PercentCurrent?>%">
+                <div class="ProgressBarPercentText" style="padding: 0.2em 0 0.2em 0;">
+                    <?php echo $PercentCurrent?>%
+                </div>
             </div>
         </div>
 
@@ -127,21 +131,28 @@
 <!-- Page script -->
 <script>
      $(document).ready(function(){
-        <?php if($IsLearnSucess): ?>
-            $(".Mean").hide();
-            $(".Mean-links").hide();
-            $(".learn-success").fadeIn();
+         TimeBeat = 10; // miliseconds
+        <?php if(!$IsChildPage): ?>
+            // animation percent progress bar
+            PercentTemp = <?php echo $PercentCurrent ?>;
+            setInterval(function(){
+                if(PercentTemp <= <?php echo $PercentNew ?>){
+                    $(".ProgressBarPercent").css("width",PercentTemp+"%");
+                    $(".ProgressBarPercentText").text(PercentTemp+"%");
+                    PercentTemp+=1;
+                }
+            }, TimeBeat);
+            // show success View after run progress bar 100%
+            <?php if($IsLearnSucess): ?>
+                Timeout = <?php echo $PercentNew - $PercentCurrent ?> * TimeBeat;
+                DelayShowSuccessView = 200; // miliseconds
+                setTimeout(function(){ 
+                    $(".Mean").hide();
+                    $(".Mean-links").hide();
+                    $(".learn-success").fadeIn();
+                }, Timeout + DelayShowSuccessView);
+                console.log(Timeout);
+            <?Php endif; ?>
         <?Php endif; ?>
-
-        // animation percent progress bar
-        // PercentTemp=0;
-        // setInterval(function(){
-        //     if(PercentTemp<=100){
-        //         $(".ProgressBarPercent").css("width",PercentTemp+"%");
-        //         $(".ProgressBarPercent").text(PercentTemp+"%");
-        //         PercentTemp+=1;
-        //     }
-        // }, 10);
-        
      });
 </script>
