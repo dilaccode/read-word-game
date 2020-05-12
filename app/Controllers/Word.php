@@ -5,8 +5,8 @@ use App\Models\SimpleModel;
 class Word extends BaseController
 {
 	public function index()	{
-		test();
-		}
+		
+	}
 
 	/// GET StrWordsViewed : word1_word2_word3, _ split
 	public function View($Word='empty',$Parent = "")
@@ -23,18 +23,20 @@ class Word extends BaseController
 		
 		$IsChildPage = strlen($Parent) > 0;
 		$ClassWordColor = $IsChildPage ? "w3-text-green" : 'w3-text-blue';
-		// 
+		// list words init random: for anti random many time > differ
+		$ListWordMeansInit = GETDataUrlToArray("ListWordMeansInit");
+			// fist time = empty list
+		if(count($ListWordMeansInit)===0){
+			$ListWordMeansInit = $this->GetListWordMeansRandom($WordObj->Mean);
+		}
+		$WordObj->ListWordMeans = $ListWordMeansInit;
+		$UrlGETDataListWordMeansInit = ArrayToGETDataUrl("ListWordMeansInit",$ListWordMeansInit);		
 		// list words viewed (child page)
-		$ListWordsViewed = array();
-		$StrWordsViewed = "";
-		if(isset($_GET['StrWordsViewed'])) 
-			$StrWordsViewed = $_GET['StrWordsViewed'];
-		if(strlen($StrWordsViewed)>0)
-			$ListWordsViewed = explode("_",$StrWordsViewed);
+		$ListWordsViewed = GETDataUrlToArray("ListWordsViewed");
 		if($IsChildPage){
 			array_push($ListWordsViewed,$Word);
 		}
-		$StrWordsViewedNew = implode("_",$ListWordsViewed);		
+		$UrlGETDataListWordsViewed = ArrayToGETDataUrl("ListWordsViewed",$ListWordsViewed);		
 		// process viewed (parent page)	
 		$ArrayWordMeansStatus = array();
 		foreach($WordObj->ListWordMeans as $WordMean){
@@ -73,7 +75,8 @@ class Word extends BaseController
 			'IsChildPage' => $IsChildPage,
 			'Parent' => $Parent,
 			'ClassWordColor'=> $ClassWordColor,
-			'StrWordsViewedNew' => $StrWordsViewedNew,
+			'UrlGETDataListWordsViewed' => $UrlGETDataListWordsViewed,
+			'UrlGETDataListWordMeansInit' => $UrlGETDataListWordMeansInit,
 			'PercentCurrent'=>$PercentCurrent,
 			'PercentNew' => $PercentNew,
 						// skip calculate Percent child page
@@ -98,8 +101,6 @@ class Word extends BaseController
         // update stat
 		$WordObj->View++;
 		$SM->Update("Word",$WordObj);
-        // process Mean to array mark exist status
-        $WordObj->ListWordMeans=$this->GetListWordMeansRandom($WordObj->Mean);
         //
         return $WordObj;
     }

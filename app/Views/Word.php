@@ -60,8 +60,10 @@
             <div class="w3-xlarge upper">
                 <?php if ($IsChildPage): ?>
                     <?php $Link = "/public/Word/View/$Parent"
-                        ."?StrWordsViewed=$StrWordsViewedNew" // GET
-                        ."&PercentCurrent=$PercentCurrent"; // GET
+                        ."?$UrlGETDataListWordsViewed" // GET
+                        ."&PercentCurrent=$PercentCurrent" // GET
+                        // for anti random again
+                        ."&$UrlGETDataListWordMeansInit"; 
                     ?>
                     <a  href="<?php echo $Link ?>"
                         class="w3-btn w3-blue w3-round-large"
@@ -78,9 +80,11 @@
                             if(!$WordMeanStatus->IsViewed) {
                                 $ClassStatus = "w3-green";
                                 $Link =  "/public/Word/View/$WordMeanStatus->Word/$Parent"
-                                ."?StrWordsViewed=$StrWordsViewedNew"
+                                ."?$UrlGETDataListWordsViewed"
                                 // update new Percent for pass to child page
-                                ."&PercentCurrent=$PercentNew"; 
+                                ."&PercentCurrent=$PercentNew"
+                                // for anti random again
+                                ."&$UrlGETDataListWordMeansInit"; 
                             }                           
                         ?>
                         <a  href="<?php echo $Link ?>"
