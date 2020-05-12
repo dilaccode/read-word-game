@@ -11,7 +11,7 @@
 - [x] view short word first, view longer word later
     - [x] mix 2,3,4 letter word...
 - [ ] make achievement / level
-    - > move to 5.
+    - > move to [5...](https://github.com/dilaccode/word-like-game/blob/master/logic%20design%20temp.md#5-design-update-simple-and-gamealizeeeeee)
 - [DELETE] image : so much work
 ## 2. improve to like game application
 1. focus learn 1 word for master
