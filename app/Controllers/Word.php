@@ -70,10 +70,11 @@ class Word extends BaseController
 		}
 		// markup select word
 		$ShowIndex = 1;
+		$SPACE=" ";// for anti replace inside word
 		foreach($WordObj->ArrayWordMeansStatus as $WordMeanStatus){
 			if(!$WordMeanStatus->IsViewed){
-				$WordObj->Mean = str_replace($WordMeanStatus->Word,
-				"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>",$WordObj->Mean);
+				$WordObj->Mean = str_replace($WordMeanStatus->Word.$SPACE,
+				"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>$SPACE",$WordObj->Mean);
 				$ShowIndex++;
 			}
 		}
