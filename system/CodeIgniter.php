@@ -467,6 +467,10 @@ class CodeIgniter
 	 */
 	protected function detectEnvironment()
 	{
+		/// Di Lac add for development mode
+		if(!IS_DEVELOPMENT_MODE){
+		/// end add
+
 		// Make sure ENVIRONMENT isn't already set by other means.
 		if (! defined('ENVIRONMENT'))
 		{
@@ -480,7 +484,12 @@ class CodeIgniter
 				define('ENVIRONMENT', $_SERVER['CI_ENVIRONMENT'] ?? 'production');
 			}
 		}
-		// define('ENVIRONMENT', 'development');
+
+		/// Di Lac add for development mode
+		}else{
+			define('ENVIRONMENT', 'development');
+		}
+		/// end add
 	}
 
 	//--------------------------------------------------------------------

@@ -60,7 +60,7 @@
             <div class="w3-xlarge upper">
                 <?php if ($IsChildPage): ?>
                     <?php $Link = "/public/Word/View/$Parent"
-                        ."?StrChildViewed=$StrChildViewedNew" // GET
+                        ."?StrWordsViewed=$StrWordsViewedNew" // GET
                         ."&PercentCurrent=$PercentCurrent"; // GET
                     ?>
                     <a  href="<?php echo $Link ?>"
@@ -70,28 +70,24 @@
                             <i class="fa fa-arrow-right"></i>
                     </a>
                 <?php else: ?>
-                    <?php foreach ($WordObj->MeanArrayStatus as $WordMean): ?>
-                        <?php
+                    <?php foreach ($WordObj->ArrayWordMeansStatus as $WordMeanStatus): ?>
+                        <?php 
                             $Parent = $WordObj->Word;
                             $Link = "#";
                             $ClassStatus = "btn-Word-viewed"; // case no Mean (definition)
-                            if($WordMean->IsExist) {
+                            if(!$WordMeanStatus->IsViewed) {
                                 $ClassStatus = "w3-green";
-                                $Link =  "/public/Word/View/$WordMean->Word/$Parent"
-                                ."?StrChildViewed=$StrChildViewedNew"
-                                ."&PercentCurrent=$PercentNew"; 
+                                $Link =  "/public/Word/View/$WordMeanStatus->Word/$Parent"
+                                ."?StrWordsViewed=$StrWordsViewedNew"
                                 // update new Percent for pass to child page
-                            }
-                            if($WordMean->IsViewed) {
-                                $ClassStatus = "btn-Word-viewed";
-                                $Link = "#";
-                            }
+                                ."&PercentCurrent=$PercentNew"; 
+                            }                           
                         ?>
                         <a  href="<?php echo $Link ?>"
                         class="w3-btn btn-Word <?php echo $ClassStatus ?>
                         w3-round"
                         style="margin-bottom: 0.2em;">
-                            <?php echo $WordMean->Word ?>
+                            <?php echo $WordMeanStatus->Word ?>
                         </a>
                     <?php endforeach; ?>    
                 <?php endif; ?>

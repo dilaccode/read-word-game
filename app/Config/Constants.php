@@ -78,4 +78,5 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 // Custom constants
+defined('IS_DEVELOPMENT_MODE')      || define('IS_DEVELOPMENT_MODE', true);
 defined('RATE_VIEW_WORD_EXP')      || define('RATE_VIEW_WORD_EXP', 10);

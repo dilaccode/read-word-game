@@ -1,5 +1,11 @@
 <?php namespace App\Models;
 
+/// HOW TO USE
+/// add above class <controller>: 
+///     use App\Models\SimpleModel;
+/// use in <controller> function:
+///     $SM = new SimpleModel();
+
 class SimpleModel
 {    
     private $db;

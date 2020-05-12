@@ -4,12 +4,11 @@ use App\Models\SimpleModel;
 
 class Word extends BaseController
 {
-	public function index()
-	{
-			
-	}
+	public function index()	{
+		test();
+		}
 
-	/// GET StrChildViewed : word1_word2_word3, _ split
+	/// GET StrWordsViewed : word1_word2_word3, _ split
 	public function View($Word='empty',$Parent = "")
 	{
 		$SM = new SimpleModel();
@@ -24,52 +23,39 @@ class Word extends BaseController
 		
 		$IsChildPage = strlen($Parent) > 0;
 		$ClassWordColor = $IsChildPage ? "w3-text-green" : 'w3-text-blue';
-		// list child viewed		
-		$ListChildViewed = array();
-		$StrChildViewed = "";
-		if(isset($_GET['StrChildViewed'])) 
-			$StrChildViewed = $_GET['StrChildViewed'];
-		if(strlen($StrChildViewed)>0)
-			$ListChildViewed = explode("_",$StrChildViewed);
-		if($IsChildPage && !in_array($Word,$ListChildViewed)){
-			array_push($ListChildViewed,$Word);
+		// 
+		// list words viewed (child page)
+		$ListWordsViewed = array();
+		$StrWordsViewed = "";
+		if(isset($_GET['StrWordsViewed'])) 
+			$StrWordsViewed = $_GET['StrWordsViewed'];
+		if(strlen($StrWordsViewed)>0)
+			$ListWordsViewed = explode("_",$StrWordsViewed);
+		if($IsChildPage){
+			array_push($ListWordsViewed,$Word);
 		}
-		$StrChildViewedNew = implode("_",$ListChildViewed);		
+		$StrWordsViewedNew = implode("_",$ListWordsViewed);		
 		// process viewed (parent page)	
-		$MeanArrayStatusNEW = array();
-		foreach($WordObj->MeanArrayStatus as $WordMeanStatus){
-			$WordMeanStatus->IsViewed = FALSE;
-			if(in_array($WordMeanStatus->Word,$ListChildViewed)){
+		$ArrayWordMeansStatus = array();
+		foreach($WordObj->ListWordMeans as $WordMean){
+			$WordMeanStatus = (object)array(
+				'Word' => $WordMean,
+				"IsViewed" => FALSE,
+			);
+			if(in_array($WordMeanStatus->Word,$ListWordsViewed)){
 				$WordMeanStatus->IsViewed = TRUE;
 			}
-			array_push($MeanArrayStatusNEW,$WordMeanStatus);
+			array_push($ArrayWordMeansStatus,$WordMeanStatus);
 		}
-		$WordObj->MeanArrayStatus = $MeanArrayStatusNEW;
+		$WordObj->ArrayWordMeansStatus = $ArrayWordMeansStatus;
 		// percent viewed / exp
-			// unique Word
-		$ArrayMeanStatusExistUnique = array();
-		foreach($WordObj->MeanArrayStatus as $WordMeanStatus){
-			$ArrayUniqueTemp = array_column($ArrayMeanStatusExistUnique,"Word");
-			if(!in_array($WordMeanStatus->Word,$ArrayUniqueTemp)){
-                array_push($ArrayMeanStatusExistUnique,$WordMeanStatus);
-			}
-		}
 			// calculate percent
-		$CountChildExist=0;
-		$Percent = 0;
-		foreach($ArrayMeanStatusExistUnique as $WordMeanStatus){
-			if($WordMeanStatus->IsExist) $CountChildExist++;
-		}
-		if($CountChildExist>0){
-			$PercentNew = round(Count($ListChildViewed)/$CountChildExist*100,0);
-		}
-		$IsNoWordOnMean = $CountChildExist===0; // empty 
+		$PercentNew = round(count($ListWordsViewed)/count($ArrayWordMeansStatus)*100,0);
 			// override Percent for child page
 		$PercentCurrent = isset($_GET['PercentCurrent']) ? $_GET['PercentCurrent'] : 0;
 			// exp
-		$Exp = Count($ListChildViewed) * RATE_VIEW_WORD_EXP;
-		$IsLearnSucess = !$IsChildPage && (int) $PercentNew === 100
-						|| $IsNoWordOnMean;
+		$Exp = Count($ListWordsViewed) * RATE_VIEW_WORD_EXP;
+		$IsLearnSucess = !$IsChildPage && (int) $PercentNew === 100;
 		if($IsLearnSucess){
 			$SM->Add('Exp',(object)array(
 				'WordId'=> $WordObj->Id,
@@ -87,15 +73,14 @@ class Word extends BaseController
 			'IsChildPage' => $IsChildPage,
 			'Parent' => $Parent,
 			'ClassWordColor'=> $ClassWordColor,
-			'StrChildViewedNew' => $StrChildViewedNew,
+			'StrWordsViewedNew' => $StrWordsViewedNew,
 			'PercentCurrent'=>$PercentCurrent,
 			'PercentNew' => $PercentNew,
 						// skip calculate Percent child page
 			'IsLearnSucess' => $IsLearnSucess,
 			'Exp' => $Exp,
 		);
-		//	
-		echo $PercentNew;
+	
 		// var_dump($Data);die();
 		
 		echo view('Header');
@@ -114,30 +99,39 @@ class Word extends BaseController
 		$WordObj->View++;
 		$SM->Update("Word",$WordObj);
         // process Mean to array mark exist status
-        $WordObj->MeanArrayStatus=$this->GetExistWordsStatus($WordObj->Mean);
+        $WordObj->ListWordMeans=$this->GetListWordMeansRandom($WordObj->Mean);
         //
         return $WordObj;
     }
-    /// return Mean (sentence) as array (Word,IsExist)
-    private function GetExistWordsStatus($Mean){
+	/// return Mean (sentence) as array (Word,IsExist)
+	/// random : X elements
+	/// and exist words
+    private function GetListWordMeansRandom($Mean){
         $SearchArr = array("(",")",".",",",";","  ");
         $ReplaceArr = array(" "," "," "," "," "," ");
         // split
         $Mean = str_replace($SearchArr,$ReplaceArr,$Mean);
-        $MeanArr = explode(" ",$Mean);
-		$MeanArrResult = array();
-		$AmountMeansAllow = 3;
-		$CountMeansAllow = 1;
-        foreach($MeanArr as $Word){			
-            if(strlen($Word)>0 && $CountMeansAllow <= $AmountMeansAllow){
-                array_push($MeanArrResult,(object)array(
-                    'Word'=>$Word,
-                    'IsExist' => $this->checkWorkExist($Word),
-				));
-				$CountMeansAllow++;
+        $ArrayMean = explode(" ",$Mean);
+		$ArrayMeansResult = array();
+        foreach($ArrayMean as $Word){			
+            if(strlen($Word)>0){
+				if($this->checkWorkExist($Word)){
+                	array_push($ArrayMeansResult, $Word);
+				}
             }
 		}
-        return $MeanArrResult;
+		
+		// return randoms array
+		$AmountMeansAllow = 3;
+		$AmountMeansAllowValidate = $AmountMeansAllow > count($ArrayMeansResult) 
+						? count($ArrayMeansResult) : $AmountMeansAllow;
+		$ArrayIndex = array_rand($ArrayMeansResult,$AmountMeansAllowValidate);
+		$ArrayMeansResultRandom = array();
+		foreach ( $ArrayIndex as $Index){
+			array_push($ArrayMeansResultRandom, $ArrayMeansResult[$Index]);
+		}
+
+        return $ArrayMeansResultRandom;
     }
     /// return TRUE/FALSE
     private function checkWorkExist($Word){

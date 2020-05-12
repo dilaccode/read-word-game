@@ -25,5 +25,14 @@ C:\xampp\mysql\bin\mysqldump.exe --user=root --password= --host=localhost --port
 - [Word count idea](https://github.com/quangcongvn/word-count)
 
 # Development Mode
+> now setting on App/Config/Constant.php IS_DEVELOPMENT_MODE
 CodeIgniter.php line 483... **but slow**
 // define('ENVIRONMENT', 'development');
+
+# simple_helper
+**store all custom function use for all project**
+- path: App/Helper/simple_helper.php
+- add to  App/Controller/BaseController.php for **auto load** and **use any controller**
+```php
+    protected $helpers = ['simple_helper'];
+```
