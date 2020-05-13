@@ -1,7 +1,7 @@
 # logic design temp
 (Add new on top)
 ## 5. Design update: simple and gamealizeeeeee
-    1. make more simple
+    1. [x] make more simple
         - remove mode read all words mean: **so much task**
         - >>> replace by read from 1-3 words mean
             - select 1-3 words mean [from list words mean]
@@ -13,8 +13,8 @@
         - game task?
             - old: read all means possible
             - new: 
-                - read main mean and some sub means
-                - need more interesting
+                - [x] read main mean and some sub means
+                - [ ] need more interesting
 
 ## 4. problems (temp, will delete)
 1. delete/edit wrong word/mean
