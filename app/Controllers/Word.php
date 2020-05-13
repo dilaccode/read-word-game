@@ -4,9 +4,7 @@ use App\Models\SimpleModel;
 
 class Word extends BaseController
 {
-	public function index()	{
-		
-	}
+	public function index()	{ }
 
 	/// GET StrWordsViewed : word1_word2_word3, _ split
 	public function View($Word='empty',$Parent = "")
