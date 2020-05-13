@@ -79,7 +79,6 @@
                             $Link = "#";
                             $ClassStatus = "btn-Word-viewed"; // case no Mean (definition)
                             $ClassShowAnimation = "";
-                            $StrCheckViewed = "";
                             if(!$WordMeanStatus->IsViewed) {
                                 $ClassStatus = "w3-green";
                                 $ClassShowAnimation = "showBtn$ShowIndex";
@@ -89,17 +88,25 @@
                                 // update new Percent for pass to child page
                                 ."&PercentCurrent=$PercentNew"
                                 // for anti random again
-                                ."&$UrlGETDataListWordMeansInit"; 
-                            }else{
-                                $StrCheckViewed = "<i class='fa fa-check w3-text-green'></i>";
-                            }                           
+                                ."&$UrlGETDataListWordMeansInit";                         
                         ?>
-                        <a  href="<?php echo $Link ?>"
-                        class="<?php echo $ClassShowAnimation ?> w3-btn btn-Word <?php echo $ClassStatus ?>
-                        w3-round"
-                        style="margin-bottom: 0.2em;">
-                            <?php echo $WordMeanStatus->Word ?><i class='fa fa-check w3-text-green'></i>
-                        </a>
+                                <a  href="<?php echo $Link ?>"
+                                class="<?php echo $ClassShowAnimation ?> w3-btn btn-Word <?php echo $ClassStatus ?>
+                                w3-round"
+                                style="margin-bottom: 0.2em;">
+                                    <?php echo $WordMeanStatus->Word ?>
+                                </a>
+                        <?php
+                            }else{
+                        ?>
+                                <div class="" 
+                                     style="display: inline-block;  padding: 8px 4px; margin-bottom: 0.2em;">
+                                    <?php echo $WordMeanStatus->Word ?><i class='fa fa-check w3-text-green'></i>
+                                </div>
+                        <?php
+                            }
+                        ?>    
+                        
                     <?php endforeach; ?>    
                 <?php endif; ?>
             </div>
