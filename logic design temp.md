@@ -9,13 +9,13 @@
         - [x] improve UX:
             - select words on mean: border
             - show button after below
-            [x] ple
 2. design new way to play
     - game task?
         - old: read all means possible
         - new: 
             - [x] read main mean and some sub means
             - [ ] need more interesting
+                - focus user to read mean (definition) [start lazy and click word means]
 
 ## 4. problems (temp, will delete)
 1. delete/edit wrong word/mean
