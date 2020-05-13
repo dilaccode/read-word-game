@@ -1,20 +1,21 @@
 # logic design temp
 (Add new on top)
 ## 5. Design update: simple and gamealizeeeeee
-    1. [x] make more simple
-        - remove mode read all words mean: **so much task**
-        - >>> replace by read from 1-3 words mean
-            - select 1-3 words mean [from list words mean]
-            - improve/short screen content [remove long list mean button]
-            - improve UX:
-                - select words on mean: border
-                - show button after below
-    2. design new way to play
-        - game task?
-            - old: read all means possible
-            - new: 
-                - [x] read main mean and some sub means
-                - [ ] need more interesting
+1.  - [x] make more simple
+    - [x] remove mode read all words mean: **so much task**
+    - >>> replace by read from 1-3 words mean
+        - [x] select 1-3 words mean [from list words mean]
+        - [x] improve/short screen content [remove long list mean button]
+        - [x] improve UX:
+            - select words on mean: border
+            - show button after below
+            [x] ple
+2. design new way to play
+    - game task?
+        - old: read all means possible
+        - new: 
+            - [x] read main mean and some sub means
+            - [ ] need more interesting
 
 ## 4. problems (temp, will delete)
 1. delete/edit wrong word/mean
