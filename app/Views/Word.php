@@ -93,7 +93,7 @@
                                 <a  href="<?php echo $Link ?>"
                                 class="<?php echo $ClassShowAnimation ?> w3-btn btn-Word <?php echo $ClassStatus ?>
                                 w3-round"
-                                style="margin-bottom: 0.2em;">
+                                style="margin-bottom: 0.2em; visibility:hidden;">
                                     <?php echo $WordMeanStatus->Word ?>
                                 </a>
                         <?php
@@ -146,7 +146,7 @@
 <script>
      $(document).ready(function(){
         /// animation show mark and show word means
-        $(".showBtn1").css("visibility","hidden");
+        // $(".showBtn1").css("visibility","hidden");
         setTimeout(function(){ 
             $(".show1").addClass("w3-border w3-border-green w3-round");
         }, 500);
@@ -154,7 +154,7 @@
             $(".showBtn1").css("visibility","visible");
         }, 700);
 
-        $(".showBtn2").css("visibility","hidden");
+        // $(".showBtn2").css("visibility","hidden");
         setTimeout(function(){ 
             $(".show2").addClass("w3-border w3-border-green w3-round");
         }, 1500);
@@ -162,7 +162,7 @@
             $(".showBtn2").css("visibility","visible");
         }, 1700);
 
-        $(".showBtn3").css("visibility","hidden");
+        // $(".showBtn3").css("visibility","hidden");
         setTimeout(function(){ 
             $(".show3").addClass("w3-border w3-border-green w3-round");
         }, 2000);
