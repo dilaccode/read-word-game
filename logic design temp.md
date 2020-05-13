@@ -3,7 +3,7 @@
 ## 5. Design update: simple and gamealizeeeeee
 1.  - [x] make more simple
     - [x] remove mode read all words mean: **so much task**
-    - >>> replace by read from 1-3 words mean
+    - -> replace by read from 1-3 words mean
         - [x] select 1-3 words mean [from list words mean]
         - [x] improve/short screen content [remove long list mean button]
         - [x] improve UX:
