@@ -70,11 +70,20 @@ class Word extends BaseController
 		}
 		// markup select word
 		$ShowIndex = 1;
-		$SPACE=" ";// for anti replace inside word
+			// for anti replace inside word: replace part/ sign
+			// format: word.$ReplaceSign > <new>.$ReplaceSign
+		$SPACE=" ";
+		$DOT=".";
+		$COMMA=",";
+		$RIGHT_ROUND_BRACKET=")";
+		$ArrayReplace = array($SPACE,$DOT,$COMMA,$RIGHT_ROUND_BRACKET);
+			// end
 		foreach($WordObj->ArrayWordMeansStatus as $WordMeanStatus){
 			if(!$WordMeanStatus->IsViewed){
-				$WordObj->Mean = str_replace($WordMeanStatus->Word.$SPACE,
-				"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>$SPACE",$WordObj->Mean);
+				foreach($ArrayReplace as $ReplaceSign){
+					$WordObj->Mean = str_replace($WordMeanStatus->Word.$ReplaceSign,
+					"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>$ReplaceSign",$WordObj->Mean);
+				}
 				$ShowIndex++;
 			}
 		}
