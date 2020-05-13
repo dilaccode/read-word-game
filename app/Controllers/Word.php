@@ -11,6 +11,9 @@ class Word extends BaseController
 	/// GET StrWordsViewed : word1_word2_word3, _ split
 	public function View($Word='empty',$Parent = "")
 	{
+		$Word = rawurldecode($Word);
+		$Parent = rawurldecode($Parent);
+
 		$SM = new SimpleModel();
 	
 		$WordObj =  $this->GetWord($Word);
@@ -52,12 +55,15 @@ class Word extends BaseController
 		$WordObj->ArrayWordMeansStatus = $ArrayWordMeansStatus;
 		// percent viewed / exp
 			// calculate percent
-		$PercentNew = round(count($ListWordsViewed)/count($ArrayWordMeansStatus)*100,0);
+		$PercentNew = count($ArrayWordMeansStatus) === 0 ? 0
+			: round(count($ListWordsViewed)/count($ArrayWordMeansStatus)*100,0);
 			// override Percent for child page
 		$PercentCurrent = isset($_GET['PercentCurrent']) ? $_GET['PercentCurrent'] : 0;
 			// exp
 		$Exp = Count($ListWordsViewed) * RATE_VIEW_WORD_EXP;
-		$IsLearnSucess = !$IsChildPage && (int) $PercentNew === 100;
+		$IsEmptyWordMeans = count($WordObj->ListWordMeans) === 0;
+		$IsLearnSucess = !$IsChildPage && (int) $PercentNew === 100
+						 || $IsEmptyWordMeans;
 		if($IsLearnSucess){
 			$SM->Add('Exp',(object)array(
 				'WordId'=> $WordObj->Id,
@@ -69,22 +75,33 @@ class Word extends BaseController
 			$SM->Update("Word",$WordObjForUpdate);
 		}
 		// markup select word
-		$ShowIndex = 1;
-			// for anti replace inside word: replace part/ sign
-			// format: word.$ReplaceSign > <new>.$ReplaceSign
-		$SPACE=" ";
-		$DOT=".";
-		$COMMA=",";
-		$RIGHT_ROUND_BRACKET=")";
-		$ArrayReplace = array($SPACE,$DOT,$COMMA,$RIGHT_ROUND_BRACKET);
-			// end
-		foreach($WordObj->ArrayWordMeansStatus as $WordMeanStatus){
-			if(!$WordMeanStatus->IsViewed){
-				foreach($ArrayReplace as $ReplaceSign){
-					$WordObj->Mean = str_replace($WordMeanStatus->Word.$ReplaceSign,
-					"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>$ReplaceSign",$WordObj->Mean);
+		if(!$IsChildPage){
+			$ShowIndex = 1;
+				// for anti replace inside word: replace part/ sign
+				// format: word.$ReplaceSign > <new>.$ReplaceSign
+			$SPACE=" ";
+			$DOT=".";
+			$COMMA=",";
+			$RIGHT_ROUND_BRACKET=")";
+			$ArrayReplace = array($SPACE,$DOT,$COMMA,$RIGHT_ROUND_BRACKET);
+				// end
+				// fix bug "an<SPACE>" replace "<span<SPACE>...
+				// -> by replace "an" first
+			if(in_array("an",$WordObj->ListWordMeans)){
+				$WordObj->Mean = str_replace("an$SPACE",
+						"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>$SPACE",$WordObj->Mean);
+			}
+			foreach($WordObj->ArrayWordMeansStatus as $WordMeanStatus){
+				if(!$WordMeanStatus->IsViewed 
+					&& $WordMeanStatus->Word !== "an" // fix bug "an<SPACE>"
+				){
+					foreach($ArrayReplace as $ReplaceSign){
+						$WordObj->Mean = str_replace($WordMeanStatus->Word.$ReplaceSign,
+						"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>$ReplaceSign",$WordObj->Mean);
+						
+					}
+					$ShowIndex++;
 				}
-				$ShowIndex++;
 			}
 		}
 		//
@@ -113,6 +130,8 @@ class Word extends BaseController
 	/// ============================================
 	/// WORD
 	private function GetWord($Word){
+		$Word = rawurldecode($Word);
+
 		$SM = new SimpleModel();
 
 		$WordObj = $SM->Query("select * from Word where Word='$Word'")
@@ -135,22 +154,25 @@ class Word extends BaseController
 		$ArrayMeansResult = array();
         foreach($ArrayMean as $Word){			
             if(strlen($Word)>0){
-				if($this->checkWorkExist($Word)){
+				if($this->checkWorkExist($Word)
+					&& !in_array($Word,$ArrayMeansResult) // for unique
+				){
                 	array_push($ArrayMeansResult, $Word);
 				}
             }
 		}
 		
 		// return randoms array
-		$AmountMeansAllow = 3;
-		$AmountMeansAllowValidate = $AmountMeansAllow > count($ArrayMeansResult) 
-						? count($ArrayMeansResult) : $AmountMeansAllow;
-		$ArrayIndex = array_rand($ArrayMeansResult,$AmountMeansAllowValidate);
 		$ArrayMeansResultRandom = array();
-		foreach ( $ArrayIndex as $Index){
-			array_push($ArrayMeansResultRandom, $ArrayMeansResult[$Index]);
+		$AmountMeansAllow = 3;
+		if(count($ArrayMeansResult) > $AmountMeansAllow){
+			$ArrayIndex = array_rand($ArrayMeansResult, $AmountMeansAllow);
+			foreach ( $ArrayIndex as $Index){
+				array_push($ArrayMeansResultRandom, $ArrayMeansResult[$Index]);
+			}
+		}else{ // case ; 0, 1, 2, 3, X.... <= $AmountMeansAllow, no need random
+			$ArrayMeansResultRandom = $ArrayMeansResult;
 		}
-
         return $ArrayMeansResultRandom;
     }
     /// return TRUE/FALSE
