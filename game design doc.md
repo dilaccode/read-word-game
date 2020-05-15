@@ -1,6 +1,6 @@
 # Interesting word game
 ## some information
-1. make people read all mean (definition) sentences.
+1. make people read all mean (definition) sentences.<br>
   /make people interesting read all mean sentences.
 2. collect action
     - words
