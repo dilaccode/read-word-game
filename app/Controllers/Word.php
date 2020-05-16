@@ -74,9 +74,9 @@ class Word extends BaseController
 	/// AJAX ==================
 	public function AJAXReadComplete(){
 		// fake load long time
-		$SM = new SimpleModel();
-		for($i=0;$i<30000;$i++)
-			$SM->Query("select exp,sum(exp) as total from exp");
+			// $SM = new SimpleModel();
+			// for($i=0;$i<30000;$i++)
+			// 	$SM->Query("select exp,sum(exp) as total from exp");
 		// end fake
 
 		echo 123; die();
