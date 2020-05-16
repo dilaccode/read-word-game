@@ -54,16 +54,6 @@
 
         <!-- Mean (definition) links -->
         <div class="Mean-links w3-padding-small">
-            <div class="w3-large w3-padding-small">
-                <?php if ($IsChildPage): ?>
-                    <!-- <i class="fa fa-arrow-left w3-text-blue"></i> -->
-                    <span class="w3-text-indigo">NEXT</span>
-                <?php else: ?>
-                    <i class="fa fa-arrow-down w3-text-green"></i>
-                    <span class="w3-text-green">CLICK, READ ALL GREEN BUTTON</span>
-                    <i class="fa fa-arrow-down w3-text-green"></i>
-                <?php endif; ?>
-            </div>
             <div class="w3-xlarge upper">
                 <?php if ($IsChildPage): ?>
                     <?php $Link = "/public/Word/View/$Parent"
