@@ -7,12 +7,11 @@ class Word extends BaseController
 	public function index()	{ }
 
 	/// GET StrWordsViewed : word1_word2_word3, _ split
-	public function View($Word='empty',$Parent = "")
+	public function View($Word='empty')
 	{
-		$Word = rawurldecode($Word);
-		$Parent = rawurldecode($Parent);
-
 		$SM = new SimpleModel();
+
+		$Word = rawurldecode($Word);
 	
 		$WordObj =  $this->GetWord($Word);
 
@@ -30,56 +29,24 @@ class Word extends BaseController
 		if($TotalMeanWords>=35) // 3x-55 words
 			$CssMeanFontSize = 'font-size: 22px !important;';
 
-		$IsChildPage = strlen($Parent) > 0;
-		$ClassWordColor = $IsChildPage ? "w3-text-green" : 'w3-text-blue';
-		// list words init random: for anti random many time > differ
-		$ListWordMeansInit = GETDataUrlToArray("ListWordMeansInit");
-			// fist time = empty list
-		if(count($ListWordMeansInit)===0){
-			$ListWordMeansInit = $this->GetListWordMeansRandom($WordObj->Mean);
-		}
-		$WordObj->ListWordMeans = $ListWordMeansInit;
-		$UrlGETDataListWordMeansInit = ArrayToGETDataUrl("ListWordMeansInit",$ListWordMeansInit);		
-		// list words viewed (child page)
-		$ListWordsViewed = GETDataUrlToArray("ListWordsViewed");
-		if($IsChildPage){
-			array_push($ListWordsViewed,$Word);
-		}
-		$UrlGETDataListWordsViewed = ArrayToGETDataUrl("ListWordsViewed",$ListWordsViewed);		
-		// process viewed (parent page)	
-		$ArrayWordMeansStatus = array();
-		foreach($WordObj->ListWordMeans as $WordMean){
-			$WordMeanStatus = (object)array(
-				'Word' => $WordMean,
-				"IsViewed" => FALSE,
-			);
-			if(in_array($WordMeanStatus->Word,$ListWordsViewed)){
-				$WordMeanStatus->IsViewed = TRUE;
-			}
-			array_push($ArrayWordMeansStatus,$WordMeanStatus);
-		}
-		$WordObj->ArrayWordMeansStatus = $ArrayWordMeansStatus;
-		// percent viewed / exp
-			// calculate percent
-		$PercentNew = count($ArrayWordMeansStatus) === 0 ? 0
-			: round(count($ListWordsViewed)/count($ArrayWordMeansStatus)*100,0);
-			// override Percent for child page
-		$PercentCurrent = isset($_GET['PercentCurrent']) ? $_GET['PercentCurrent'] : 0;
-			// exp
-		$Exp = Count($ListWordsViewed) * RATE_VIEW_WORD_EXP;
-		$IsEmptyWordMeans = count($WordObj->ListWordMeans) === 0;
-		$IsLearnSucess = !$IsChildPage && (int) $PercentNew === 100
-						 || $IsEmptyWordMeans;
-		if($IsLearnSucess){
-			$SM->Add('Exp',(object)array(
-				'WordId'=> $WordObj->Id,
-				'Exp'=> $Exp,
-			));
-			// update learn time
-			$WordObjForUpdate = $SM->Find("Word",$WordObj->Id);
-			$WordObjForUpdate->LearnTime++;
-			$SM->Update("Word",$WordObjForUpdate);
-		}
+		
+		
+		// if($IsLearnSucess){
+		// 	$SM->Add('Exp',(object)array(
+		// 		'WordId'=> $WordObj->Id,
+		// 		'Exp'=> $Exp,
+		// 	));
+		// 	// update learn time
+		// 	$WordObjForUpdate = $SM->Find("Word",$WordObj->Id);
+		// 	$WordObjForUpdate->LearnTime++;
+		// 	$SM->Update("Word",$WordObjForUpdate);
+		// }
+
+		
+		// get next word
+		$ListWordMeans = $this->GetListWordMeansRandom($WordObj->Mean, 1);
+		$NextWord = count($ListWordMeans) >=1 ? $ListWordMeans[0] : "None";
+
 		// markup select word
 		$SelectIndex = 1;
 		$ArrayMeanLetters = str_split($WordObj->Mean);
@@ -94,17 +61,8 @@ class Word extends BaseController
 			'WordObj'=> $WordObj,
 			'ClassWordSize'=> $ClassWordSize,
 			'CssMeanFontSize' => $CssMeanFontSize,
-			'IsChildPage' => $IsChildPage,
-			'Parent' => $Parent,
-			'ClassWordColor'=> $ClassWordColor,
-			'UrlGETDataListWordsViewed' => $UrlGETDataListWordsViewed,
-			'UrlGETDataListWordMeansInit' => $UrlGETDataListWordMeansInit,
-			'PercentCurrent'=>$PercentCurrent,
-			'PercentNew' => $PercentNew,
-						// skip calculate Percent child page
-			'IsLearnSucess' => $IsLearnSucess,
-			'Exp' => $Exp,
 			'TotalMeanLetters' => $TotalMeanLetters,
+			'NextWord' => $NextWord,
 		);
 	
 		// var_dump($Data);die();
@@ -112,6 +70,24 @@ class Word extends BaseController
 		echo view('Header');
 		echo view('Word',$Data);
 		echo view('Footer');
+	}
+	/// AJAX ==================
+	public function AJAXReadComplete(){
+		// fake load long time
+		$SM = new SimpleModel();
+		for($i=0;$i<30000;$i++)
+			$SM->Query("select exp,sum(exp) as total from exp");
+		// end fake
+
+		echo 123; die();
+		$SM->Add('Exp',(object)array(
+			'WordId'=> $WordObj->Id,
+			'Exp'=> $Exp,
+		));
+		// update learn time
+		$WordObjForUpdate = $SM->Find("Word",$WordObj->Id);
+		$WordObjForUpdate->LearnTime++;
+		$SM->Update("Word",$WordObjForUpdate);
 	}
 
 	/// ============================================
@@ -132,12 +108,12 @@ class Word extends BaseController
 	/// return Mean (sentence) as array (Word,IsExist)
 	/// random : X elements
 	/// and exist words
-    private function GetListWordMeansRandom($Mean){
+    private function GetListWordMeansRandom($Mean, $AmountMeansAllow){
         $SearchArr = array("(",")",".",",",";","  ");
         $ReplaceArr = array(" "," "," "," "," "," ");
         // split
         $Mean = str_replace($SearchArr,$ReplaceArr,$Mean);
-        $ArrayMean = explode(" ",$Mean);
+		$ArrayMean = explode(" ",$Mean);
 		$ArrayMeansResult = array();
         foreach($ArrayMean as $Word){			
             if(strlen($Word)>0){
@@ -151,11 +127,14 @@ class Word extends BaseController
 		
 		// return randoms array
 		$ArrayMeansResultRandom = array();
-		$AmountMeansAllow = 3;
 		if(count($ArrayMeansResult) > $AmountMeansAllow){
 			$ArrayIndex = array_rand($ArrayMeansResult, $AmountMeansAllow);
-			foreach ( $ArrayIndex as $Index){
-				array_push($ArrayMeansResultRandom, $ArrayMeansResult[$Index]);
+			if(is_array($ArrayIndex)){
+				foreach ( $ArrayIndex as $Index){
+					array_push($ArrayMeansResultRandom, $ArrayMeansResult[$Index]);
+				}
+			}else{ // 1 item: int
+				array_push($ArrayMeansResultRandom, $ArrayMeansResult[$ArrayIndex]);
 			}
 		}else{ // case ; 0, 1, 2, 3, X.... <= $AmountMeansAllow, no need random
 			$ArrayMeansResultRandom = $ArrayMeansResult;

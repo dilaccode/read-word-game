@@ -1,5 +1,9 @@
 <?php
 
+// Custom constants
+defined('IS_DEVELOPMENT_MODE')      || define('IS_DEVELOPMENT_MODE', false);
+defined('RATE_VIEW_WORD_EXP')      || define('RATE_VIEW_WORD_EXP', 10);
+
 //--------------------------------------------------------------------
 // App Namespace
 //--------------------------------------------------------------------
@@ -76,7 +80,3 @@ defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-
-// Custom constants
-defined('IS_DEVELOPMENT_MODE')      || define('IS_DEVELOPMENT_MODE', false);
-defined('RATE_VIEW_WORD_EXP')      || define('RATE_VIEW_WORD_EXP', 10);
