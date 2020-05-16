@@ -25,7 +25,7 @@ html, body {
   height: 100%;
 }
 body {
-    line-height: 1.4 !important;
+    line-height: 1.25 !important;
 }
 a {
     /* text-decoration: none; */

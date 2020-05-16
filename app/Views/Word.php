@@ -1,18 +1,29 @@
 <div class="w3-center">
     <!-- Word container -->
-    <div class="Word-container w3-border-top 
-    w3-border-left w3-border-right w3-border-indigo">
+    <div class="Word-container">
         <!-- top bar  -->
-        <div>           
+        <div>     
+            <!-- home button -->
+            <a href="/public" class="w3-large w3-indigo w3-btn  btn-Word w3-display-topleft"
+            style="margin: 8px 0 0 8px;padding: 4px 8px !important;">
+                <i class="fa fa-arrow-left"></i>
+            </a>
             <!-- views -->
-            <div class="w3-large w3-padding-small 
-                        w3-right-align w3-text-indigo"> 
-                <i class="fa fa-eye"></i> <?php echo $WordObj->View ?>
+            <div class="w3-large w3-padding-small w3-text-indigo w3-display-topright"
+                 style="margin: 8px 8px 0 0;"> 
+                <i class="fa fa-eye"></i><?php echo $WordObj->View ?>
+            </div>
+            <!-- Mean Label -->
+            <div class="w3-medium w3-indigo" 
+                style="position:fixed; top: 70px; padding: 0.25em;">
+                MEAN
             </div>
         </div>
        
         <!-- Word -->       
-        <div class='<?php echo $ClassWordSize.' '.$ClassWordColor ?> upper'>
+        <div class='<?php echo $ClassWordSize.' '.$ClassWordColor ?> upper'
+             style="font-weight:bold; text-align: center;
+                    vertical-align: middle; line-height: 80px;">
             <?php echo $WordObj->Word ?>
         </div>
         <!-- learn success -->
@@ -34,12 +45,7 @@
             </a>
         </div>
         <!-- Mean (definition) -->
-        <div class='Mean w3-xlarge upper w3-left-align'>
-            <div class="w3-medium w3-indigo" 
-            style="margin-right: 0.5em; margin-top: 0.5em;
-                    float: left; padding: 0.25em;">
-                Mean
-            </div>
+        <div class='Mean w3-xxlarge upper w3-left-align'>
             <div style="padding: 0.33em;">
                 <?php echo $WordObj->Mean; ?>
             </div>
@@ -93,7 +99,7 @@
                                 <a  href="<?php echo $Link ?>"
                                 class="<?php echo $ClassShowAnimation ?> w3-btn btn-Word <?php echo $ClassStatus ?>
                                 w3-round"
-                                style="margin-bottom: 0.2em; visibility:hidden;">
+                                style="margin-bottom: 0.2em; ">
                                     <?php echo $WordMeanStatus->Word ?>
                                 </a>
                         <?php
@@ -112,31 +118,27 @@
             </div>
         </div>
 
-        <!-- progress -->
-        <div class="ProgressBar w3-border-top w3-border-bottom w3-border-indigo">
-            <div class="ProgressBarPercent w3-container w3-indigo w3-center w3-medium" 
-            style="width:<?php echo $PercentCurrent?>%">
-                <div class="ProgressBarPercentText" style="padding: 0.2em 0 0.2em 0;">
-                    <?php echo $PercentCurrent?>%
-                </div>
-            </div>
-        </div>
+       
 
     </div> 
     <!-- /.Word container -->
 
     <div style="padding-top:1em"
-         class="w3-border-left w3-border-right w3-border-indigo ">
+         class="">
                             
     </div>
 
     <!-- fotter -->
-    <div class="w3-border-left w3-border-right w3-border-indigo
-                w3-left-align"
-         style="padding-top: 0.5em; padding-left: 0.5em;">
-        <a href="/public" class="w3-large w3-indigo w3-btn w3-round btn-Word">
-            <i class="fa fa-arrow-left"></i> HOME
-        </a>
+        <!-- progress -->
+    <div class="ProgressBar w3-border-top w3-border-bottom w3-border-indigo
+            w3-display-bottomleft"
+         style="width: calc(100% - 16px); margin: 0 8px 8px 8px !important; ">
+        <div class="ProgressBarPercent w3-container w3-indigo w3-center w3-medium" 
+        style="width:<?php echo $PercentCurrent?>%">
+            <div class="ProgressBarPercentText" style="padding: 0.2em 0 0.2em 0;">
+                <?php echo $PercentCurrent?>%
+            </div>
+        </div>
     </div>
 
 <!-- / w3-container -->
@@ -144,32 +146,25 @@
 
 <!-- Page script -->
 <script>
-     $(document).ready(function(){
-        /// animation show mark and show word means
-        // $(".showBtn1").css("visibility","hidden");
-        setTimeout(function(){ 
-            $(".show1").addClass("w3-border w3-border-green w3-round");
-        }, 500);
-        setTimeout(function(){ 
-            $(".showBtn1").css("visibility","visible");
-        }, 700);
-
-        // $(".showBtn2").css("visibility","hidden");
-        setTimeout(function(){ 
-            $(".show2").addClass("w3-border w3-border-green w3-round");
-        }, 1500);
-        setTimeout(function(){ 
-            $(".showBtn2").css("visibility","visible");
-        }, 1700);
-
-        // $(".showBtn3").css("visibility","hidden");
-        setTimeout(function(){ 
-            $(".show3").addClass("w3-border w3-border-green w3-round");
-        }, 2000);
-        setTimeout(function(){ 
-            $(".showBtn3").css("visibility","visible");
-        }, 2200);
-
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    async function AnimationWordMean(){
+        var index=1;
+        var TimeBeat = 50;
+        for(index=1;index <= <?php echo $TotalMeanLetters ?>;index++){
+            await sleep(TimeBeat);
+            $(".select"+index).addClass("w3-light-blue");
+        }
+    }
+    $(document).ready(function(){
+        // select word mean animation
+        AnimationWordMean();
+        // var index=1;
+        // for(index=1;index <= <?php echo $TotalMeanLetters ?>;index++){
+        //     await sleep(2000);
+        //     $(".select"+index).fadeOut();
+        // }
         /// progres bar
         TimeBeat = 10; // miliseconds
         <?php if(!$IsChildPage): ?>

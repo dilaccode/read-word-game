@@ -73,34 +73,13 @@ class Word extends BaseController
 			$SM->Update("Word",$WordObjForUpdate);
 		}
 		// markup select word
-		if(!$IsChildPage){
-			$ShowIndex = 1;
-				// for anti replace inside word: replace part/ sign
-				// format: word.$ReplaceSign > <new>.$ReplaceSign
-			$SPACE=" ";
-			$DOT=".";
-			$COMMA=",";
-			$RIGHT_ROUND_BRACKET=")";
-			$ArrayReplace = array($SPACE,$DOT,$COMMA,$RIGHT_ROUND_BRACKET);
-				// end
-				// fix bug "an<SPACE>" replace "<span<SPACE>...
-				// -> by replace "an" first
-			if(in_array("an",$WordObj->ListWordMeans)){
-				$WordObj->Mean = str_replace("an$SPACE",
-						"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>$SPACE",$WordObj->Mean);
-			}
-			foreach($WordObj->ArrayWordMeansStatus as $WordMeanStatus){
-				if(!$WordMeanStatus->IsViewed 
-					&& $WordMeanStatus->Word !== "an" // fix bug "an<SPACE>"
-				){
-					foreach($ArrayReplace as $ReplaceSign){
-						$WordObj->Mean = str_replace($WordMeanStatus->Word.$ReplaceSign,
-						"<span class='show$ShowIndex WordMark'>$WordMeanStatus->Word</span>$ReplaceSign",$WordObj->Mean);
-						
-					}
-					$ShowIndex++;
-				}
-			}
+		$SelectIndex = 1;
+		$ArrayMeanLetters = str_split($WordObj->Mean);
+		$TotalMeanLetters = count($ArrayMeanLetters);
+		$WordObj->Mean = "";
+		foreach($ArrayMeanLetters as $MeanLetter){
+			$WordObj->Mean .= "<span class='select$SelectIndex'>$MeanLetter</span>";
+			$SelectIndex++;
 		}
 		//
 		$Data= array(
@@ -116,6 +95,7 @@ class Word extends BaseController
 						// skip calculate Percent child page
 			'IsLearnSucess' => $IsLearnSucess,
 			'Exp' => $Exp,
+			'TotalMeanLetters' => $TotalMeanLetters,
 		);
 	
 		// var_dump($Data);die();
