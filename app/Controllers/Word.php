@@ -21,7 +21,15 @@ class Word extends BaseController
 		if($Len>=7) $ClassWordSize = 'w3-xxxlarge';
 		if($Len>=10) $ClassWordSize = 'w3-xxlarge';
 		if($Len>=13) $ClassWordSize = 'w3-xlarge';
-		
+
+		$CssMeanFontSize = 'font-size: 35px !important;';
+		$TotalMeanWords = Count(explode(" ",$WordObj->Mean));
+		// var_dump($TotalMeanWords);
+		if($TotalMeanWords>=20) // 20-3x words
+			$CssMeanFontSize = 'font-size: 30px !important;';
+		if($TotalMeanWords>=35) // 3x-55 words
+			$CssMeanFontSize = 'font-size: 22px !important;';
+
 		$IsChildPage = strlen($Parent) > 0;
 		$ClassWordColor = $IsChildPage ? "w3-text-green" : 'w3-text-blue';
 		// list words init random: for anti random many time > differ
@@ -85,6 +93,7 @@ class Word extends BaseController
 		$Data= array(
 			'WordObj'=> $WordObj,
 			'ClassWordSize'=> $ClassWordSize,
+			'CssMeanFontSize' => $CssMeanFontSize,
 			'IsChildPage' => $IsChildPage,
 			'Parent' => $Parent,
 			'ClassWordColor'=> $ClassWordColor,

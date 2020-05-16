@@ -45,8 +45,9 @@
             </a>
         </div>
         <!-- Mean (definition) -->
-        <div class='Mean w3-xxlarge upper w3-left-align'>
-            <div style="padding: 0.33em;">
+        <div class='Mean upper w3-left-align'
+             style="<?php echo $CssMeanFontSize ?>">
+            <div style="padding: 0.33em; ">
                 <?php echo $WordObj->Mean; ?>
             </div>
         </div>
