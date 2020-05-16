@@ -1,4 +1,4 @@
-<div class="w3-container w3-center ">
+<div class="w3-center">
     <!-- Word container -->
     <div class="Word-container w3-border-top 
     w3-border-left w3-border-right w3-border-indigo">

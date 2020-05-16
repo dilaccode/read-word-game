@@ -19,7 +19,7 @@
     <?php endif; ?>
 <!-- end development mode alert -->
 
-<div class="w3-container w3-center ">
+<div class=" w3-center ">
     <div class='w3-xxlarge w3-indigo upper'>
         Learn Word
     </div>

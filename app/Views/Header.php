@@ -20,6 +20,10 @@
 
 <!-- CSS small -->
 <style>
+/* full screen */
+html, body {
+  height: 100%;
+}
 body {
     line-height: 1.4 !important;
 }
@@ -43,8 +47,15 @@ a {
 .WordMeanMarkViewed{
     float:right;
 }
+.Screen{
+    height: 100%; /* full screen */
+    border-width: 8px !important;
+}
 </style>
 <!-- / CSS small -->
 
 <!-- body begin, end at Footer -->
 <body>
+
+<!-- fixed screen -->
+    <div class="Screen w3-border w3-border-indigo ">
