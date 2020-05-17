@@ -28,34 +28,19 @@ class Word extends BaseController
 			$CssMeanFontSize = 'font-size: 30px !important;';
 		if($TotalMeanWords>=35) // 3x-55 words
 			$CssMeanFontSize = 'font-size: 22px !important;';
-
-		
-		
-		// if($IsLearnSucess){
-		// 	$SM->Add('Exp',(object)array(
-		// 		'WordId'=> $WordObj->Id,
-		// 		'Exp'=> $Exp,
-		// 	));
-		// 	// update learn time
-		// 	$WordObjForUpdate = $SM->Find("Word",$WordObj->Id);
-		// 	$WordObjForUpdate->LearnTime++;
-		// 	$SM->Update("Word",$WordObjForUpdate);
-		// }
-
 		
 		// get next word
 		$ListWordMeans = $this->GetListWordMeansRandom($WordObj->Mean, 1);
 		$NextWord = count($ListWordMeans) >=1 ? $ListWordMeans[0] : "None";
 
 		// markup select word
-		$SelectIndex = 1;
-		$ArrayMeanLetters = str_split($WordObj->Mean);
-		$TotalMeanLetters = count($ArrayMeanLetters);
-		$WordObj->Mean = "";
-		foreach($ArrayMeanLetters as $MeanLetter){
-			$WordObj->Mean .= "<span class='select$SelectIndex'>$MeanLetter</span>";
-			$SelectIndex++;
+		$MeanLength = strlen($WordObj->Mean);
+		$WordObj->MeanAnimation = "";
+		for($Index = 0; $Index < $MeanLength; $Index++){
+			$Letter = $WordObj->Mean[$Index];
+			$WordObj->MeanAnimation .= "<span class='select$Index'>$Letter</span>";
 		}
+
 		//
 		$Data= array(
 			'WordObj'=> $WordObj,
@@ -72,22 +57,18 @@ class Word extends BaseController
 		echo view('Footer');
 	}
 	/// AJAX ==================
-	public function AJAXReadComplete(){
-		// fake load long time
-			// $SM = new SimpleModel();
-			// for($i=0;$i<30000;$i++)
-			// 	$SM->Query("select exp,sum(exp) as total from exp");
-		// end fake
+	public function AjaxReadComplete($WordId){
+		$SM = new SimpleModel();
 
-		echo 123; die();
+		$WordObj = $SM->Find('Word',$WordId);
+
 		$SM->Add('Exp',(object)array(
-			'WordId'=> $WordObj->Id,
-			'Exp'=> $Exp,
+			'WordId'=> $WordId,
+			'Exp'=> strlen($WordObj->Mean), // length of mean
 		));
 		// update learn time
-		$WordObjForUpdate = $SM->Find("Word",$WordObj->Id);
-		$WordObjForUpdate->LearnTime++;
-		$SM->Update("Word",$WordObjForUpdate);
+		$WordObj->LearnTime++;
+		$SM->Update("Word",$WordObj);
 	}
 
 	/// ============================================

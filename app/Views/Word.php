@@ -37,7 +37,7 @@
                 w3-padding-small w3-green"
              style="display:none;">
              <i class="fa fa-check-circle"></i>
-             Read Complete <i class="fa fa-plus"></i>30 EXP
+             Read Complete <i class="fa fa-plus"></i><?php echo strlen($WordObj->Mean) ?> EXP
         </div>
         <!-- Next Word -->
         <div class="NextWordPanel w3-xlarge w3-animate-opacity w3-card-4
@@ -88,37 +88,53 @@
             type: 'GET',
             success : function(data) {
                 console.log(data);
+                IsAjaxReadComplete = true;
             }
         });
     };
-    async function AnimationWordMean(){
-        var index=1;
+    
+    var IsShowNextPanel = false;
+    var IsAjaxReadComplete = false;
+    async function ProgramRun(){
+        IsShowNextPanel = false;
+        IsAjaxReadComplete = false;
+        // Animation Word Mean
+        var Index = 0;
         var TimeBeat = 50;
-        for(index=1;index <= <?php echo $TotalMeanLetters ?>;index++){
+        for(Index = 0;Index < <?php echo strlen($WordObj->Mean) ?>; Index++){
             await Sleep(TimeBeat);
-            $(".select"+index).addClass("w3-light-blue");
+            $(".select"+Index).addClass("w3-light-blue");
         }
         // show complete panel
         await Sleep(100);
         $(".ReadResultPanel").show();
         
         // ajax run no affect by Sleep()
-        GetData('/public/Word/AJAXReadComplete');
+        GetData('/public/Word/AjaxReadComplete/'+<?php echo $WordObj->Id ?>);
 
         // next word
         await Sleep(500);  // for panel above show
         $(".NextWordPanel").show();
-
         await Sleep(500);  // for panel above show
         $(".Loading").show(); // for wait if Ajax still running
-
         await Sleep(500);
+        IsShowNextPanel =true;
+
+        // wait show banner complete and submit data done
+        var IsWait = true;
+        while(IsWait){
+            console.log(IsShowNextPanel+"-"+IsAjaxReadComplete);
+            IsWait = !IsShowNextPanel || !IsAjaxReadComplete;
+            await Sleep(100);
+        }
+
+        // next
         location.href = "/public/Word/View/<?php echo rawurlencode($NextWord) ?>";
 
     }
     $(document).ready(function(){
-        // select word mean animation
-        AnimationWordMean();
+        // 
+        // ProgramRun();
 
         /// progres bar, will rewrite with ES6
         // $(".ProgressBarPercent").css("width",PercentTemp+"%");
