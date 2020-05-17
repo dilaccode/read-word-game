@@ -15,3 +15,23 @@ function ArrayToGETDataUrl($Param,$Array){
     $Value = count($Array)>0 ? implode("_",$Array) : "";
     return "$Param=$Value";
 }
+
+/// game zone === >>>
+// return array objects
+//  Index = level
+//  Exp = amount level exp
+//  TotalExp = total exp for complete this level
+function GetGameLevels($TotalLevel = 0){
+    $LEVEL_RATE = 300;
+    $Levels = array();
+    $TotalExp = 0;
+    for($Level = 0; $Level <= $TotalLevel; $Level++){
+        $LevelExp = $Level * $LEVEL_RATE;
+        $TotalExp += $LevelExp;
+        array_push($Levels, (object)array(
+            "Exp" => $LevelExp,
+            "TotalExp" => $TotalExp,
+        ));
+    }
+    return $Levels;
+}

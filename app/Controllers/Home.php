@@ -33,8 +33,7 @@ class Home extends BaseController
         ->getResult();
 
 		// Exp
-		$TotalExp = $SM->Query("select sum(Exp) as Total from Exp")
-		->getRow(1)->Total;
+		$TotalExp = $SM->Find("User", 1)->TotalExp;
 
 		$Data = array(
 			'ListWords'=> array_merge($ListWordsForceLearn,$ListWordsRandom),

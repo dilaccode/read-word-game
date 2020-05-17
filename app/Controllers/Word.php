@@ -40,6 +40,8 @@ class Word extends BaseController
 			'CssMeanFontSize' => $CssMeanFontSize,
 			'TotalMeanLetters' => $TotalMeanLetters,
 			'NextWord' => $NextWord,
+			// temp, will update
+			'User' => $SM->Find("User", 1),
 		);
 	
 		// var_dump($Data);die();
@@ -49,15 +51,16 @@ class Word extends BaseController
 		echo view('Footer');
 	}
 	/// AJAX ==================
-	public function AjaxReadComplete($WordId){
+	public function AjaxReadComplete($UserId, $WordId){
 		$SM = new SimpleModel();
 
-		$WordObj = $SM->Find('Word',$WordId);
+		$WordObj = $SM->Find('Word', $WordId);
+		$User = $SM->Find('User', $UserId);
+		$Exp =  strlen($WordObj->Mean); // length of mean
 
-		$SM->Add('Exp',(object)array(
-			'WordId'=> $WordId,
-			'Exp'=> strlen($WordObj->Mean), // length of mean
-		));
+		$User->TotalExp += $Exp;
+		$SM->Update("User",$User);
+
 		// update learn time
 		$WordObj->LearnTime++;
 		$SM->Update("Word",$WordObj);

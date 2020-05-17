@@ -28,3 +28,8 @@
     1. level should few exp for **make earn feeling** by run long distance.
       - ex: level 1-10 should 1 word = 10-30%...X
   3. [Sheet Calculate](https://docs.google.com/spreadsheets/d/1SyvnZhWRSl8t_61NNYMaSLoYHVY_3jGltsi_uI3IyXo/edit?usp=sharing)
+  4. ... 
+    - level
+      - total exp -> current exp -> percent 
+      - 
+    - next level , next exp -> level exp

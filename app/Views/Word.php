@@ -40,14 +40,13 @@
              Read Complete <i class="fa fa-plus"></i><?php echo strlen($WordObj->Mean) ?> EXP
              <!-- progress exp -->
               <!-- progress -->
-            <div class="ProgressBar w3-border w3-border-pale-yellow w3-white" style="width: 100%; margin: 4px 0 4px 0 !important; ">
-                <div class="ProgressBarPercent w3-container w3-yellow w3-center w3-medium" style="width:60%">
-                    <div class="ProgressBarPercentText" style="">
-                        60%
-                    </div>
-                </div>
+            <div class="ProgressBar w3-border w3-border-pale-yellow w3-white" style="width: 100%;margin: 6px 0 2px 0 !important;">
+                <div class="ProgressBarPercent w3-yellow w3-center"
+                     style="width:10%;height: 16px;/* padding-top: 7px; */"></div>
             </div>
-
+            <div class="ProgressBarPercentText w3-medium" style="">
+                25/300
+            </div>
         </div>
         <!-- Next Word -->
         <div class="NextWordPanel w3-xlarge w3-animate-opacity w3-card-4
@@ -97,7 +96,7 @@
             url: AjaxUrl,
             type: 'GET',
             success : function(data) {
-                console.log(data);
+                // console.log(data);
                 IsAjaxReadComplete = true;
             }
         });
@@ -128,7 +127,7 @@
         }
         
         //[run first] ajax run no affect by Sleep()
-        GetData('/public/Word/AjaxReadComplete/'+<?php echo $WordObj->Id ?>);
+        GetData("<?php echo "/public/Word/AjaxReadComplete/$User->Id/$WordObj->Id"?>");
 
         // show complete panel
         await Sleep(100);
@@ -150,7 +149,6 @@
         // wait show banner complete and submit data done
         var IsWait = true;
         while(IsWait){
-            console.log(IsShowNextPanel+"-"+IsAjaxReadComplete);
             IsWait = !IsShowNextPanel || !IsAjaxReadComplete;
             await Sleep(100);
         }
