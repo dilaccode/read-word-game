@@ -33,11 +33,11 @@ class Home extends BaseController
         ->getResult();
 
 		// Exp
-		$TotalExp = $SM->Find("User", 1)->TotalExp;
+		$User = $SM->Find("User", 1);
 
 		$Data = array(
 			'ListWords'=> array_merge($ListWordsForceLearn,$ListWordsRandom),
-			'TotalExp' => $TotalExp,
+			'User' => $User,
 		);
 		
 		// print_r($Data);die();

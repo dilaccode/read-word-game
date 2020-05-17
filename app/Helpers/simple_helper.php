@@ -17,7 +17,7 @@ function ArrayToGETDataUrl($Param,$Array){
 }
 
 /// game zone === >>>
-// return array objects
+// return array objects (level map)
 //  Index = level
 //  Exp = amount level exp
 //  TotalExp = total exp for complete this level
@@ -35,3 +35,4 @@ function GetGameLevels($TotalLevel = 0){
     }
     return $Levels;
 }
+

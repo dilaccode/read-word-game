@@ -41,11 +41,13 @@
              <!-- progress exp -->
               <!-- progress -->
             <div class="ProgressBar w3-border w3-border-pale-yellow w3-white" style="width: 100%;margin: 6px 0 2px 0 !important;">
-                <div class="ProgressBarPercent w3-yellow w3-center"
-                     style="width:10%;height: 16px;/* padding-top: 7px; */"></div>
+                <div class="ProgressBarPercent w3-yellow w3-center w3-medium"
+                     style="width:<?php echo $User->CurrentPercent ?>%;height: 20px;">
+                    <?php echo (int)$User->CurrentPercent > 15 ? "$User->CurrentPercent%" : "" ?>
+                </div>
             </div>
-            <div class="ProgressBarPercentText w3-medium" style="">
-                25/300
+            <div class="ProgressBarText w3-medium" style="">
+                <?php echo "$User->CurrentExp/$User->ThisLevelTotalExp"?>
             </div>
         </div>
         <!-- Next Word -->
@@ -132,17 +134,29 @@
         // show complete panel
         await Sleep(100);
         $(".ReadResultPanel").show();
+        await Sleep(600);  // for panel above show
             // progres bar, will rewrite with ES6
-            // $(".ProgressBarPercent").css("width",PercentTemp+"%");
-            // $(".ProgressBarPercentText").text(PercentTemp+"%");
+        ThisLevelTotalExp = <?php echo $User->ThisLevelTotalExp ?>;
+        var PercentPartFive = 0;
+        for(PercentPartFive = <?php echo $User->CurrentPercent ?>; 
+            PercentPartFive <= <?php echo $User->NewPercent ?>;
+            PercentPartFive+=0.2)
+        {
+            await Sleep(30);
+            $(".ProgressBarPercent").css("width", PercentPartFive+ "%");
+            if(PercentPartFive >=15)
+                $(".ProgressBarPercent").text(parseFloat(PercentPartFive).toFixed(1) + "%");
+            
+            CurrentExpTemp = Math.round(PercentPartFive * ThisLevelTotalExp / 100);
+            $(".ProgressBarText").text(CurrentExpTemp+"/"+ThisLevelTotalExp);
+        }
 
         // next word
-        await Sleep(500);  // for panel above show
         $(".NextWordPanel").show();
-        await Sleep(500);  // for panel above show        
+        await Sleep(600);  // for panel above show        
         IsShowNextPanel =true;
 
-        await Sleep(1000); // wait more
+        // await Sleep(1000); // wait more
 
         $(".Loading").show(); // for wait if Ajax still running
 
@@ -154,7 +168,7 @@
         }
 
         // next
-        // location.href = "/public/Word/View/<?php echo rawurlencode($NextWord) ?>";
+        location.href = "/public/Word/View/<?php echo rawurlencode($NextWord) ?>";
 
     }
     $(document).ready(function(){

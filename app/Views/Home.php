@@ -24,7 +24,7 @@
         Learn Word
     </div>
     <!-- recommend words -->
-    <div class="w3-border w3-border-indigo w3-padding-small w3-left-align">
+    <div class="w3-padding-small w3-left-align">
         <div class="w3-xlarge ">
             Start with some words:<br>
             <span class="w3-large w3-center">
@@ -47,10 +47,9 @@
     </div>
 
     <!-- fotter -->
-    <div class="w3-border-left w3-border-right w3-border-indigo
-                w3-left-align w3-text-indigo w3-large"
+    <div class="w3-left-align w3-text-indigo w3-large"
          style="padding-top: 0.5em; padding-left: 0.5em;">
-       Your have <?php echo number_format($TotalExp) ?> EXP
+            <?php echo "Level: $User->Level" ?>
     </div>
 
 <!-- / w3-container -->

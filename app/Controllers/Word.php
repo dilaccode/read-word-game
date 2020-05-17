@@ -33,15 +33,24 @@ class Word extends BaseController
 		$ListWordMeans = $this->GetListWordMeansRandom($WordObj->Mean, 1);
 		$NextWord = count($ListWordMeans) >=1 ? $ListWordMeans[0] : "None";
 
+		// User
+		$User = $SM->Find("User", 1);
+		$Levels = GetGameLevels($User->Level + 1);
+		$User->ThisLevelTotalExp = $Levels[$User->Level + 1]->Exp;
+		$User->CurrentExp = $User->TotalExp - $Levels[$User->Level]->TotalExp; 
+		$User->CurrentPercent = round($User->CurrentExp / $User->ThisLevelTotalExp * 100, 1); 
+
+		$NewExp = strlen($WordObj->Mean);
+		$User->NewPercent = round(($User->CurrentExp + $NewExp) / $User->ThisLevelTotalExp * 100, 1);
 		//
 		$Data= array(
 			'WordObj'=> $WordObj,
 			'ClassWordSize'=> $ClassWordSize,
 			'CssMeanFontSize' => $CssMeanFontSize,
-			'TotalMeanLetters' => $TotalMeanLetters,
 			'NextWord' => $NextWord,
-			// temp, will update
-			'User' => $SM->Find("User", 1),
+			//
+			'User' => $User,
+
 		);
 	
 		// var_dump($Data);die();
@@ -59,6 +68,15 @@ class Word extends BaseController
 		$Exp =  strlen($WordObj->Mean); // length of mean
 
 		$User->TotalExp += $Exp;
+			// check level up
+		$ListLevels = GetGameLevels($User->Level + 2);
+		$NewLevel = $User->Level;
+		for($Level = $User->Level; $Level <= $User->Level + 2; $Level++){
+			if($User->TotalExp /* new */ >= $ListLevels[$Level]->TotalExp){
+				$NewLevel = $Level;
+			}
+		}
+		$User->Level = $NewLevel;
 		$SM->Update("User",$User);
 
 		// update learn time
