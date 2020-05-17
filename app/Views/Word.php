@@ -100,7 +100,8 @@
         IsAjaxReadComplete = false;
         // Animation Word Mean
             // setup
-        var WordMean ="<?php echo $WordObj->Mean; ?>";
+        <?php $WordMeanForJS = str_replace("\"","\\\"",$WordObj->Mean);?>
+        var WordMean ="<?php echo $WordMeanForJS ?>";
         var WordMeanHtml = "";
         var Index = 0;
         for(Index = 0; Index < WordMean.length; Index++){
