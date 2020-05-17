@@ -38,6 +38,16 @@
              style="display:none;">
              <i class="fa fa-check-circle"></i>
              Read Complete <i class="fa fa-plus"></i><?php echo strlen($WordObj->Mean) ?> EXP
+             <!-- progress exp -->
+              <!-- progress -->
+            <div class="ProgressBar w3-border w3-border-pale-yellow w3-white" style="width: 100%; margin: 4px 0 4px 0 !important; ">
+                <div class="ProgressBarPercent w3-container w3-yellow w3-center w3-medium" style="width:60%">
+                    <div class="ProgressBarPercentText" style="">
+                        60%
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!-- Next Word -->
         <div class="NextWordPanel w3-xlarge w3-animate-opacity w3-card-4
@@ -63,7 +73,7 @@
 
     <!-- fotter -->
         <!-- progress -->
-    <div class="ProgressBar w3-border-top w3-border-bottom w3-border-indigo
+    <!-- <div class="ProgressBar w3-border-top w3-border-bottom w3-border-indigo
             w3-display-bottomleft"
          style="width: calc(100% - 16px); margin: 0 8px 8px 8px !important; ">
         <div class="ProgressBarPercent w3-container w3-indigo w3-center w3-medium" 
@@ -72,7 +82,7 @@
                 60%
             </div>
         </div>
-    </div>
+    </div> -->
 
 <!-- / w3-container -->
 </div>
@@ -116,18 +126,24 @@
             await Sleep(TimeBeat);
             $(".select"+Index).addClass("w3-light-blue");
         }
+        
+        //[run first] ajax run no affect by Sleep()
+        GetData('/public/Word/AjaxReadComplete/'+<?php echo $WordObj->Id ?>);
+
         // show complete panel
         await Sleep(100);
         $(".ReadResultPanel").show();
-        
-        // ajax run no affect by Sleep()
-        GetData('/public/Word/AjaxReadComplete/'+<?php echo $WordObj->Id ?>);
+            // progres bar, will rewrite with ES6
+            // $(".ProgressBarPercent").css("width",PercentTemp+"%");
+            // $(".ProgressBarPercentText").text(PercentTemp+"%");
 
         // next word
         await Sleep(500);  // for panel above show
         $(".NextWordPanel").show();
         await Sleep(500);  // for panel above show        
         IsShowNextPanel =true;
+
+        await Sleep(1000); // wait more
 
         $(".Loading").show(); // for wait if Ajax still running
 
@@ -140,16 +156,11 @@
         }
 
         // next
-        location.href = "/public/Word/View/<?php echo rawurlencode($NextWord) ?>";
+        // location.href = "/public/Word/View/<?php echo rawurlencode($NextWord) ?>";
 
     }
     $(document).ready(function(){
         // 
         ProgramRun();
-
-        /// progres bar, will rewrite with ES6
-        // $(".ProgressBarPercent").css("width",PercentTemp+"%");
-        // $(".ProgressBarPercentText").text(PercentTemp+"%");
-       
      });
 </script>
