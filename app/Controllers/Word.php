@@ -33,14 +33,6 @@ class Word extends BaseController
 		$ListWordMeans = $this->GetListWordMeansRandom($WordObj->Mean, 1);
 		$NextWord = count($ListWordMeans) >=1 ? $ListWordMeans[0] : "None";
 
-		// markup select word
-		$MeanLength = strlen($WordObj->Mean);
-		$WordObj->MeanAnimation = "";
-		for($Index = 0; $Index < $MeanLength; $Index++){
-			$Letter = $WordObj->Mean[$Index];
-			$WordObj->MeanAnimation .= "<span class='select$Index'>$Letter</span>";
-		}
-
 		//
 		$Data= array(
 			'WordObj'=> $WordObj,

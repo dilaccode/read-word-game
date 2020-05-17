@@ -30,7 +30,7 @@
         <!-- Mean (definition) -->
         <div class='Mean upper w3-left-align'
              style="<?php echo $CssMeanFontSize ?>; padding: 0.33em;">
-                <?php echo $WordObj->Mean; ?>
+                setup from JS...
         </div>
         <!-- Read Result Panel -->
         <div class="ReadResultPanel w3-xlarge w3-animate-zoom w3-card-4
@@ -95,13 +95,23 @@
     
     var IsShowNextPanel = false;
     var IsAjaxReadComplete = false;
-    async function ProgramRun(){
+    async function ProgramRun(){ 
         IsShowNextPanel = false;
         IsAjaxReadComplete = false;
         // Animation Word Mean
+            // setup
+        var WordMean ="<?php echo $WordObj->Mean; ?>";
+        var WordMeanHtml = "";
+        var Index = 0;
+        for(Index = 0; Index < WordMean.length; Index++){
+            WordMeanHtml += "<span class='select" + Index + "'>" 
+                           + WordMean[Index] + "</span>";
+        }
+        $(".Mean").html(WordMeanHtml);
+            // run
         var Index = 0;
         var TimeBeat = 50;
-        for(Index = 0;Index < <?php echo strlen($WordObj->Mean) ?>; Index++){
+        for(Index = 0; Index < WordMean.length; Index++){
             await Sleep(TimeBeat);
             $(".select"+Index).addClass("w3-light-blue");
         }
@@ -134,7 +144,7 @@
     }
     $(document).ready(function(){
         // 
-        // ProgramRun();
+        ProgramRun();
 
         /// progres bar, will rewrite with ES6
         // $(".ProgressBarPercent").css("width",PercentTemp+"%");
