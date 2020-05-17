@@ -126,10 +126,10 @@
         // next word
         await Sleep(500);  // for panel above show
         $(".NextWordPanel").show();
-        await Sleep(500);  // for panel above show
-        $(".Loading").show(); // for wait if Ajax still running
-        await Sleep(500);
+        await Sleep(500);  // for panel above show        
         IsShowNextPanel =true;
+
+        $(".Loading").show(); // for wait if Ajax still running
 
         // wait show banner complete and submit data done
         var IsWait = true;
