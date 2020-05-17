@@ -33,20 +33,19 @@
                 setup from JS...
         </div>
         <!-- Read Result Panel -->
-        <div class="ReadResultPanel w3-xlarge w3-animate-zoom w3-card-4
-                w3-padding-small w3-green"
-             style="display:none;">
+        <div class="ReadResultPanel w3-xlarge w3-animate-zoom w3-card-4 w3-green"
+             style="display: none; padding: 10px;">
              <i class="fa fa-check-circle"></i>
              Read Complete <i class="fa fa-plus"></i><?php echo strlen($WordObj->Mean) ?> EXP
-             <!-- progress exp -->
-              <!-- progress -->
-            <div class="ProgressBar w3-border w3-border-pale-yellow w3-white" style="width: 100%;margin: 6px 0 2px 0 !important;">
+            <!-- progress exp -->
+            <div class="ProgressBar w3-border w3-border-pale-yellow w3-white" 
+                 style="width: 100%;margin: 6px 0 2px 0 !important; font-weight: bold;">
                 <div class="ProgressBarPercent w3-yellow w3-center w3-medium"
                      style="width:<?php echo $User->CurrentPercent ?>%;height: 20px;">
                     <?php echo (int)$User->CurrentPercent > 15 ? "$User->CurrentPercent%" : "" ?>
                 </div>
             </div>
-            <div class="ProgressBarText w3-medium" style="">
+            <div class="ProgressBarText w3-medium" style="font-weight: bold;">
                 <?php echo "$User->CurrentExp/$User->ThisLevelTotalExp"?>
             </div>
         </div>
@@ -73,17 +72,6 @@
     </div>
 
     <!-- fotter -->
-        <!-- progress -->
-    <!-- <div class="ProgressBar w3-border-top w3-border-bottom w3-border-indigo
-            w3-display-bottomleft"
-         style="width: calc(100% - 16px); margin: 0 8px 8px 8px !important; ">
-        <div class="ProgressBarPercent w3-container w3-indigo w3-center w3-medium" 
-        style="width:60%">
-            <div class="ProgressBarPercentText" style="padding: 0.2em 0 0.2em 0;">
-                60%
-            </div>
-        </div>
-    </div> -->
 
 <!-- / w3-container -->
 </div>
@@ -138,16 +126,20 @@
             // progres bar, will rewrite with ES6
         ThisLevelTotalExp = <?php echo $User->ThisLevelTotalExp ?>;
         var PercentPartFive = 0;
+        var TotalPercent = <?php echo $User->NewPercent ?> - <?php echo $User->CurrentPercent ?>;
+        var TotalTimeSleepProgressBar = 200; // ms, balance here
+        var SleepBeatTime = TotalTimeSleepProgressBar / TotalPercent;
         for(PercentPartFive = <?php echo $User->CurrentPercent ?>; 
             PercentPartFive <= <?php echo $User->NewPercent ?>;
             PercentPartFive+=0.2)
         {
-            await Sleep(30);
-            $(".ProgressBarPercent").css("width", PercentPartFive+ "%");
-            if(PercentPartFive >=15)
-                $(".ProgressBarPercent").text(parseFloat(PercentPartFive).toFixed(1) + "%");
+            await Sleep(SleepBeatTime);
+            var PercentUI = PercentPartFive > 100 ? 100 : PercentPartFive; // fix overflow >100%       
+             $(".ProgressBarPercent").css("width", PercentUI + "%");
+            if(PercentUI >=15)
+                $(".ProgressBarPercent").text(parseFloat(PercentUI).toFixed(1) + "%");
             
-            CurrentExpTemp = Math.round(PercentPartFive * ThisLevelTotalExp / 100);
+            CurrentExpTemp = Math.round(PercentUI * ThisLevelTotalExp / 100);
             $(".ProgressBarText").text(CurrentExpTemp+"/"+ThisLevelTotalExp);
         }
 
@@ -156,7 +148,7 @@
         await Sleep(600);  // for panel above show        
         IsShowNextPanel =true;
 
-        // await Sleep(1000); // wait more
+        await Sleep(500); // wait some before show next word
 
         $(".Loading").show(); // for wait if Ajax still running
 
