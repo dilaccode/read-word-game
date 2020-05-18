@@ -36,7 +36,7 @@
         <div class="w3-xxlarge upper w3-text-blue"
              style ="margin-left: 0.15em;">
             <?php foreach ($ListWords as $Word): ?>
-                <a href="/public/Word/View/<?php echo $Word->Word ?>"
+                <a href="/Word/View/<?php echo $Word->Word ?>"
                     class="w3-btn w3-blue btn-Word w3-round"
                     style="margin-bottom: 0.2em;">
                     <?php echo $Word->Word ?>

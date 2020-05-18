@@ -4,7 +4,7 @@
         <!-- top bar  -->
         <div>     
             <!-- home button -->
-            <a href="/public" class="w3-large w3-indigo w3-btn  btn-Word w3-display-topleft"
+            <a href="/" class="w3-large w3-indigo w3-btn  btn-Word w3-display-topleft"
             style="margin: 8px 0 0 8px;padding: 4px 8px !important;">
                 <i class="fa fa-arrow-left"></i>
             </a>
@@ -117,7 +117,7 @@
         }
         
         //[run first] ajax run no affect by Sleep()
-        GetData("<?php echo "/public/Word/AjaxReadComplete/$User->Id/$WordObj->Id"?>");
+        GetData("<?php echo "/Word/AjaxReadComplete/$User->Id/$WordObj->Id"?>");
 
         // show complete panel
         await Sleep(100);
@@ -160,7 +160,7 @@
         }
 
         // next
-        location.href = "/public/Word/View/<?php echo rawurlencode($NextWord) ?>";
+        location.href = "/Word/View/<?php echo rawurlencode($NextWord) ?>";
 
     }
     $(document).ready(function(){
