@@ -1,58 +1,57 @@
 #!/bin/bash
 #######################################################
-#simple setup node.js, use:
 #
-# yum -y install wget && wget -q https://raw.githubusercontent.com/quangcongvn/word-count/master/server_setup/LAMP.txt -O /root/install_script && bash /root/install_script
+# yum -y install wget && wget -q https://raw.githubusercontent.com/dilaccode/word-like-game/master/server_setup/LAMP_PHP7.txt -O /root/install_script && bash /root/install_script
 #
 #######################################################
-
-# NOTE PhpStorm, file end line LF (Linux)
-
-# https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-7
+## NOTES
+# for CENTOS 8.x, PHP7, Maria mariaDB
+# Now run CI4
+# using ROOT for install: 
+#   sudo passwd root
+#   su
 
 ## apache
 sudo yum install httpd -y
 sudo systemctl start httpd.service
 sudo systemctl enable httpd.service
-# open port 80,
-# check port: firewall-cmd --list-all
-sudo firewall-cmd --add-port=80/tcp --permanent
 
 ## MySQL (MariaDB)
 sudo yum install mariadb-server mariadb -y
 sudo systemctl start mariadb
 sudo systemctl enable mariadb.service
+
 # setting password
-sudo mysql_secure_installation
+# sudo mysql_secure_installation
 
 # pass: xxx__X444__
 # change pass: SET PASSWORD FOR 'root'@'localhost' = PASSWORD('xxx__X444__');
-# allow remote: https://mariadb.com/kb/en/library/configuring-mariadb-for-remote-client-access/
-#    1. open file: /etc/my.cnf.d/server.cnf , add below [mysqld]:
-#       bind-address = 0.0.0.0
-#    2. Run command: mysql -u root -p , then enter {Pass}
-#       GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'  IDENTIFIED BY '{Pass}' WITH GRANT OPTION;
-#       can replace 'root'@'%' , %= ip white list
-#    3. open port 3306
-#       sudo firewall-cmd --add-port=3306/tcp --permanent
-#    4. restart service
-#       sudo service mariadb restart
+
 
 ### PHP7
-# https://www.vultr.com/docs/how-to-install-php-7-x-on-centos-7
-sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
-sudo yum install -y mod_php71w php71w-cli php71w-common php71w-gd php71w-mbstring php71w-mcrypt php71w-mysqlnd php71w-xml
-sudo systemctl restart httpd.service
+sudo yum update
+sudo yum search php
+sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo yum install php php-fpm php-mysqli php-pecl-json
 
 ### git
 yum install git -y
-git --version
+
 
 ### clone source
-git clone https://github.com/quangcongvn/word-count.git /var/www/html
+git clone https://github.com/dilaccode/word-like-game.git /var/www/html
+
+# fix caches error
+chown -R apache /var/www/html/writable
+chcon -t httpd_sys_content_rw_t /var/www/html/writable
+chcon -R -t httpd_sys_content_rw_t /var/www/html/writable
+systemctl reload httpd.service
+
+# bump sql file
+mysql --user=root --password= --host=localhost --port=3306 < "/var/www/html/database/word_database.sql"
 
 ### checking
+git --version
 php --version
-echo 'your site ready on directory: /var/www/html'
-firewall-cmd --list-all
+
+reboot
