@@ -15,6 +15,9 @@
 sudo yum install httpd -y
 sudo systemctl start httpd.service
 sudo systemctl enable httpd.service
+# open port 80,
+# check port: firewall-cmd --list-all
+sudo firewall-cmd --add-port=80/tcp --permanent
 
 ## MySQL (MariaDB)
 sudo yum install mariadb-server mariadb -y
@@ -32,7 +35,7 @@ sudo systemctl enable mariadb.service
 sudo yum update
 sudo yum search php
 sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
-sudo yum install php php-fpm php-mysqli php-pecl-json
+sudo yum install php php-fpm php-mysqli php-pecl-json -y
 
 ### git
 yum install git -y
