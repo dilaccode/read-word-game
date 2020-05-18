@@ -22,18 +22,18 @@ class Home extends BaseController
 		order by LearnTime, WordLength limit 1")->getRow(1);
 		$MinWord->MaxLength = $MinWord->MinLength + 4;
 
-		$ListWordsForceLearn = $SM->Query("select * from Word 
+		$ListWordsForceLearn = $SM->Query("select * from word 
 		where LearnTime = $MinWord->MinLearn AND WordLength = $MinWord->MinLength 
 		order by RAND() limit $AmountForceLearn")
 		->getResult();
 		
-		$ListWordsRandom = $SM->Query("select * from Word 
+		$ListWordsRandom = $SM->Query("select * from word 
 		where (WordLength >= $MinWord->MinLength AND WordLength <= $MinWord->MaxLength)
 		order by RAND() limit $AmountRandom")
         ->getResult();
 
 		// Exp
-		$User = $SM->Find("User", 1);
+		$User = $SM->Find("user", 1);
 
 		$Data = array(
 			'ListWords'=> array_merge($ListWordsForceLearn,$ListWordsRandom),
