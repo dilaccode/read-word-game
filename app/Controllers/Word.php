@@ -34,7 +34,7 @@ class Word extends BaseController
 		$NextWord = count($ListWordMeans) >=1 ? $ListWordMeans[0] : "None";
 
 		// User
-		$User = $SM->Find("User", 1);
+		$User = $SM->Find("user", 1);
 		$Levels = GetGameLevels($User->Level + 1);
 		$User->ThisLevelTotalExp = $Levels[$User->Level + 1]->Exp;
 		$User->CurrentExp = $User->TotalExp - $Levels[$User->Level]->TotalExp; 
@@ -63,8 +63,8 @@ class Word extends BaseController
 	public function AjaxReadComplete($UserId, $WordId){
 		$SM = new SimpleModel();
 
-		$WordObj = $SM->Find('Word', $WordId);
-		$User = $SM->Find('User', $UserId);
+		$WordObj = $SM->Find('word', $WordId);
+		$User = $SM->Find('user', $UserId);
 		$Exp =  strlen($WordObj->Mean); // length of mean
 
 		$User->TotalExp += $Exp;
@@ -77,11 +77,11 @@ class Word extends BaseController
 			}
 		}
 		$User->Level = $NewLevel;
-		$SM->Update("User",$User);
+		$SM->Update("user",$User);
 
 		// update learn time
 		$WordObj->LearnTime++;
-		$SM->Update("Word",$WordObj);
+		$SM->Update("word",$WordObj);
 	}
 
 	/// ============================================
@@ -91,11 +91,11 @@ class Word extends BaseController
 
 		$SM = new SimpleModel();
 
-		$WordObj = $SM->Query("select * from Word where Word='$Word'")
+		$WordObj = $SM->Query("select * from word where Word='$Word'")
 			->getRow(1);
         // update stat
 		$WordObj->View++;
-		$SM->Update("Word",$WordObj);
+		$SM->Update("word",$WordObj);
         //
         return $WordObj;
     }
@@ -138,7 +138,7 @@ class Word extends BaseController
     /// return TRUE/FALSE
     private function checkWorkExist($Word){
 		$SM = new SimpleModel();
-        $WordObj =  $SM->Query("select * from Word
+        $WordObj =  $SM->Query("select * from word
         where Word='$Word'")->getRow(1);
         return isset($WordObj);
     }
