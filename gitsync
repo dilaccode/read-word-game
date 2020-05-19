@@ -1,0 +1,14 @@
+#!/bin/bash
+#######################################################
+# USE
+#
+# cd /var/www/html; bash gitsync
+#
+#######################################################
+
+#override all local file
+git fetch origin
+git reset --hard origin/master
+
+# bump sql file
+mysql --user=root --password= --host=localhost --port=3306 < "/var/www/html/database/word_database.sql"

@@ -1,4 +1,8 @@
 # [Test SITE](http://localhost/)
+# Sync VPS
+```bash
+cd /var/www/html; bash gitsync
+```
 # Software
 [download all](https://www.dropbox.com/sh/sqtmrit7bmr8auu/AABm4R-uSwsFZZF2L0ERUahKa?dl=1)
 # HOW CONNECT GITHUB - VSCODE
