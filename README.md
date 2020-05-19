@@ -1,4 +1,4 @@
-# [Test SITE](http://localhost/public)
+# [Test SITE](http://localhost/)
 # Software
 [download all](https://www.dropbox.com/sh/sqtmrit7bmr8auu/AABm4R-uSwsFZZF2L0ERUahKa?dl=1)
 # HOW CONNECT GITHUB - VSCODE
