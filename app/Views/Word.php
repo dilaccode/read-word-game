@@ -160,7 +160,7 @@
         }
 
         // next
-        location.href = "/Word/View/<?php echo rawurlencode($NextWord) ?>";
+        // location.href = "/Word/View/<?php echo rawurlencode($NextWord) ?>";
 
     }
     $(document).ready(function(){

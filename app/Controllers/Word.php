@@ -6,9 +6,9 @@ class Word extends BaseController
 {
 	public function index()	{ }
 
-	/// GET StrWordsViewed : word1_word2_word3, _ split
 	public function View($Word='empty')
 	{
+	
 		$SM = new SimpleModel();
 
 		$Word = rawurldecode($Word);
@@ -23,10 +23,9 @@ class Word extends BaseController
 
 		$CssMeanFontSize = 'font-size: 35px !important;';
 		$TotalMeanWords = Count(explode(" ",$WordObj->Mean));
-		// var_dump($TotalMeanWords);
 		if($TotalMeanWords>=20) // 20-3x words
 			$CssMeanFontSize = 'font-size: 30px !important;';
-		if($TotalMeanWords>=35) // 3x-55 words
+		if($TotalMeanWords>=31) // 3x-55 words
 			$CssMeanFontSize = 'font-size: 22px !important;';
 		
 		// get next word
@@ -59,7 +58,58 @@ class Word extends BaseController
 		echo view('Word',$Data);
 		echo view('Footer');
 	}
+	public function Player(){
+
+		$Word = "test";
+		
+		$SM = new SimpleModel();
+	
+		$WordObj =  $this->GetWord($Word);
+		
+		// get next word
+		$ListWordMeans = $this->GetListWordMeansRandom($WordObj->Mean, 1);
+		$NextWord = count($ListWordMeans) >=1 ? $ListWordMeans[0] : "None";
+
+		
+		//
+		$Data= array(
+			'WordObj'=> $WordObj,
+			'NextWord' => $NextWord,
+			//
+		);
+
+		echo view('Header');
+		echo view('WordPlayer', $Data);
+		echo view('Footer');
+
+		
+	}
 	/// AJAX ==================
+	// return JSON
+	//	array( WordObj, User)
+	public function AjaxGetWord($WordId){
+		$SM = new SimpleModel();
+
+		for($i= 0; $i<5000;$i++){
+			$SM->Query("select sum(length(Mean)) from word");
+		}
+		// Word
+		$WordObj = $SM->Find("word", $WordId);
+
+		// User
+		
+		// User
+		$User = $SM->Find("user", 1);
+		$Levels = GetGameLevels($User->Level + 1);
+		$User->ThisLevelTotalExp = $Levels[$User->Level + 1]->Exp;
+		$User->CurrentExp = $User->TotalExp - $Levels[$User->Level]->TotalExp; 
+		$User->CurrentPercent = round($User->CurrentExp / $User->ThisLevelTotalExp * 100, 1); 
+
+		$NewExp = strlen($WordObj->Mean);
+		$User->NewPercent = round(($User->CurrentExp + $NewExp) / $User->ThisLevelTotalExp * 100, 1);
+
+		echo json_encode(array($WordObj, $User));
+	}
 	public function AjaxReadComplete($UserId, $WordId){
 		$SM = new SimpleModel();
 
