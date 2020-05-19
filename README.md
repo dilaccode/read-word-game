@@ -1,4 +1,4 @@
-# [Test SITE](http://localhost/)
+# [Test SITE Local](http://localhost/)  |   [Test SITE online](http://52.185.134.172/)
 # Sync VPS
 ```bash
 cd /var/www/html; bash gitsync
