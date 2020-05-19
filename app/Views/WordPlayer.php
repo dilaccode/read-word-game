@@ -62,7 +62,7 @@
              style="display:none; margin-top: 8px;">
              Next Word 
              <i class="fa fa-arrow-right"></i>
-             <span class="w3-xxlarge upper"><?php echo $NextWord ?></span>
+             <span class="NextWordText w3-xxlarge upper">AAAA</span>
         </div>
         
         <!-- ajax loading-->

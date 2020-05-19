@@ -5,84 +5,11 @@ use App\Models\SimpleModel;
 class Word extends BaseController
 {
 	public function index()	{ }
-
-	public function View($Word='empty')
-	{
 	
-		$SM = new SimpleModel();
-
-		$Word = rawurldecode($Word);
-	
-		$WordObj =  $this->GetWord($Word);
-
-		$Len = strlen($WordObj->Word);
-		$ClassWordSize = 'w3-jumbo';
-		if($Len>=7) $ClassWordSize = 'w3-xxxlarge';
-		if($Len>=10) $ClassWordSize = 'w3-xxlarge';
-		if($Len>=13) $ClassWordSize = 'w3-xlarge';
-
-		$CssMeanFontSize = 'font-size: 35px !important;';
-		$TotalMeanWords = Count(explode(" ",$WordObj->Mean));
-		if($TotalMeanWords>=20) // 20-3x words
-			$CssMeanFontSize = 'font-size: 30px !important;';
-		if($TotalMeanWords>=31) // 3x-55 words
-			$CssMeanFontSize = 'font-size: 22px !important;';
-		
-		// get next word
-		$ListWordMeans = $this->GetListWordMeansRandom($WordObj->Mean, 1);
-		$NextWord = count($ListWordMeans) >=1 ? $ListWordMeans[0] : "None";
-
-		// User
-		$User = $SM->Find("user", 1);
-		$Levels = GetGameLevels($User->Level + 1);
-		$User->ThisLevelTotalExp = $Levels[$User->Level + 1]->Exp;
-		$User->CurrentExp = $User->TotalExp - $Levels[$User->Level]->TotalExp; 
-		$User->CurrentPercent = round($User->CurrentExp / $User->ThisLevelTotalExp * 100, 1); 
-
-		$NewExp = strlen($WordObj->Mean);
-		$User->NewPercent = round(($User->CurrentExp + $NewExp) / $User->ThisLevelTotalExp * 100, 1);
-		//
-		$Data= array(
-			'WordObj'=> $WordObj,
-			'ClassWordSize'=> $ClassWordSize,
-			'CssMeanFontSize' => $CssMeanFontSize,
-			'NextWord' => $NextWord,
-			//
-			'User' => $User,
-
-		);
-	
-		// var_dump($Data);die();
-		
-		echo view('Header');
-		echo view('Word',$Data);
-		echo view('Footer');
-	}
 	public function Player(){
-
-		$Word = "test";
-		
-		$SM = new SimpleModel();
-	
-		$WordObj =  $this->GetWord($Word);
-		
-		// get next word
-		$ListWordMeans = $this->GetListWordMeansRandom($WordObj->Mean, 1);
-		$NextWord = count($ListWordMeans) >=1 ? $ListWordMeans[0] : "None";
-
-		
-		//
-		$Data= array(
-			'WordObj'=> $WordObj,
-			'NextWord' => $NextWord,
-			//
-		);
-
 		echo view('Header');
-		echo view('WordPlayer', $Data);
+		echo view('WordPlayer');
 		echo view('Footer');
-
-		
 	}
 	/// AJAX ==================
 	// return JSON
@@ -90,14 +17,23 @@ class Word extends BaseController
 	public function AjaxGetWord($WordId){
 		$SM = new SimpleModel();
 
-		for($i= 0; $i<5000;$i++){
-			$SM->Query("select sum(length(Mean)) from word");
-		}
-		// Word
-		$WordObj = $SM->Find("word", $WordId);
+		// fake
+		// for($i= 0; $i<5000;$i++){
+		// 	$SM->Query("select sum(length(Mean)) from word");
+		// }
 
-		// User
-		
+		// Word
+		$WordObj = $SM->Find("word", $WordId);		
+			// update view
+		$WordObj->View++;
+		$SM->Update("word",$WordObj);
+			// get next word
+		$ListWordMeans = $this->GetListWordMeansRandom($WordObj->Mean, 1);
+		$NextWord = count($ListWordMeans) === 1 ? $ListWordMeans[0] : "ability";
+		$WordObj->NextWord = $NextWord;
+		$WordObj->NextWordId = $SM->Query("select * from word where word='$NextWord'")
+			->getRow(1)->Id;
+
 		// User
 		$User = $SM->Find("user", 1);
 		$Levels = GetGameLevels($User->Level + 1);
@@ -112,6 +48,11 @@ class Word extends BaseController
 	}
 	public function AjaxReadComplete($UserId, $WordId){
 		$SM = new SimpleModel();
+
+		// fake
+		// for($i= 0; $i<5000;$i++){
+		// 	$SM->Query("select sum(length(Mean)) from word");
+		// }
 
 		$WordObj = $SM->Find('word', $WordId);
 		$User = $SM->Find('user', $UserId);
@@ -135,20 +76,7 @@ class Word extends BaseController
 	}
 
 	/// ============================================
-	/// WORD
-	private function GetWord($Word){
-		$Word = rawurldecode($Word);
-
-		$SM = new SimpleModel();
-
-		$WordObj = $SM->Query("select * from word where Word='$Word'")
-			->getRow(1);
-        // update stat
-		$WordObj->View++;
-		$SM->Update("word",$WordObj);
-        //
-        return $WordObj;
-    }
+	
 	/// return Mean (sentence) as array (Word,IsExist)
 	/// random : X elements
 	/// and exist words

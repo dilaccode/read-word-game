@@ -5,8 +5,8 @@ function GetData(AjaxUrl) {
     return $.ajax({
         url: AjaxUrl,
         type: 'GET',
-        // success : function(data) {
-        //     // console.log(data);
-        // }
+        success : function(data) {
+            // console.log(data);
+        }
     });
 };

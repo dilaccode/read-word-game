@@ -33,3 +33,5 @@
       - total exp -> current exp -> percent 
       - 
     - next level , next exp -> level exp
+
+  7. ...
