@@ -6,9 +6,12 @@ class Word extends BaseController
 {
 	public function index()	{ }
 	
-	public function Player(){
+	public function Player($StartWordId){
+		$Data = array(
+			'StartWordId' => $StartWordId,
+		);
 		echo view('Header');
-		echo view('WordPlayer');
+		echo view('WordPlayer', $Data);
 		echo view('Footer');
 	}
 	/// AJAX ==================

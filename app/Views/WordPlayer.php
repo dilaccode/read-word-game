@@ -1,5 +1,8 @@
 <!-- some needed js for this page -->
 <script type="text/javascript" src="/assets/js/WordPlayer.js"></script>
+<script>
+    var StartWordId = <?php echo $StartWordId; ?>;
+</script>
 <!-- end -->
 
 <div class="w3-center">

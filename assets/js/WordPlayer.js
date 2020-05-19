@@ -101,11 +101,16 @@ var CurrentWord;
 var NextWord;
 var User;
 var IsNoWord = true;
-var NextWordId = 8192;
+var NextWordId = 0;
 
 async function FetchDataBeat(){
     while(true){
         if(IsNoWord){
+            // init
+            if(NextWordId === 0){
+                NextWordId = StartWordId;
+            }
+            //
             console.log("\nFetchDataBeat: I am fetch new word...");
             var JSONStr = await GetData("/word/AjaxGetWord/" + NextWordId);
             var ArrayData = JSON.parse(JSONStr);
