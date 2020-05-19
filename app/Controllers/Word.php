@@ -42,10 +42,12 @@ class Word extends BaseController
 		$Levels = GetGameLevels($User->Level + 1);
 		$User->ThisLevelTotalExp = $Levels[$User->Level + 1]->Exp;
 		$User->CurrentExp = $User->TotalExp - $Levels[$User->Level]->TotalExp; 
+		$NewExp = strlen($WordObj->Mean);
+		$User->NewExp = $User->CurrentExp + $NewExp;
 		$User->CurrentPercent = round($User->CurrentExp / $User->ThisLevelTotalExp * 100, 1); 
 
-		$NewExp = strlen($WordObj->Mean);
-		$User->NewPercent = round(($User->CurrentExp + $NewExp) / $User->ThisLevelTotalExp * 100, 1);
+		
+		$User->NewPercent = round($User->NewExp / $User->ThisLevelTotalExp * 100, 1);
 
 		echo json_encode(array($WordObj, $User));
 	}

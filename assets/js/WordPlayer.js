@@ -69,6 +69,7 @@ async function RunAnimation(){
 async function ShowCompletePanel(AmountExp){
         // init data
         $(".AmountExp").text(AmountExp);
+        $(".ProgressBarPercent").css("width", User.CurrentPercent + "%");
         $(".ProgressBarText").text(User.CurrentExp + "/" + User.ThisLevelTotalExp);
         var ProgressBarText = User.CurrentPercent > 15 ? (User.CurrentPercent + "%") : "";
         $(".ProgressBarPercent").text(ProgressBarText);
@@ -83,7 +84,7 @@ async function ShowCompletePanel(AmountExp){
         var SleepBeatTime = TotalTimeSleepProgressBar / TotalPercent;
         for(PercentPartFive = User.CurrentPercent; 
             PercentPartFive <= User.NewPercent;
-            PercentPartFive+=0.2)
+            PercentPartFive += 0.2)
         {
             await Sleep(SleepBeatTime);
             var PercentUI = PercentPartFive > 100 ? 100 : PercentPartFive; // fix overflow >100%       
