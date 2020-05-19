@@ -40,7 +40,6 @@ sudo yum -y install php php-fpm php-mysqli php-pecl-json
 ### git
 yum -y install git
 
-
 ### clone source
 git clone https://github.com/dilaccode/word-like-game.git /var/www/html
 
@@ -50,6 +49,9 @@ chcon -t httpd_sys_content_rw_t /var/www/html/writable
 chcon -R -t httpd_sys_content_rw_t /var/www/html/writable
 systemctl reload httpd.service
 
+# Override httpd.conf file (required clone git source)
+rm -rf /etc/httpd/conf/httpd.conf
+cp /etc/httpd/conf/httpd.conf
 # bump sql file
 mysql --user=root --password= --host=localhost --port=3306 < "/var/www/html/database/word_database.sql"
 
