@@ -6,7 +6,6 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		echo 123; die();
 		$SM = new SimpleModel();
 
 		// Words
