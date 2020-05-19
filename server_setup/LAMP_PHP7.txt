@@ -51,7 +51,7 @@ systemctl reload httpd.service
 
 # Override httpd.conf file (required clone git source)
 rm -rf /etc/httpd/conf/httpd.conf
-cp /etc/httpd/conf/httpd.conf
+cp /var/www/html/server_setup/httpd.conf /etc/httpd/conf/httpd.conf
 # bump sql file
 mysql --user=root --password= --host=localhost --port=3306 < "/var/www/html/database/word_database.sql"
 
