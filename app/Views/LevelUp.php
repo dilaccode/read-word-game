@@ -74,9 +74,9 @@
         
         <blockquote class="w3-panel w3-leftbar w3-light-grey"
                     style="margin: 25px 15px 0 15px !important; padding: 10px;">
-           <span style="font-style: italic;">"Read much make you professional."</span>
+           <span class="w3-xlarge" style="font-style: italic;">"Read much make you professional."</span>
            <br>
-           Professor Tom
+           <span class="w3-large">Professor Tom</span>
         </blockquote>  
 
         <a class="LevelUpCloseButton w3-btn w3-indigo w3-xlarge" href="#" style="
