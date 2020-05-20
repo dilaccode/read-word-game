@@ -98,9 +98,11 @@ async function ShowCompletePanel(AmountExp){
 }
 /// Data
 var APP_TIME_BEAT = 100;
-var CurrentWord;
+var CurrentWord = null;
 var NextWord;
+var UserId = 1; // test
 var User;
+var IsInitUser = true;
 var IsNoWord = true;
 var NextWordId = 0;
 
@@ -112,16 +114,20 @@ async function FetchDataBeat(){
                 NextWordId = StartWordId;
             }
             //
-            console.log("\nFetchDataBeat: I am fetch new word...");
             var JSONStr = await GetData("/word/AjaxGetWord/" + NextWordId);
-            var ArrayData = JSON.parse(JSONStr);
-            NextWord = ArrayData[0];
-            User = ArrayData[1];
+            NextWord = JSON.parse(JSONStr);
+
+            // init User data first time
+            if(IsInitUser){
+                IsInitUser = false;
+                var JSONStr1 = await GetData("/word/AjaxGetUser/" + UserId + "/" + NextWord.Id);
+                User = JSON.parse(JSONStr1);
+            }
+
             IsNoWord = false;
             NextWordId = NextWord.NextWordId;
-            console.log("FetchDataBeat: fetch success: " + NextWord.Word);
         }else{
-            console.log("\nFetchDataBeat: no fetching.");
+            // do no thing
         }
         await Sleep(APP_TIME_BEAT);
     }
@@ -135,7 +141,6 @@ async function WordBeat(){
         var HaveWord = !IsNoWord;
         var IsFree = !IsPlayWord;
         if(HaveWord && IsFree){
-            console.log("\nWordBeat: I start show word: " + NextWord.Word);
             CurrentWord = NextWord;
             IsNoWord = true;
             IsPlayWord = true;
@@ -151,16 +156,17 @@ async function WordBeat(){
             $(".NextWordPanel").show();
             await Sleep(600);  // for panel above show  
             // submit result: for user view complete panel
-            console.log("WordBeat: read done, I submit result...");
             IsSubmitReadResult = true; 
-            await GetData("/Word/AjaxReadComplete/" + User.Id + "/" + WordObj.Id);
+            var JSONStr1 = await GetData("/Word/AjaxReadComplete/" 
+                            + User.Id + "/" + WordObj.Id + "/" + NextWord.Id);
+            User = JSON.parse(JSONStr1); // user store updated data
             IsSubmitReadResult = false;
 
             IsPlayWord = false;
         }else if(IsPlayWord){
-            console.log("\nWordBeat: I showing..." + NextWord.Word);
+            // no case here
         }else{
-            console.log("\nWordBeat: I waiting new word...");
+            // wait new word
         }
         //
         await Sleep(APP_TIME_BEAT);

@@ -15,8 +15,7 @@ class Word extends BaseController
 		echo view('Footer');
 	}
 	/// AJAX ==================
-	// return JSON
-	//	array( WordObj, User)
+	// return JSON Word
 	public function AjaxGetWord($WordId){
 		$SM = new SimpleModel();
 
@@ -37,21 +36,34 @@ class Word extends BaseController
 		$WordObj->NextWordId = $SM->Query("select * from word where word='$NextWord'")
 			->getRow(1)->Id;
 
+		echo json_encode($WordObj);
+	}
+	// return JSON User
+	public function AjaxGetUser($UserId, $WordId){
+		$SM = new SimpleModel();
+
+		// fake
+		// for($i= 0; $i<5000;$i++){
+		// 	$SM->Query("select sum(length(Mean)) from word");
+		// }
+
+		// Word
+		$WordObj = $SM->Find("word", $WordId);
+
 		// User
-		$User = $SM->Find("user", 1);
+		$User = $SM->Find("user", $UserId);
 		$Levels = GetGameLevels($User->Level + 1);
 		$User->ThisLevelTotalExp = $Levels[$User->Level + 1]->Exp;
 		$User->CurrentExp = $User->TotalExp - $Levels[$User->Level]->TotalExp; 
 		$NewExp = strlen($WordObj->Mean);
 		$User->NewExp = $User->CurrentExp + $NewExp;
 		$User->CurrentPercent = round($User->CurrentExp / $User->ThisLevelTotalExp * 100, 1); 
-
-		
 		$User->NewPercent = round($User->NewExp / $User->ThisLevelTotalExp * 100, 1);
 
-		echo json_encode(array($WordObj, $User));
+		echo json_encode($User);
 	}
-	public function AjaxReadComplete($UserId, $WordId){
+	// return JSON User: store exp for next word
+	public function AjaxReadComplete($UserId, $WordId, $NextWordId){
 		$SM = new SimpleModel();
 
 		// fake
@@ -78,6 +90,9 @@ class Word extends BaseController
 		// update learn time
 		$WordObj->LearnTime++;
 		$SM->Update("word",$WordObj);
+
+		// user data for next word (after update)
+		echo $this->AjaxGetUser($UserId, $NextWordId);
 	}
 
 	/// ============================================
