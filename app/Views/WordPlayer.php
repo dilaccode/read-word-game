@@ -43,7 +43,7 @@
              </div>
         </div>
         <!-- Read Complete Panel -->
-        <div class="ReadCompletePanel w3-xlarge w3-animate-zoom w3-card-4 w3-green"
+        <div class="ReadCompletePanel w3-large w3-animate-zoom w3-card-4 w3-green"
              style="display: none; padding: 10px;">
              <i class="fa fa-check-circle"></i>
              Read Complete <i class="fa fa-plus"></i><span class="AmountExp">XXX</span> EXP
@@ -60,12 +60,12 @@
             </div>
         </div>
         <!-- Next Word -->
-        <div class="NextWordPanel w3-xlarge w3-animate-opacity w3-card-4
+        <div class="NextWordPanel w3-large w3-animate-opacity w3-card-4
                 w3-padding-small w3-blue"
              style="display:none; margin-top: 8px;">
              Next Word 
              <i class="fa fa-arrow-right"></i>
-             <span class="NextWordText w3-xxlarge upper">AAAA</span>
+             <span class="NextWordText w3-xlarge upper">AAAA</span>
         </div>
         
         <!-- ajax loading-->

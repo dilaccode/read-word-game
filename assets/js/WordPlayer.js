@@ -159,6 +159,7 @@ async function WordBeat(){
             IsSubmitReadResult = true; 
             var JSONStr1 = await GetData("/Word/AjaxReadComplete/" 
                             + User.Id + "/" + WordObj.Id + "/" + NextWord.Id);
+                            // will wrong if NextWord.Id noy loading next yet.
             User = JSON.parse(JSONStr1); // user store updated data
             IsSubmitReadResult = false;
 
