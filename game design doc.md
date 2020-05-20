@@ -34,4 +34,16 @@
       - 
     - next level , next exp -> level exp
 
-  7. ...
+  7. Learn Scenario
+    - read word by scenario X, ex: Personal MBA article
+
+
+  8. temp, get mean from cambridge
+  javascript:(function(){  })();
+
+  https://dictionary.cambridge.org/vi/dictionary/english/WORD
+  word(no need): $(".headword").textContent
+  mean: $(".def-block").textContent
+
+  get on bookmark, url: EDIT on assets/js/Temp.js
+    javascript:(function(){  var text = document.getElementsByClassName("def-block")[0].innerText; var textEncode = encodeURI(text); alert(decodeURI(textEncode));  })();

@@ -68,7 +68,7 @@ class SimpleModel
     
     /// --------------
     /// Return query result, 
-    ///     ->getResult(), ->getRow(X),
+    ///     ->getResult(), ->getRow(X), X: 0: first item
     ///     Add:
     ///         ->AmountRows (affected_rows)
     //          ->AddId (insert_id)
