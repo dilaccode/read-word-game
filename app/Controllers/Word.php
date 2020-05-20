@@ -9,6 +9,7 @@ class Word extends BaseController
 	public function Player($StartWordId){
 		$Data = array(
 			'StartWordId' => $StartWordId,
+			"ViewLevelUp" => view("LevelUp"),
 		);
 		echo view('Header');
 		echo view('WordPlayer', $Data);

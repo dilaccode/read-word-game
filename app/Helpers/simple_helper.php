@@ -22,11 +22,17 @@ function ArrayToGETDataUrl($Param,$Array){
 //  Exp = amount level exp
 //  TotalExp = total exp for complete this level
 function GetGameLevels($TotalLevel = 0){
-    $LEVEL_RATE = 300;
+    $INIT_EXP = 300;
+    $INCREASE_EXP_PER_LEVEL	= 25;
     $Levels = array();
     $TotalExp = 0;
-    for($Level = 0; $Level <= $TotalLevel; $Level++){
-        $LevelExp = $Level * $LEVEL_RATE;
+    // lv 0
+    array_push($Levels, (object)array(
+        "Exp" => 0,
+        "TotalExp" => 0,
+    ));
+    for($Level = 1; $Level <= $TotalLevel; $Level++){
+        $LevelExp =  $INIT_EXP + $Level * $INCREASE_EXP_PER_LEVEL;
         $TotalExp += $LevelExp;
         array_push($Levels, (object)array(
             "Exp" => $LevelExp,

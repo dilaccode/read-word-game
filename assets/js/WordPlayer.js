@@ -156,6 +156,19 @@ async function WordBeat(){
             //
             var Exp = WordObj.Mean.length;
             await ShowCompletePanel(Exp);
+
+            // level up
+            if(User.NewPercent >= 100){
+                await Sleep(500); // for user watch some
+
+                ShowLevelUp(parseInt(User.Level) + 1);
+                while(IsLevelUpPopupShow){ // script in LevelUp.php
+                    await Sleep(100);
+                }
+
+                await Sleep(500); // for fadeOut working...
+            }
+
             // next word
             $(".NextWordPanel").show();
             await Sleep(600);  // for panel above show  

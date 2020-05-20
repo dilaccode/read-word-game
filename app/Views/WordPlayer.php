@@ -85,3 +85,6 @@
 
 <!-- / w3-container -->
 </div>
+
+
+<?php echo $ViewLevelUp ?>
