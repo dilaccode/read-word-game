@@ -72,9 +72,14 @@
             <i class="fa fa-angle-double-up"></i>
         </div>
         
-        <div class="Spacing" style="margin-top: 16px;"></div>  
+        <blockquote class="w3-panel w3-leftbar w3-light-grey"
+                    style="margin: 25px 15px 0 15px !important; padding: 10px;">
+           <span style="font-style: italic;">"Read much make you professional."</span>
+           <br>
+           Professor Tom
+        </blockquote>  
 
         <a class="LevelUpCloseButton w3-btn w3-indigo w3-xlarge" href="#" style="
-            margin-top: 50px;">Next ❯</a>
+            margin-top: 25px;">Next ❯</a>
     </div>
 </div>
