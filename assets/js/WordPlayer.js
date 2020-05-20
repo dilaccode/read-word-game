@@ -31,12 +31,16 @@ async function SetData(Word, Mean, View, NextWordText){
     // MEAN
     TotalMeanLetters = Mean.length;
         // mean size
-    CssMeanFontSize = '35px';
-    ArrayMeanWords = Mean.split(" ");
-    if(ArrayMeanWords.length >= 20) // 20-3x words
+    if(Mean.length >= 0 && Mean.length <= 100)
+        CssMeanFontSize = '35px';
+    if(Mean.length >= 101 && Mean.length <= 180) 
         CssMeanFontSize = '30px';
-    if(ArrayMeanWords.length >= 31) // 3x-55 words
-        CssMeanFontSize = '22px';
+    if(Mean.length >= 181 && Mean.length <= 210) 
+        CssMeanFontSize = '25px';
+    if(Mean.length >= 211 && Mean.length <= 375) 
+        CssMeanFontSize = '20px';
+    if(Mean.length >= 376 ) 
+        CssMeanFontSize = '15px';
     MeanDiv.css("font-size", CssMeanFontSize);
         // animation
     var MeanAnimationHtml = "";
