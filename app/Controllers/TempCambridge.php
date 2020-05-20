@@ -16,6 +16,13 @@ class TempCambridge extends BaseController
 		$WordEmpty = $SM->Query("select Word from wordtemp where length(mean)=0")->getRow(0);
 		$CambridgeLink = "https://dictionary.cambridge.org/vi/dictionary/english/$WordEmpty->Word";
 		echo "<a href='$CambridgeLink' class='w3-btn w3-blue w3-center w3-margin' style='margin-left: 200px !important;'>$WordEmpty->Word</a>";
+		
+		// process mean
+		if (strpos($_GET["Mean"], 'A1') !== false) {
+			echo 'true';
+		}
+		remove A1, part abc
+
 		//
 		echo view("Header");
 		echo view ("TempCambridge", $_GET);
