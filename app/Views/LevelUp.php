@@ -72,7 +72,7 @@
             <i class="fa fa-angle-double-up"></i>
         </div>
         
-        <blockquote class="w3-panel w3-leftbar w3-light-grey"
+        <blockquote class=""
                     style="margin: 25px 15px 0 15px !important; padding: 10px;">
            <span class="w3-large" style="font-style: italic;">"Read much make you professional."</span>
            <br>
