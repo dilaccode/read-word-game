@@ -18,10 +18,13 @@ class TempCambridge extends BaseController
 		echo "<a href='$CambridgeLink' class='w3-btn w3-blue w3-center w3-margin' style='margin-left: 200px !important;'>$WordEmpty->Word</a>";
 		
 		// process mean
+			// remove some
 		if (strpos($_GET["Mean"], 'A1') !== false) {
-			echo 'true';
+			$_GET["Mean"] = str_replace("A1", "", $_GET["Mean"]);
 		}
-		remove A1, part abc
+
+		$_GET["Mean"] = str_replace(".", ".<br>", $_GET["Mean"]);
+		echo strlen($_GET["Mean"]);
 
 		//
 		echo view("Header");
