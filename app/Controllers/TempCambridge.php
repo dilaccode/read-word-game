@@ -90,5 +90,108 @@ class TempCambridge extends BaseController
 		echo "Update $Result->AmountRows word"; 
 	}
 
+	/// Word Process ====================
+	public function Test($WordId){
+		$SM = new SimpleModel();
+		// $WordObj = $SM->Find("wordtemp", $WordId);
+
+		$ListWord = $SM->Query("select * from wordtemp")->getResult();
+		$Count = 0;
+		foreach($ListWord as $WordObj){
+			$ArrayLines = explode("\n",$WordObj->Mean);
+			// remove first empty line 
+			// if(strlen($ArrayLines[0]) === 1){ // \n
+			// 	$ArrayLinesNew = array();
+			// 	for($Index = 1; $Index < count($ArrayLines); $Index++)
+			// 		array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+			// 	$Count++;
+			// }
+
+			// A1, A2, B1, B2, C1, C2
+			// if(Contain($ArrayLines[0],"A1")
+			// || Contain($ArrayLines[0],"A2")
+			// || Contain($ArrayLines[0],"B1")
+			// || Contain($ArrayLines[0],"B2")
+			// || Contain($ArrayLines[0],"C1")
+			// || Contain($ArrayLines[0],"C2")
+			// ){
+			// 	echo $ArrayLines[0]."<br>";	
+
+			// 		$ArrayLinesNew = array();
+			// 	for($Index = 1; $Index < count($ArrayLines); $Index++)
+			// 		array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+			// 	$Count++;
+			// }
+
+			// if( Contain($WordObj->Mean, "đồng nghĩa")
+			// || Contain($WordObj->Mean, "sánh")
+			// ||  Contain($WordObj->Mean, "lập")
+			// ||  Contain($WordObj->Mean, "thêm")
+			// ||  Contain($WordObj->Mean, "[   to infinitive ]")
+			// ||  Contain($WordObj->Mean, "[   -ing verb ]")
+			// ||  Contain($WordObj->Mean, "[   that ]")
+			// ||   Contain($WordObj->Mean, "[   (that) ]")
+			// ||   Contain($WordObj->Mean, "[   question word ]")
+			// ||   Contain($WordObj->Mean, "[   speech ]")
+			// ||   Contain($WordObj->Mean, "[   two objects ]")
+			// ){
+			// 	$ArrayLinesNew = array();
+			// 	$IsStop = false;
+			// 	for($Index = 0; $Index < count($ArrayLines); $Index++){
+			// 		if(Contain($ArrayLines[$Index], "đồng nghĩa")
+			// 		|| Contain($ArrayLines[$Index], "sánh")
+			// 		|| Contain($ArrayLines[$Index], "lập")
+			// 		|| Contain($ArrayLines[$Index], "thêm")
+			// 		|| Contain($ArrayLines[$Index], "[   to infinitive ]")
+			// 		|| Contain($ArrayLines[$Index], "[   -ing verb ]")
+			// 		|| Contain($ArrayLines[$Index], "[   that ]")
+			// 		|| Contain($ArrayLines[$Index], "[   (that) ]")
+			// 		|| Contain($ArrayLines[$Index], "[   question word ]")
+			// 		|| Contain($ArrayLines[$Index], "[   speech ]")
+			// 		|| Contain($ArrayLines[$Index], "[   two objects ]")
+			// 		){
+			// 			$IsStop = true;
+			// 		}
+
+			// 		if(!$IsStop)
+			// 			array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 	}
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+			// 	echo $result."<br>".PHP_EOL;
+			// 	Debug($ArrayLines, $ArrayLinesNew);
+			// }
+
+
+			// // remove [some thing..]
+			// if(Contain($ArrayLines[0],"[")
+			// || Contain($ArrayLines[0],"]")
+			// ){
+			// 		$ArrayLinesNew = array();
+			// 	for($Index = 1; $Index < count($ArrayLines); $Index++)
+			// 		array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+			// 	// Debug($ArrayLines, $ArrayLinesNew);
+			// }
+
+			// // (UK also backcloth, UK  /ˈbæk.klɒθ/ US  /-klɑːθ/)"
+			// if(Contain($ArrayLines[0],"(UK")
+			// ){
+			// 		$ArrayLinesNew = array();
+			// 	for($Index = 1; $Index < count($ArrayLines); $Index++)
+			// 		array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+			// 	//  Debug($ArrayLines, $ArrayLinesNew);
+			// }
+		}
+		echo $Count;
+	}
+
 
 }

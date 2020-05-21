@@ -42,9 +42,26 @@ function GetGameLevels($TotalLevel = 0){
     return $Levels;
 }
 
-function Debug($Var){
+function Debug($Var, $Var1 = ""){
     var_dump($Var);
+
+    //
+    $IsVar1 = true;
+    if(is_string($Var1)){
+        if(strlen($Var1) === 0){
+            $IsVar1 = false;
+        }
+    }
+    if($IsVar1)
+        var_dump($Var1);
     die();
 }
 
+// return true/false
+function Contain($String, $Find){
+    if (strpos($String, $Find) !== false) {
+        return true;
+    }
+    return false;
+}
 
