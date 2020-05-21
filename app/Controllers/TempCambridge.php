@@ -22,13 +22,6 @@ class TempCambridge extends BaseController
 		// process mean
 		if(isset($_GET["Word"])){
 			$Word = $_GET['Word'];
-			if(count(explode(" ",$Word))>1){
-				$ViewWord.="<div class='w3-orange ' style='padding: 16px;'>
-					2 word detect! Replace 'The'
-				</div>";
-				$Word = strtolower($Word);
-				$Word = str_replace("the ","",$Word);
-			}
 			
 			$Mean = $_GET['Mean'];
 			$Mean = str_replace("'","\'",$Mean);

@@ -9,6 +9,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 IsClick := false
 while(true){
     if(Isclick){
+        TrayTip, Running, F1=on/off
         ;word
         MouseClick, left, 381, 205
         Sleep, 1500 ; ms
