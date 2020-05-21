@@ -11,13 +11,13 @@ while(true){
     if(Isclick){
         ;word
         MouseClick, left, 381, 205
-        Sleep, 3000 ; ms
+        Sleep, 1500 ; ms
         ;bookmark
         MouseClick, left, 343, 92
         Sleep, 200 ; ms
         ; click other place for anti wrong click
-        MouseClick, left, 90, 180
-        Sleep, 2000 ; ms // for review test
+        MouseMove, 375, 145
+        Sleep, 250 ; ms // for review test
     }else{
         ; waiting...
     }

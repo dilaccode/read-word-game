@@ -22,7 +22,7 @@ class TempCambridge extends BaseController
 		if(isset($_GET["Word"])){
 			$Word = $_GET['Word'];
 			if(count(explode(" ",$Word))>1){
-				$ViewWord.="<div class='w3-orange w3-padding-16'>
+				$ViewWord.="<div class='w3-orange ' style='padding: 16px;'>
 					2 word detect! Replace 'The'
 				</div>";
 				$Word = strtolower($Word);
@@ -33,10 +33,24 @@ class TempCambridge extends BaseController
 			$Mean = str_replace("'","\'",$Mean);
 			$AmountRows = $SM->Query("update wordtemp set Mean = '$Mean' where Word = '$Word'")
 			->AmountRows;
-			$ViewWord .= "<div class='w3-green w3-padding-16'>Update $Word, success: $AmountRows</div>";
+			if($AmountRows===0){
+				$ViewWord.="<div class='w3-orange' style='padding: 16px;'>
+					S / ES detect
+					<br>
+					<a class='w3-btn w3-red w3-round' style='margin-right: 16px;'
+					   href='/TempCambridge/RemoveS/$Word'>REMOVE S </a>
+
+					<a class='w3-btn w3-pink w3-round'
+					href='/TempCambridge/RemoveES/$Word'>REMOVE ES </a>
+					<br>
+					and press Back <- 
+				</div>";
+			}
+
+			$ViewWord .= "<div class='w3-green ' style='padding: 16px;'>Update $Word, success: $AmountRows</div>";
 			// show result
 			if(isset($_GET["Word"])){
-				$ViewWord .= "<div class='w3-xxlarge upper w3-margin'>$Word</div>";
+				$ViewWord .= "<div class='w3-xxlarge w3-margin'>$Word</div>";
 				$ViewWord .= "<div class='w3-xlarge w3-margin'>$Mean</div>";
 			}
 		}	
@@ -53,8 +67,24 @@ class TempCambridge extends BaseController
 		echo $ViewWord;
 
 		echo view("Footer");
+	}
+	public function RemoveS($Word){
+		$SM = new SimpleModel();
+		$Word = strtolower($Word); // word no S
+		$Result = $SM->Query("update wordtemp set word='$Word' where word='".$Word."s' ");
+		echo "Update $Result->AmountRows word"; 
+	}
 
-
-	
+	public function RemoveES($Word){
+		$SM = new SimpleModel();
+		$Word = strtolower($Word); // word no S
+		$Result = $SM->Query("update wordtemp set word='$Word' where word='".$Word."es' ");
+		echo "Update $Result->AmountRows word"; 
+	}
+	public function RemoveWord($Word){
+		$SM = new SimpleModel();
+		$Word = strtolower($Word); // word no S
+		$Result = $SM->Query("delete from wordtemp where word='' ");
+		echo "Update $Result->AmountRows word"; 
 	}
 }
