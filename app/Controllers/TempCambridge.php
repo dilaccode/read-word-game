@@ -53,11 +53,12 @@ class TempCambridge extends BaseController
 		// show empty word
 		echo "NEXT WORD: <br>";
 		$WordEmpty = $SM->Query("select * from wordtemp where length(mean)=0")->getRow(0);
+		Debug($WordEmpty);
 		$CambridgeLink = "https://dictionary.cambridge.org/vi/dictionary/english/$WordEmpty->Word";
 		echo "<a href='$CambridgeLink' class='w3-btn w3-blue w3-center w3-margin' style='margin-left: 200px !important;'>$WordEmpty->Word</a>";
 		// delete no meaning word
 		if($AmountRows===0){
-			echo "<br><a class='w3-btn w3-red w3-round w3-display-topright' style='margin: 50px;'
+			echo "<br><a class='w3-btn w3-red w3-round' style='margin: 50px;'
 			href='/TempCambridge/RemoveWord/$WordEmpty->Id'>REMOVE  <span class='w3-large'>$WordEmpty->Word<span></a>";
 		}
 		
