@@ -22,7 +22,7 @@ class TempCambridge extends BaseController
 		// process mean
 		if(isset($_GET["Word"])){
 			$Word = $_GET['Word'];
-			
+
 			$Mean = $_GET['Mean'];
 			$Mean = str_replace("'","\'",$Mean);
 			$AmountRows = $SM->Query("update wordtemp set Mean = '$Mean' where Word = '$Word'")
@@ -57,8 +57,8 @@ class TempCambridge extends BaseController
 		echo "<a href='$CambridgeLink' class='w3-btn w3-blue w3-center w3-margin' style='margin-left: 200px !important;'>$WordEmpty->Word</a>";
 		// delete no meaning word
 		if($AmountRows===0){
-			echo "<br><a class='w3-btn w3-red w3-round' style='margin: 50px;'
-			href='/TempCambridge/RemoveWord/$WordEmpty->Id'>REMOVE  <span class='w3-xxlarge'>$WordEmpty->Word<span></a>";
+			echo "<br><a class='w3-btn w3-red w3-round w3-display-topright' style='margin: 50px;'
+			href='/TempCambridge/RemoveWord/$WordEmpty->Id'>REMOVE  <span class='w3-large'>$WordEmpty->Word<span></a>";
 		}
 		
 
