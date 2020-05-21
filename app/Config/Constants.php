@@ -1,7 +1,7 @@
 <?php
 
 // Custom constants
-defined('IS_DEVELOPMENT_MODE')      || define('IS_DEVELOPMENT_MODE', true);
+defined('IS_DEVELOPMENT_MODE')      || define('IS_DEVELOPMENT_MODE', false);
 
 //--------------------------------------------------------------------
 // App Namespace
