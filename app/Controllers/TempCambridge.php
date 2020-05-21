@@ -18,6 +18,7 @@ class TempCambridge extends BaseController
 		
 		
 		$ViewWord = "";
+		$AmountRows = -1;
 		// process mean
 		if(isset($_GET["Word"])){
 			$Word = $_GET['Word'];
@@ -58,9 +59,14 @@ class TempCambridge extends BaseController
 
 		// show empty word
 		echo "NEXT WORD: <br>";
-		$WordEmpty = $SM->Query("select Word from wordtemp where length(mean)=0")->getRow(0);
+		$WordEmpty = $SM->Query("select * from wordtemp where length(mean)=0")->getRow(0);
 		$CambridgeLink = "https://dictionary.cambridge.org/vi/dictionary/english/$WordEmpty->Word";
 		echo "<a href='$CambridgeLink' class='w3-btn w3-blue w3-center w3-margin' style='margin-left: 200px !important;'>$WordEmpty->Word</a>";
+		// delete no meaning word
+		if($AmountRows===0){
+			echo "<br><a class='w3-btn w3-red w3-round' style='margin: 50px;'
+			href='/TempCambridge/RemoveWord/$WordEmpty->Id'>REMOVE  <span class='w3-xxlarge'>$WordEmpty->Word<span></a>";
+		}
 		
 
 		// show after
@@ -69,6 +75,7 @@ class TempCambridge extends BaseController
 		echo view("Footer");
 	}
 	public function RemoveS($Word){
+		$Word = rawurldecode($Word);
 		$SM = new SimpleModel();
 		$Word = strtolower($Word); // word no S
 		$Result = $SM->Query("update wordtemp set word='$Word' where word='".$Word."s' ");
@@ -76,15 +83,16 @@ class TempCambridge extends BaseController
 	}
 
 	public function RemoveES($Word){
+		$Word = rawurldecode($Word);
 		$SM = new SimpleModel();
 		$Word = strtolower($Word); // word no S
 		$Result = $SM->Query("update wordtemp set word='$Word' where word='".$Word."es' ");
 		echo "Update $Result->AmountRows word"; 
 	}
-	public function RemoveWord($Word){
+	public function RemoveWord($WordId){
 		$SM = new SimpleModel();
-		$Word = strtolower($Word); // word no S
-		$Result = $SM->Query("delete from wordtemp where word='' ");
+		// Debug("delete from wordtemp where word='$Word'");
+		$Result = $SM->Query("delete from wordtemp where Id=$WordId ");
 		echo "Update $Result->AmountRows word"; 
 	}
 }
