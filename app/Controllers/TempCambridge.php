@@ -89,4 +89,6 @@ class TempCambridge extends BaseController
 		$Result = $SM->Query("delete from wordtemp where Id=$WordId ");
 		echo "Update $Result->AmountRows word"; 
 	}
+
+
 }
