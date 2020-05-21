@@ -10,25 +10,51 @@ class TempCambridge extends BaseController
 	}
 	/// send me query: /TempCambridge/GetData?Word=WORDencodeURI&Mean=MEANencodeURI
 	public function GetData()
-	{
-		// show empty word
+	{		
 		$SM = new SimpleModel();
+
+		//
+		echo view("Header");
+		
+		
+		$ViewWord = "";
+		// process mean
+		if(isset($_GET["Word"])){
+			$Word = $_GET['Word'];
+			if(count(explode(" ",$Word))>1){
+				$ViewWord.="<div class='w3-orange w3-padding-16'>
+					2 word detect! Replace 'The'
+				</div>";
+				$Word = strtolower($Word);
+				$Word = str_replace("the ","",$Word);
+			}
+			
+			$Mean = $_GET['Mean'];
+			$Mean = str_replace("'","\'",$Mean);
+			$AmountRows = $SM->Query("update wordtemp set Mean = '$Mean' where Word = '$Word'")
+			->AmountRows;
+			$ViewWord .= "<div class='w3-green w3-padding-16'>Update $Word, success: $AmountRows</div>";
+			// show result
+			if(isset($_GET["Word"])){
+				$ViewWord .= "<div class='w3-xxlarge upper w3-margin'>$Word</div>";
+				$ViewWord .= "<div class='w3-xlarge w3-margin'>$Mean</div>";
+			}
+		}	
+
+
+		// show empty word
+		echo "NEXT WORD: <br>";
 		$WordEmpty = $SM->Query("select Word from wordtemp where length(mean)=0")->getRow(0);
 		$CambridgeLink = "https://dictionary.cambridge.org/vi/dictionary/english/$WordEmpty->Word";
 		echo "<a href='$CambridgeLink' class='w3-btn w3-blue w3-center w3-margin' style='margin-left: 200px !important;'>$WordEmpty->Word</a>";
 		
-		// process mean
-			// remove some
-		if (strpos($_GET["Mean"], 'A1') !== false) {
-			$_GET["Mean"] = str_replace("A1", "", $_GET["Mean"]);
-		}
 
-		$_GET["Mean"] = str_replace(".", ".<br>", $_GET["Mean"]);
-		echo strlen($_GET["Mean"]);
+		// show after
+		echo $ViewWord;
 
-		//
-		echo view("Header");
-		echo view ("TempCambridge", $_GET);
 		echo view("Footer");
+
+
+	
 	}
 }

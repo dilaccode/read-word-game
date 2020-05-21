@@ -42,4 +42,9 @@ function GetGameLevels($TotalLevel = 0){
     return $Levels;
 }
 
+function Debug($Var){
+    var_dump($Var);
+    die();
+}
+
 

@@ -47,3 +47,7 @@
 
   get on bookmark, url: EDIT on assets/js/Temp.js
     javascript:(function(){  var text = document.getElementsByClassName("def-block")[0].innerText; var textEncode = encodeURI(text); alert(decodeURI(textEncode));  })();
+  - sign remove: A1.. B2
+  - sign split
+    - Từ đồng nghĩa
+    - 
