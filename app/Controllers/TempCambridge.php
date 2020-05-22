@@ -206,7 +206,10 @@ class TempCambridge extends BaseController
 				$WordObj->Mean = implode("\n",$ArrayLinesNew);
 				$result = $SM->Update('wordtemp',$WordObj);
 				// Debug($ArrayLines, $ArrayLinesNew);
+				
 			}
+
+			/// Square in line [  ... ]
 		}
 		echo $Count;
 	}
