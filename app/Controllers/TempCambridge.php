@@ -91,7 +91,7 @@ class TempCambridge extends BaseController
 	}
 
 	/// Word Process ====================
-	public function Test($WordId){
+	public function Test(){
 		$SM = new SimpleModel();
 		// $WordObj = $SM->Find("wordtemp", $WordId);
 
@@ -127,10 +127,12 @@ class TempCambridge extends BaseController
 			// 	$Count++;
 			// }
 
+			
 			// if( Contain($WordObj->Mean, "đồng nghĩa")
 			// || Contain($WordObj->Mean, "sánh")
 			// ||  Contain($WordObj->Mean, "lập")
 			// ||  Contain($WordObj->Mean, "thêm")
+			// ||  Contain($WordObj->Mean, "Xem")
 			// ||  Contain($WordObj->Mean, "[   to infinitive ]")
 			// ||  Contain($WordObj->Mean, "[   -ing verb ]")
 			// ||  Contain($WordObj->Mean, "[   that ]")
@@ -146,6 +148,7 @@ class TempCambridge extends BaseController
 			// 		|| Contain($ArrayLines[$Index], "sánh")
 			// 		|| Contain($ArrayLines[$Index], "lập")
 			// 		|| Contain($ArrayLines[$Index], "thêm")
+			// 		|| Contain($ArrayLines[$Index], "Xem")
 			// 		|| Contain($ArrayLines[$Index], "[   to infinitive ]")
 			// 		|| Contain($ArrayLines[$Index], "[   -ing verb ]")
 			// 		|| Contain($ArrayLines[$Index], "[   that ]")
@@ -162,8 +165,8 @@ class TempCambridge extends BaseController
 			// 	}
 			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
 			// 	$result = $SM->Update('wordtemp',$WordObj);
-			// 	echo $result."<br>".PHP_EOL;
-			// 	Debug($ArrayLines, $ArrayLinesNew);
+			// 	// echo $result."<br>".PHP_EOL;
+			// 	// Debug($ArrayLines, $ArrayLinesNew);
 			// }
 
 
@@ -189,6 +192,21 @@ class TempCambridge extends BaseController
 			// 	$result = $SM->Update('wordtemp',$WordObj);
 			// 	//  Debug($ArrayLines, $ArrayLinesNew);
 			// }
+
+			/// remove example: keep 3 example
+			if(count($ArrayLines)>=5){
+				$ArrayLinesNew = array();
+				$AMOUNT_KEEP= 3;
+				// mean:
+				array_push($ArrayLinesNew, $ArrayLines[0]);
+				for($Index = 1; $Index <= $AMOUNT_KEEP; $Index++){
+					if($Index<count($ArrayLines))
+						array_push($ArrayLinesNew, $ArrayLines[$Index]);
+				}
+				$WordObj->Mean = implode("\n",$ArrayLinesNew);
+				$result = $SM->Update('wordtemp',$WordObj);
+				// Debug($ArrayLines, $ArrayLinesNew);
+			}
 		}
 		echo $Count;
 	}
