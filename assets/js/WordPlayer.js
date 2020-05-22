@@ -43,7 +43,7 @@ async function SetData(Word, Mean, View, NextWordText){
         CssMeanFontSize = '15px';
     MeanDiv.css("font-size", CssMeanFontSize);
         // animation
-    var MeanAnimationHtml = "<span style='text-shadow: 0 0 0 black;'>";
+    var MeanAnimationHtml = "<b>";
     var Index = 0;
     var IsEndFirstSentence = false;
     for(Index = 0; Index < Mean.length; Index++){
@@ -51,7 +51,7 @@ async function SetData(Word, Mean, View, NextWordText){
             MeanAnimationHtml += "<br>- ";
             if(!IsEndFirstSentence){
                 IsEndFirstSentence = true;
-                MeanAnimationHtml += "</span>"; // end Mean
+                MeanAnimationHtml += "</b>"; // end Mean
             }
         }else{ // normal
             MeanAnimationHtml += "<span class='select" + Index + "'>" 
