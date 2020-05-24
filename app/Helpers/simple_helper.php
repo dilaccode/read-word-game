@@ -64,4 +64,13 @@ function Contain($String, $Find){
     }
     return false;
 }
+// return true/false. String contain any element of array
+function ContainInArray($String, $ArrayFind){
+    foreach($ArrayFind as $Find){
+        if(Contain($String,$Find)){
+            return true;
+        }
+    }
+    return false;
+}
 

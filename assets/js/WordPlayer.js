@@ -9,6 +9,8 @@ async function SetData(Word, Mean, View, NextWordText){
     var MeanDiv = $(".Mean");
     var ViewTextSpan = $(".ViewText");
     var NextWordTextSpan = $(".NextWordText");
+
+    console.log(Mean.length);
     
     WordDiv.fadeOut();
     MeanDiv.fadeOut();

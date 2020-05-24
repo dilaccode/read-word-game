@@ -93,23 +93,29 @@ class TempCambridge extends BaseController
 	/// Word Process ====================
 	public function Test(){
 		$SM = new SimpleModel();
-		// $WordObj = $SM->Find("wordtemp", $WordId);
-
+		
 		$ListWord = $SM->Query("select * from wordtemp")->getResult();
 		$Count = 0;
 		foreach($ListWord as $WordObj){
 			$ArrayLines = explode("\n",$WordObj->Mean);
-			// remove first empty line 
-			// if(strlen($ArrayLines[0]) === 1){ // \n
-			// 	$ArrayLinesNew = array();
-			// 	for($Index = 1; $Index < count($ArrayLines); $Index++)
-			// 		array_push($ArrayLinesNew, $ArrayLines[$Index]);
-			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
-			// 	$result = $SM->Update('wordtemp',$WordObj);
-			// 	$Count++;
-			// }
 
-			// A1, A2, B1, B2, C1, C2
+			// /// remove  empty line ===	
+			// $ArrayLinesNew = array();
+			// $IsDebug = false;
+			// for($Index = 0; $Index < count($ArrayLines); $Index++)
+			// 	if(strlen($ArrayLines[$Index]) <= 2){ // remove 0, 1, 2
+			// 		// remove
+			// 		$IsDebug = true;
+			// 	}else{
+			// 		array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 	}
+			// $WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// $result = $SM->Update('wordtemp',$WordObj);
+			// if($IsDebug)
+			// 	Debug($ArrayLines,$ArrayLinesNew);
+			
+
+			/// A1, A2, B1, B2, C1, C2  ====
 			// if(Contain($ArrayLines[0],"A1")
 			// || Contain($ArrayLines[0],"A2")
 			// || Contain($ArrayLines[0],"B1")
@@ -117,29 +123,26 @@ class TempCambridge extends BaseController
 			// || Contain($ArrayLines[0],"C1")
 			// || Contain($ArrayLines[0],"C2")
 			// ){
-			// 	echo $ArrayLines[0]."<br>";	
-
-			// 		$ArrayLinesNew = array();
+			// 	$ArrayLinesNew = array();
 			// 	for($Index = 1; $Index < count($ArrayLines); $Index++)
 			// 		array_push($ArrayLinesNew, $ArrayLines[$Index]);
 			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
 			// 	$result = $SM->Update('wordtemp',$WordObj);
 			// 	$Count++;
-			// }
 
+			// 	// Debug($ArrayLines,$ArrayLinesNew);
+			// }
 			
+						
+
+			// /// remove under Vietnamese ===
 			// if( Contain($WordObj->Mean, "đồng nghĩa")
 			// || Contain($WordObj->Mean, "sánh")
 			// ||  Contain($WordObj->Mean, "lập")
 			// ||  Contain($WordObj->Mean, "thêm")
 			// ||  Contain($WordObj->Mean, "Xem")
-			// ||  Contain($WordObj->Mean, "[   to infinitive ]")
-			// ||  Contain($WordObj->Mean, "[   -ing verb ]")
-			// ||  Contain($WordObj->Mean, "[   that ]")
-			// ||   Contain($WordObj->Mean, "[   (that) ]")
-			// ||   Contain($WordObj->Mean, "[   question word ]")
-			// ||   Contain($WordObj->Mean, "[   speech ]")
-			// ||   Contain($WordObj->Mean, "[   two objects ]")
+			// ||  Contain($WordObj->Mean, "Trái ngược")
+			// ||  Contain($WordObj->Mean, "Note:")
 			// ){
 			// 	$ArrayLinesNew = array();
 			// 	$IsStop = false;
@@ -149,13 +152,8 @@ class TempCambridge extends BaseController
 			// 		|| Contain($ArrayLines[$Index], "lập")
 			// 		|| Contain($ArrayLines[$Index], "thêm")
 			// 		|| Contain($ArrayLines[$Index], "Xem")
-			// 		|| Contain($ArrayLines[$Index], "[   to infinitive ]")
-			// 		|| Contain($ArrayLines[$Index], "[   -ing verb ]")
-			// 		|| Contain($ArrayLines[$Index], "[   that ]")
-			// 		|| Contain($ArrayLines[$Index], "[   (that) ]")
-			// 		|| Contain($ArrayLines[$Index], "[   question word ]")
-			// 		|| Contain($ArrayLines[$Index], "[   speech ]")
-			// 		|| Contain($ArrayLines[$Index], "[   two objects ]")
+			// 		|| Contain($ArrayLines[$Index], "Trái ngược")
+			// 		|| Contain($ArrayLines[$Index], "Note:")						
 			// 		){
 			// 			$IsStop = true;
 			// 		}
@@ -165,12 +163,11 @@ class TempCambridge extends BaseController
 			// 	}
 			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
 			// 	$result = $SM->Update('wordtemp',$WordObj);
-			// 	// echo $result."<br>".PHP_EOL;
-			// 	// Debug($ArrayLines, $ArrayLinesNew);
+				
+			// 	Debug($ArrayLines, $ArrayLinesNew);
 			// }
 
-
-			// // remove [some thing..]
+			// remove [some thing..] first mean
 			// if(Contain($ArrayLines[0],"[")
 			// || Contain($ArrayLines[0],"]")
 			// ){
@@ -182,6 +179,7 @@ class TempCambridge extends BaseController
 			// 	// Debug($ArrayLines, $ArrayLinesNew);
 			// }
 
+
 			// // (UK also backcloth, UK  /ˈbæk.klɒθ/ US  /-klɑːθ/)"
 			// if(Contain($ArrayLines[0],"(UK")
 			// ){
@@ -190,29 +188,225 @@ class TempCambridge extends BaseController
 			// 		array_push($ArrayLinesNew, $ArrayLines[$Index]);
 			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
 			// 	$result = $SM->Update('wordtemp',$WordObj);
-			// 	//  Debug($ArrayLines, $ArrayLinesNew);
+			// 	 Debug($ArrayLines, $ArrayLinesNew);
 			// }
 
-			/// remove example: keep 3 example
-			if(count($ArrayLines)>=5){
+
+			// // // remove [...] in line ===
+			// if( Contain($WordObj->Mean, "[")
+			// ||  Contain($WordObj->Mean, "]")
+			// ){
+			// 	$ArrayLinesNew = array();
+			// 	$IsStop = false;
+			// 	for($Index = 0; $Index < count($ArrayLines); $Index++){
+			// 		if( Contain($ArrayLines[$Index], "[")
+			// 		|| Contain($ArrayLines[$Index], "]")
+			// 		){
+			// 			$Line = trim(preg_replace('#\[(.*?)\]#', "", $ArrayLines[$Index]));
+			// 			$Line = str_replace("  "," ",$Line);
+			// 			$Line = str_replace(" .",".",$Line);
+			// 			array_push($ArrayLinesNew, $Line);
+			// 		}else{
+			// 			array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 		}	
+			// 	}
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+				
+
+			// 	// Debug($ArrayLines, $ArrayLinesNew);
+			// }
+
+
+			// // // remove (...) in line ===
+			// if( Contain($WordObj->Mean, "(")
+			// ||  Contain($WordObj->Mean, ")")
+			// ){
+			// 	$ArrayLinesNew = array();
+			// 	$IsStop = false;
+			// 	for($Index = 0; $Index < count($ArrayLines); $Index++){
+			// 		if( Contain($ArrayLines[$Index], "(")
+			// 		|| Contain($ArrayLines[$Index], ")")
+			// 		){
+			// 			$Line = trim(preg_replace('#\((.*?)\)#', "", $ArrayLines[$Index]));
+			// 			$Line = str_replace("  "," ",$Line);
+			// 			$Line = str_replace(" .",".",$Line);
+			// 			array_push($ArrayLinesNew, $Line);
+			// 		}else{
+			// 			array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 		}	
+			// 	}
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+				
+
+			// 	// Debug($ArrayLines, $ArrayLinesNew);
+			// }
+
+	
+			// /// remove iStock/Getty Images Plus ====
+			// // remove GettyImages
+			// if( Contain($WordObj->Mean, "iStock/Getty Images Plus")
+			// ||  Contain($WordObj->Mean, "GettyImages")
+			// ){
+			// 	$ArrayLinesNew = array();
+			// 	$IsStop = false;
+			// 	for($Index = 0; $Index < count($ArrayLines); $Index++){
+			// 		if( Contain($ArrayLines[$Index], "iStock/Getty Images Plus")
+			// 		|| Contain($ArrayLines[$Index], "GettyImages")
+			// 		){
+			// 			// remove
+			// 		}else{
+			// 			array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 		}	
+			// 	}
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+				
+
+			// 	// Debug($ArrayLines, $ArrayLinesNew);
+			// }
+
+
+			/// remove UK formal; === 
+			// if( Contain($WordObj->Mean, "UK formal")
+			// ||  Contain($WordObj->Mean, "UK informal")
+			// ||  Contain($WordObj->Mean, "UK not standard")
+			// ){
+			// 	$ArrayLinesNew = array();
+			// 	$IsStop = false;
+			// 	for($Index = 0; $Index < count($ArrayLines); $Index++){
+			// 		if( Contain($ArrayLines[$Index], "UK informal")
+			// 		|| Contain($ArrayLines[$Index], "UK formal")
+			// 		|| Contain($ArrayLines[$Index], "UK not standard")
+			// 		){
+			// 			$Line = trim(str_replace("UK informal", "",$ArrayLines[$Index]));
+			// 			$Line = trim(str_replace("UK formal", "",$Line));
+			// 			$Line = trim(str_replace("UK not standard", "",$Line));
+
+			// 			array_push($ArrayLinesNew, $Line);
+			// 		}else{
+			// 			array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 		}	
+			// 	}
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+				
+
+			// 	Debug($ArrayLines, $ArrayLinesNew);
+			// }
+			
+			// // /// remove UK, US first line
+			// $ArrayLinesNew = array();
+			// $IsDebug = false;
+			// for($Index = 0; $Index < count($ArrayLines); $Index++){
+			// 	if(substr($ArrayLines[$Index],0,2) === "UK"
+			// 	|| substr($ArrayLines[$Index],0,2) === "US"){
+			// 		$LineNew =substr($ArrayLines[$Index],3,strlen($ArrayLines[$Index])-3);
+			// 		array_push($ArrayLinesNew,$LineNew);
+			// 		$IsDebug = true;
+			// 	}else{
+			// 		array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 	}					
+			// }
+			// // update
+			// $WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// $result = $SM->Update('wordtemp',$WordObj);
+
+			// if($IsDebug)
+			// Debug($ArrayLines, $ArrayLinesNew);
+
+
+		
+
+			// /// get 3 shortest line of Mean ===
+			// if(count($ArrayLines) >= 3){		
+			// 	$ArrayLinesNew = array();
+			// 	$ArrayLinesExample = array();
+			// 	array_push($ArrayLinesNew, $ArrayLines[0]); // mean
+				
+			// 	for($Index = 1; $Index < count($ArrayLines); $Index++){
+			// 			array_push($ArrayLinesExample, $ArrayLines[$Index]);
+			// 	}
+			// 	// sort: short - long
+			// 	usort($ArrayLinesExample, function($a, $b) {
+			// 		return   strlen($a) - strlen($b);
+			// 	});
+			// 	$AMOUNT_EXAMPLE_LINE = 3;
+			// 	$ArrayLinesExampleNew = array();
+			// 	for($Index = 0; $Index < $AMOUNT_EXAMPLE_LINE; $Index++){
+			// 		array_push($ArrayLinesExampleNew, $ArrayLinesExample[$Index]);
+			// 	}
+			// 	$ArrayLinesNew = array_merge($ArrayLinesNew, $ArrayLinesExampleNew);
+			// 	// update
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+
+			// 	// Debug($ArrayLines, $ArrayLinesNew);
+			// }
+
+			
+			// /// SHORT EXAMPLE (line) BY length Mean ===					
+			// $ArrayLinesNew = array();
+			// $ArrayLinesExample = array();
+			// array_push($ArrayLinesNew, $ArrayLines[0]); // mean
+			
+			// for($Index = 1; $Index < count($ArrayLines); $Index++){
+			// 		array_push($ArrayLinesExample, $ArrayLines[$Index]);
+			// }
+			// // sort: short - long
+			// usort($ArrayLinesExample, function($a, $b) {
+			// 	return   strlen($a) - strlen($b);
+			// });
+			// $ArrayLinesNew = array_merge($ArrayLinesNew, $ArrayLinesExample);
+			// // update
+			// $WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// $result = $SM->Update('wordtemp',$WordObj);
+
+			// // Debug($ArrayLines, $ArrayLinesNew);
+			
+
+
+			/// remove example for LIMIT letters === 
+			///  at least 1 example
+			$LIMIT_LENGTH = 205; // letters,space...
+			/// get 3 shortest line of Mean ===	
+			if(strlen($WordObj->Mean) > $LIMIT_LENGTH){		
 				$ArrayLinesNew = array();
-				$AMOUNT_KEEP= 3;
-				// mean:
+				$TotalLength = 0;
+				// mean
 				array_push($ArrayLinesNew, $ArrayLines[0]);
-				for($Index = 1; $Index <= $AMOUNT_KEEP; $Index++){
-					if($Index<count($ArrayLines))
-						array_push($ArrayLinesNew, $ArrayLines[$Index]);
+				$TotalLength += strlen($ArrayLines[0]) + 1 /* \n */; 
+				// example 1
+				if(count($ArrayLines)>=2){
+					array_push($ArrayLinesNew, $ArrayLines[1]);
+					$TotalLength += strlen($ArrayLines[1]) + 1 /* \n */; 
 				}
+				if(count($ArrayLines)>=3){
+					for($Index = 2; $Index < count($ArrayLines); $Index++){
+						if($TotalLength + strlen($ArrayLines[$Index]) <= $LIMIT_LENGTH){
+							array_push($ArrayLinesNew, $ArrayLines[$Index]);
+							$TotalLength += strlen($ArrayLines[$Index]) + 1 /* \n */;
+						}
+					}
+				}
+				echo strlen($WordObj->Mean).PHP_EOL;
+				echo strlen(implode("\n",$ArrayLinesNew)).PHP_EOL;
+				// update
 				$WordObj->Mean = implode("\n",$ArrayLinesNew);
 				$result = $SM->Update('wordtemp',$WordObj);
+
 				// Debug($ArrayLines, $ArrayLinesNew);
-				
 			}
 
-			/// Square in line [  ... ]
+
+
 		}
 		echo $Count;
 	}
+
+
+	
 
 
 }
