@@ -43,16 +43,17 @@ async function SetData(Word, Mean, View, NextWordText){
         CssMeanFontSize = '15px';
     MeanDiv.css("font-size", CssMeanFontSize);
         // animation
-    var MeanAnimationHtml = "<b>";
+    var MeanAnimationHtml = "<span class='Tag w3-tag w3-indigo w3-large'>Mean</span> <b>";
     var Index = 0;
     var IsEndFirstSentence = false;
     for(Index = 0; Index < Mean.length; Index++){
         if(Mean[Index] === "\n"){ // end line
-            MeanAnimationHtml += "<br>- ";
             if(!IsEndFirstSentence){
                 IsEndFirstSentence = true;
                 MeanAnimationHtml += "</b>"; // end Mean
             }
+            MeanAnimationHtml += "<br>"
+                + "<span class='Tag w3-tag w3-green w3-large'>Example</span> ";
         }else{ // normal
             MeanAnimationHtml += "<span class='select" + Index + "'>" 
                         + Mean[Index] + "</span>";

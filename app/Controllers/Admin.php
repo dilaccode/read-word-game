@@ -33,7 +33,7 @@ class Admin extends BaseController
 			'Title' => "Update Words Length",
 			'Message'=> $Message,
 			'NextActionText'=>"<i class=\"fa fa-arrow-left\"></i> Back To Admin",
-			'NextActionLink'=>"/public/Admin",
+			'NextActionLink'=>"/Admin",
 		  );
 		echo view("Header");
 		echo view("Message", $Data);

@@ -47,6 +47,9 @@ a {
     height: 100%; /* full screen */
     border-width: 8px !important;
 }
+.Tag{
+    padding: 1.5px 6px;
+}
 </style>
 <!-- / CSS small -->
 

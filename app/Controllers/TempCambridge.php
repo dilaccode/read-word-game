@@ -95,7 +95,7 @@ class TempCambridge extends BaseController
 		$SM = new SimpleModel();
 		
 		$ListWord = $SM->Query("select * from wordtemp")->getResult();
-
+		$Count = 0;
 		foreach($ListWord as $WordObj){
 			$ArrayLines = explode("\n",$WordObj->Mean);
 
@@ -425,10 +425,50 @@ class TempCambridge extends BaseController
 			// 	// Debug($ArrayLines, $ArrayLinesNew);
 			// }
 
+			/// === replace : end mean by . (dot), add (dot) for some example. ====
+			// $ArrayLinesNew = array();
+			// $ArrayLines[0] = trim($ArrayLines[0]);
+			// $NewMeanLine = "";
+			// if($ArrayLines[0][strlen($ArrayLines[0])-1] === "."){
+			// 	$Count++;
+			// 	// $NewMeanLine = substr($ArrayLines[0],0,strlen($ArrayLines[0])-1);
+			// 	// $NewMeanLine.=".";
+			// }else{
+			// 	// echo $ArrayLines[0].PHP_EOL;
+			// 	// $NewMeanLine =$ArrayLines[0];
+			// 	// $NewMeanLine.=".";
+			// }
+			// // $NewMeanLine = ucfirst($NewMeanLine) ;
+
+			// $ArrayLinesNew = array();	
+			// array_push($ArrayLinesNew, $ArrayLines[0]); // mean
+			// $IsDebug = false;
+			// for($Index = 1; $Index < count($ArrayLines); $Index++){
+			// 		$Line = trim($ArrayLines[$Index]);
+			// 		if(
+			// 			$Line[strlen($Line)-1] !== "."
+			// 		&& $Line[strlen($Line)-1] !== "?"
+			// 		&& $Line[strlen($Line)-1] !== "!"
+			// 		&& $Line[strlen($Line)-1] !== "\""
+			// 		){
+			// 			array_push($ArrayLinesNew, $Line.".");
+			// 			$IsDebug = true;
+			// 		}else{
+			// 			array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 		}
+			// }
+			
+			// // $WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// // $result = $SM->Update('wordtemp',$WordObj);
+			// if($IsDebug)
+			// Debug($ArrayLines, $ArrayLinesNew);
 
 
-		}
-	}
+
+		} // end foreach
+		echo $Count;
+
+	} // end function
 
 
 	

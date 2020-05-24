@@ -21,10 +21,10 @@
                 <i class="fa fa-eye"></i><span class="ViewText">...</span>
             </div>
             <!-- Mean Label -->
-            <div class="w3-medium w3-indigo" 
+            <!-- <div class="w3-medium w3-indigo" 
                 style="position:fixed; top: 70px; padding: 0.25em;">
                 MEAN
-            </div>
+            </div> -->
         </div>
        
         <!-- Word -->       
