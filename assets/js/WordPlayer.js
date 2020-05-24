@@ -32,18 +32,19 @@ async function SetData(Word, Mean, View, NextWordText){
     TotalMeanLetters = Mean.length;
         // mean size
     if(Mean.length >= 0 && Mean.length <= 100)
-        CssMeanFontSize = '35px';
+        CssMeanFontSize = '35';
     if(Mean.length >= 101 && Mean.length <= 180) 
-        CssMeanFontSize = '30px';
+        CssMeanFontSize = '30';
     if(Mean.length >= 181 && Mean.length <= 210) 
-        CssMeanFontSize = '25px';
+        CssMeanFontSize = '25';
     if(Mean.length >= 211 && Mean.length <= 375) 
-        CssMeanFontSize = '20px';
+        CssMeanFontSize = '20';
     if(Mean.length >= 376 ) 
-        CssMeanFontSize = '15px';
-    MeanDiv.css("font-size", CssMeanFontSize);
+        CssMeanFontSize = '15';
+    MeanDiv.css("font-size", CssMeanFontSize + "px");
         // animation
-    var MeanAnimationHtml = "<span class='Tag w3-tag w3-indigo w3-large'>Mean</span> <b>";
+    var MeanAnimationHtml = "<span class='Tag w3-tag w3-indigo' style='font-size: "
+    + (CssMeanFontSize * 0.6) + "px;'>Mean</span> <b>";
     var Index = 0;
     var IsEndFirstSentence = false;
     for(Index = 0; Index < Mean.length; Index++){
@@ -53,7 +54,8 @@ async function SetData(Word, Mean, View, NextWordText){
                 MeanAnimationHtml += "</b>"; // end Mean
             }
             MeanAnimationHtml += "<br>"
-                + "<span class='Tag w3-tag w3-green w3-large'>Example</span> ";
+                + "<span class='Tag w3-tag w3-green' style='font-size: "
+                + (CssMeanFontSize * 0.6) + "px;'>Example</span> ";
         }else{ // normal
             MeanAnimationHtml += "<span class='select" + Index + "'>" 
                         + Mean[Index] + "</span>";

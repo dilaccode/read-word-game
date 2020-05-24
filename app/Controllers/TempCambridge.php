@@ -462,6 +462,12 @@ class TempCambridge extends BaseController
 			// // $result = $SM->Update('wordtemp',$WordObj);
 			// if($IsDebug)
 			// Debug($ArrayLines, $ArrayLinesNew);
+			
+			// /// replace / -> SPACE/SPACE
+			// if(Contain($WordObj->Mean,"/")){
+			// 	$WordObj->Mean= str_replace("/"," / ",$WordObj->Mean);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+			// }
 
 
 
