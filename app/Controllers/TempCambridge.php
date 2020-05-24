@@ -292,35 +292,35 @@ class TempCambridge extends BaseController
 			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
 			// 	$result = $SM->Update('wordtemp',$WordObj);
 
-			// remove formal, informal first line
-			if( Contain($WordObj->Mean, "formal")
-			||  Contain($WordObj->Mean, "informal")
-			){
-				$ArrayLinesNew = array();
-				$IsDebug = false;
-				for($Index = 0; $Index < count($ArrayLines); $Index++){
-					if(strtolower(substr($ArrayLines[$Index],0,6))  === "formal"){
-						$Line = $ArrayLines[$Index];
-						$Line = substr($ArrayLines[$Index],7,strlen($ArrayLines[$Index])-7);
-						if(strlen($Line)>0) 
-							array_push($ArrayLinesNew,$Line);
-							$IsDebug = true;
-					}else if(strtolower(substr($ArrayLines[$Index],0,8))  === "informal"){
-						$Line = $ArrayLines[$Index];
-						$Line = substr($ArrayLines[$Index],9,strlen($ArrayLines[$Index])-9);
-						if(strlen($Line)>0) 
-							array_push($ArrayLinesNew,$Line);
-							$IsDebug = true;
-					} else{
-						array_push($ArrayLinesNew,$ArrayLines[$Index]);
-					}
-				}
+			// /// remove formal, informal first line === 
+			// if( Contain($WordObj->Mean, "formal")
+			// ||  Contain($WordObj->Mean, "informal")
+			// ){
+			// 	$ArrayLinesNew = array();
+			// 	$IsDebug = false;
+			// 	for($Index = 0; $Index < count($ArrayLines); $Index++){
+			// 		if(strtolower(substr($ArrayLines[$Index],0,6))  === "formal"){
+			// 			$Line = $ArrayLines[$Index];
+			// 			$Line = substr($ArrayLines[$Index],7,strlen($ArrayLines[$Index])-7);
+			// 			if(strlen($Line)>0) 
+			// 				array_push($ArrayLinesNew,$Line);
+			// 				$IsDebug = true;
+			// 		}else if(strtolower(substr($ArrayLines[$Index],0,8))  === "informal"){
+			// 			$Line = $ArrayLines[$Index];
+			// 			$Line = substr($ArrayLines[$Index],9,strlen($ArrayLines[$Index])-9);
+			// 			if(strlen($Line)>0) 
+			// 				array_push($ArrayLinesNew,$Line);
+			// 				$IsDebug = true;
+			// 		} else{
+			// 			array_push($ArrayLinesNew,$ArrayLines[$Index]);
+			// 		}
+			// 	}
 				
-				$WordObj->Mean = implode("\n",$ArrayLinesNew);
-				$result = $SM->Update('wordtemp',$WordObj);
-				if($IsDebug)
-				Debug($ArrayLines, $ArrayLinesNew);
-			}
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
+			// 	if($IsDebug)
+			// 	Debug($ArrayLines, $ArrayLinesNew);
+			// }
 			
 			// // /// remove UK, US first line
 			// $ArrayLinesNew = array();
