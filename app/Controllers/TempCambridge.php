@@ -95,7 +95,7 @@ class TempCambridge extends BaseController
 		$SM = new SimpleModel();
 		
 		$ListWord = $SM->Query("select * from wordtemp")->getResult();
-		$Count = 0;
+
 		foreach($ListWord as $WordObj){
 			$ArrayLines = explode("\n",$WordObj->Mean);
 
@@ -291,10 +291,36 @@ class TempCambridge extends BaseController
 			// 	}
 			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
 			// 	$result = $SM->Update('wordtemp',$WordObj);
-				
 
-			// 	Debug($ArrayLines, $ArrayLinesNew);
-			// }
+			// remove formal, informal first line
+			if( Contain($WordObj->Mean, "formal")
+			||  Contain($WordObj->Mean, "informal")
+			){
+				$ArrayLinesNew = array();
+				$IsDebug = false;
+				for($Index = 0; $Index < count($ArrayLines); $Index++){
+					if(strtolower(substr($ArrayLines[$Index],0,6))  === "formal"){
+						$Line = $ArrayLines[$Index];
+						$Line = substr($ArrayLines[$Index],7,strlen($ArrayLines[$Index])-7);
+						if(strlen($Line)>0) 
+							array_push($ArrayLinesNew,$Line);
+							$IsDebug = true;
+					}else if(strtolower(substr($ArrayLines[$Index],0,8))  === "informal"){
+						$Line = $ArrayLines[$Index];
+						$Line = substr($ArrayLines[$Index],9,strlen($ArrayLines[$Index])-9);
+						if(strlen($Line)>0) 
+							array_push($ArrayLinesNew,$Line);
+							$IsDebug = true;
+					} else{
+						array_push($ArrayLinesNew,$ArrayLines[$Index]);
+					}
+				}
+				
+				$WordObj->Mean = implode("\n",$ArrayLinesNew);
+				$result = $SM->Update('wordtemp',$WordObj);
+				if($IsDebug)
+				Debug($ArrayLines, $ArrayLinesNew);
+			}
 			
 			// // /// remove UK, US first line
 			// $ArrayLinesNew = array();
@@ -369,40 +395,39 @@ class TempCambridge extends BaseController
 
 			/// remove example for LIMIT letters === 
 			///  at least 1 example
-			$LIMIT_LENGTH = 205; // letters,space...
-			/// get 3 shortest line of Mean ===	
-			if(strlen($WordObj->Mean) > $LIMIT_LENGTH){		
-				$ArrayLinesNew = array();
-				$TotalLength = 0;
-				// mean
-				array_push($ArrayLinesNew, $ArrayLines[0]);
-				$TotalLength += strlen($ArrayLines[0]) + 1 /* \n */; 
-				// example 1
-				if(count($ArrayLines)>=2){
-					array_push($ArrayLinesNew, $ArrayLines[1]);
-					$TotalLength += strlen($ArrayLines[1]) + 1 /* \n */; 
-				}
-				if(count($ArrayLines)>=3){
-					for($Index = 2; $Index < count($ArrayLines); $Index++){
-						if($TotalLength + strlen($ArrayLines[$Index]) <= $LIMIT_LENGTH){
-							array_push($ArrayLinesNew, $ArrayLines[$Index]);
-							$TotalLength += strlen($ArrayLines[$Index]) + 1 /* \n */;
-						}
-					}
-				}
-				echo strlen($WordObj->Mean).PHP_EOL;
-				echo strlen(implode("\n",$ArrayLinesNew)).PHP_EOL;
-				// update
-				$WordObj->Mean = implode("\n",$ArrayLinesNew);
-				$result = $SM->Update('wordtemp',$WordObj);
+			// $LIMIT_LENGTH = 205; // letters,space...
+			// /// get 3 shortest line of Mean ===	
+			// if(strlen($WordObj->Mean) > $LIMIT_LENGTH){		
+			// 	$ArrayLinesNew = array();
+			// 	$TotalLength = 0;
+			// 	// mean
+			// 	array_push($ArrayLinesNew, $ArrayLines[0]);
+			// 	$TotalLength += strlen($ArrayLines[0]) + 1 /* \n */; 
+			// 	// example 1
+			// 	if(count($ArrayLines)>=2){
+			// 		array_push($ArrayLinesNew, $ArrayLines[1]);
+			// 		$TotalLength += strlen($ArrayLines[1]) + 1 /* \n */; 
+			// 	}
+			// 	if(count($ArrayLines)>=3){
+			// 		for($Index = 2; $Index < count($ArrayLines); $Index++){
+			// 			if($TotalLength + strlen($ArrayLines[$Index]) <= $LIMIT_LENGTH){
+			// 				array_push($ArrayLinesNew, $ArrayLines[$Index]);
+			// 				$TotalLength += strlen($ArrayLines[$Index]) + 1 /* \n */;
+			// 			}
+			// 		}
+			// 	}
+			// 	echo strlen($WordObj->Mean).PHP_EOL;
+			// 	echo strlen(implode("\n",$ArrayLinesNew)).PHP_EOL;
+			// 	// update
+			// 	$WordObj->Mean = implode("\n",$ArrayLinesNew);
+			// 	$result = $SM->Update('wordtemp',$WordObj);
 
-				// Debug($ArrayLines, $ArrayLinesNew);
-			}
+			// 	// Debug($ArrayLines, $ArrayLinesNew);
+			// }
 
 
 
 		}
-		echo $Count;
 	}
 
 
