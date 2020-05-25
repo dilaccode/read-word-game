@@ -46,4 +46,9 @@ class Home extends BaseController
 		echo view('Home',$Data);
 		echo view('Footer');
 	}
+
+
+	public function test(){
+		Debug(IsMobile(),IsTablet());
+	}
 }

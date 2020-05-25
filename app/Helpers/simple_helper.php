@@ -74,3 +74,17 @@ function ContainInArray($String, $ArrayFind){
     return false;
 }
 
+/// required: App\Libraries\Mobile_Detect.php , https://github.com/serbanghita/Mobile-Detect
+use App\Libraries\Mobile_Detect;
+function IsMobile(){
+    $detect = new Mobile_Detect();
+    $IsMobile =  $detect->isMobile();
+    $IsTablet = $detect->isTablet();
+    return $IsMobile && !$IsTablet;
+}
+function IsTablet(){
+    $detect = new Mobile_Detect();
+    $IsMobile =  $detect->isMobile();
+    $IsTablet = $detect->isTablet();
+    return $IsMobile && $IsTablet;
+}
