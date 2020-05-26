@@ -1,0 +1,19 @@
+.ReadCompletePanel{
+    padding: 10px;
+    width: 60%;
+    margin: 8px auto;
+}
+
+.NextWordPanel{
+    margin-top: 16px;
+    padding: 8px !important;
+}
+
+.LoadingWait{
+    margin-top: 8px;
+    font-size: 35px;
+}
+
+.LevelUpContentByDevice{
+    margin-top: 150px;
+}
