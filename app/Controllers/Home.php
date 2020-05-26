@@ -49,7 +49,6 @@ class Home extends BaseController {
 
     public function test() {
         Debug(IsMobile(), IsTablet());
-        echo "change update 1";
     }
 
 }
