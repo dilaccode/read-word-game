@@ -44,7 +44,7 @@
         </div>
         <!-- Read Complete Panel -->
         <div class="ReadCompletePanel w3-large w3-animate-zoom w3-card-4 w3-green"
-             style="display: none; padding: 10px;">
+             style="display: none;">
              <i class="fa fa-check-circle"></i>
              Read Complete <i class="fa fa-plus"></i><span class="AmountExp">XXX</span> EXP
             <!-- progress exp -->
@@ -60,16 +60,15 @@
             </div>
         </div>
         <!-- Next Word -->
-        <div class="NextWordPanel w3-large w3-animate-opacity w3-card-4
-                w3-padding-small w3-blue"
-             style="display:none; margin-top: 8px;">
-             Next Word 
-             <i class="fa fa-arrow-right"></i>
-             <span class="NextWordText w3-xlarge upper">AAAA</span>
+        <div class="NextWordPanel w3-large w3-animate-opacity w3-card-4 w3-indigo"
+             style="display:none;">
+            Next Word 
+            <i class="fa fa-arrow-right"></i>
+            <span class="NextWordText w3-xlarge upper">AAAA</span>
         </div>
         
         <!-- ajax loading-->
-        <div class="LoadingWait w3-xxlarge w3-text-indigo" style="padding: 4px; display:none;">
+        <div class="LoadingWait w3-text-indigo" style="display:none;">
             <i class="w3-spin fa fa-spinner"></i>
         </div>
 

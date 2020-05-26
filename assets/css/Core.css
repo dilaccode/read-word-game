@@ -1,0 +1,30 @@
+/* full screen */
+html, body {
+  height: 100%;
+}
+body {
+    line-height: 1.25 !important;
+}
+.upper {
+    text-transform: uppercase;
+}
+.btn-word{
+    padding: 3px 4px !important;
+}
+.btn-word-viewed{
+    background-color: white !important;
+    color: black !important;
+}
+.WordMark{
+    padding: 0 0.2em;
+}
+.WordMeanMarkViewed{
+    float:right;
+}
+.Screen{
+    height: 100%; /* full screen */
+    border-width: 8px !important;
+}
+.Tag{
+    padding: 1.5px 6px;
+}

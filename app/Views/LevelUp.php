@@ -9,6 +9,15 @@
 
 <!-- LEVEL UP -->
 <style>
+    .LevelUp{
+        width: 100%;
+        height: 100%;
+        background: white;
+        border-width: 8px !important;
+    }
+    .LevelUpContent{
+        width: 100%;
+    }
     .LevelUpText{
         font-size: 40px;
     }
@@ -48,11 +57,8 @@
     });
 </script>
 <div class="LevelUp w3-display-middle w3-border w3-border-yellow w3-center" 
-     style="width: 100%; height: 100%; background: white; 
-            border-width: 8px !important;
-            display: none;">
-    <div class="LevelUpContent "
-         style="width: 100%; margin-top: 33%;">
+     style="display: none;">
+    <div class="LevelUpContent LevelUpContentByDevice">
         <div class="LevelUpText w3-tag  w3-yellow">L</div>
         <div class="LevelUpText w3-tag  w3-yellow">E</div>
         <div class="LevelUpText w3-tag  w3-yellow">V</div>
