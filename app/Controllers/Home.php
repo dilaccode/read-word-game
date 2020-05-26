@@ -1,55 +1,55 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 use App\Models\SimpleModel;
 
-class Home extends BaseController
-{
-	public function index()
-	{
-		$SM = new SimpleModel();
+class Home extends BaseController {
 
-		// Words
-		$Amount = 3;
-		$AmountForceLearn = 1;
-		$AmountRandom = $Amount - $AmountForceLearn;
+    public function index() {
+        $SM = new SimpleModel();
 
-		/// ALL SHORT WORD FIRST
-		// $ListLowSeeWords = $SM->Query("select * from Word 
-		// order by LearnTime, WordLength limit $Amount")
+        // Words
+        $Amount = 3;
+        $AmountForceLearn = 1;
+        $AmountRandom = $Amount - $AmountForceLearn;
 
-		/// get min length, min learn time
-		$MinWord = $SM->Query("select LearnTime as MinLearn, WordLength as MinLength from word
+        /// ALL SHORT WORD FIRST
+        // $ListLowSeeWords = $SM->Query("select * from Word 
+        // order by LearnTime, WordLength limit $Amount")
+        /// get min length, min learn time
+        $MinWord = $SM->Query("select LearnTime as MinLearn, WordLength as MinLength from word
 		order by LearnTime, WordLength limit 1")->getRow(1);
-		$MinWord->MaxLength = $MinWord->MinLength + 4;
+        $MinWord->MaxLength = $MinWord->MinLength + 4;
 
-		$ListWordsForceLearn = $SM->Query("select * from word 
+        $ListWordsForceLearn = $SM->Query("select * from word 
 		where LearnTime = $MinWord->MinLearn AND WordLength = $MinWord->MinLength 
 		order by RAND() limit $AmountForceLearn")
-		->getResult();
-		
-		$ListWordsRandom = $SM->Query("select * from word 
+                ->getResult();
+
+        $ListWordsRandom = $SM->Query("select * from word 
 		where (WordLength >= $MinWord->MinLength AND WordLength <= $MinWord->MaxLength)
 		order by RAND() limit $AmountRandom")
-        ->getResult();
+                ->getResult();
 
-		// Exp
-		$User = $SM->Find("user", 1);
+        // Exp
+        $User = $SM->Find("user", 1);
 
-		$Data = array(
-			'ListWords'=> array_merge($ListWordsForceLearn,$ListWordsRandom),
-			'User' => $User,
-		);
-		
-		// print_r($Data);die();
+        $Data = array(
+            'ListWords' => array_merge($ListWordsForceLearn, $ListWordsRandom),
+            'User' => $User,
+        );
 
-		echo view('Header');
-		echo view('Home',$Data);
-		echo view('Footer');
-	}
+        // print_r($Data);die();
 
+        echo view('Header');
+        echo view('Home', $Data);
+        echo view('Footer');
+    }
 
-	public function test(){
-		Debug(IsMobile(),IsTablet());
-                echo "change";                
-	}
+    public function test() {
+        Debug(IsMobile(), IsTablet());
+        echo "change update 1";
+    }
+
 }
