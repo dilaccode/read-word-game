@@ -24,7 +24,10 @@ cd c:\ & RMDIR "C:\xampp\htdocs" /S /Q & MKDIR C:\xampp\htdocs & cd C:\xampp\htd
 ```
 run again if **fail**
 # database , backup work
-bk database,  commit code, db to git
+bk database,  commit code, db to git (now use bat for safe)
+```bat
+C:\xampp\htdocs\GitBackup
+```
 ```bash
 C:\xampp\mysql\bin\mysqldump.exe --user=root --password= --host=localhost --port=3306 --result-file="C:\xampp\htdocs\database\word_database.sql" --databases "word" & git add -A & git commit -m "work backup: code, db" & git push
 ```
