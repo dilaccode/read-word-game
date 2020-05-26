@@ -8,53 +8,17 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--custome css-->
+    <link rel="stylesheet" href="/assets/css/Core.css">
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- custom script -->
     <script type="text/javascript" src="/assets/js/Core.js"></script>
 </head>
 
-<!-- CSS small -->
-<style>
-/* full screen */
-html, body {
-  height: 100%;
-}
-body {
-    line-height: 1.25 !important;
-}
-a {
-    /* text-decoration: none; */
-    /* font-weight: bold; */
-}
-.upper {
-    text-transform: uppercase;
-}
-.btn-word{
-    padding: 3px 4px !important;
-}
-.btn-word-viewed{
-    background-color: white !important;
-    color: black !important;
-}
-.WordMark{
-    padding: 0 0.2em;
-}
-.WordMeanMarkViewed{
-    float:right;
-}
-.Screen{
-    height: 100%; /* full screen */
-    border-width: 8px !important;
-}
-.Tag{
-    padding: 1.5px 6px;
-}
-</style>
-<!-- / CSS small -->
 
 <!-- body begin, end at Footer -->
 <body>
 
 <!-- fixed screen -->
-    <div class="Screen w3-border w3-border-indigo ">
+    <div class="Screen w3-border w3-border-indigo">
