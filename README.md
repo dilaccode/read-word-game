@@ -4,7 +4,8 @@
 cd /var/www/html; bash gitsync
 ```
 # Software
-[download all](https://www.dropbox.com/sh/sqtmrit7bmr8auu/AABm4R-uSwsFZZF2L0ERUahKa?dl=1)
+[download all vscode](https://www.dropbox.com/sh/sqtmrit7bmr8auu/AABm4R-uSwsFZZF2L0ERUahKa?dl=1)
+ | [download all netbean] (https://drive.google.com/uc?id=1ULRt6LHCkVi_3WMvv9QZ-Ee2TqiMFiHU&export=download)
 # HOW CONNECT GITHUB - VSCODE
 ## setting account
 1. open terminal
