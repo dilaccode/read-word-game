@@ -1,4 +1,8 @@
 # [Test SITE Local](http://localhost/)  |   [Test SITE online](http://52.185.134.172/)
+# Commit and Push (Window | CMD bat)
+```bat
+C:\xampp\htdocs\gitpush
+``` 
 # Sync VPS
 ```bash
 cd /var/www/html; bash gitsync
