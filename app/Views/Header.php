@@ -19,11 +19,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- custom script -->
     <script type="text/javascript" src="/assets/js/Core.js"></script>
+    <script type="text/javascript" src="/assets/js/Player.js"></script>
+    
+    <!--icon-->
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/>
 </head>
-
-
-<!-- body begin, end at Footer -->
-<body>
-
-<!-- fixed screen -->
-    <div class="Screen w3-border w3-border-indigo">

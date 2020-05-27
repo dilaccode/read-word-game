@@ -6,9 +6,13 @@ use App\Models\SimpleModel;
 
 class Home extends BaseController {
 
-    public function index() {
+    public function index(){
+        echo view("Header");
+        echo view("Body");
+    }
+    public function Start() {
         $SM = new SimpleModel();
-
+        
         // Words
         $Amount = 3;
         $AmountForceLearn = 1;
@@ -42,9 +46,9 @@ class Home extends BaseController {
 
         // print_r($Data);die();
 
-        echo view('Header');
+//        echo view('Header');
         echo view('Home', $Data);
-        echo view('Footer');
+//        echo view('Footer');
     }
 
     public function test() {

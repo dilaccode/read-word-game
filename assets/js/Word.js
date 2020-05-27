@@ -1,7 +1,22 @@
+//WORD PAGE
 $(document).ready(function(){
-        Run();
+    console.log("WORD ready");
+    /// init    
+        // enable beat
+    IsWordPage = true;
+        // Home button
+    $(".HomeButton").click(function(){
+        // disable beat
+        IsWordPage = false;
+        //
+        LoadHome();
+    });
+    
+    ///
+    Run();
 });
 
+var IsWordPage = false;
 var TotalMeanLetters = 0;
 
 async function SetData(Word, Mean, View, NextWordText){
@@ -123,7 +138,7 @@ var IsNoWord = true;
 var NextWordId = 0;
 
 async function FetchDataBeat(){
-    while(true){
+    while(IsWordPage){
         if(IsNoWord){
             // init
             if(NextWordId === 0){
@@ -153,7 +168,7 @@ async function FetchDataBeat(){
 var IsPlayWord = false;
 var IsSubmitReadResult = false;
 async function WordBeat(){
-    while(true){
+    while(IsWordPage){
         var HaveWord = !IsNoWord;
         var IsFree = !IsPlayWord;
         if(HaveWord && IsFree){
@@ -206,7 +221,8 @@ async function WordBeat(){
 //
 async function OtherBeat(){
     // loading show...
-    while(true){
+    while(IsWordPage){
+        console.log("beat running...")
         if(IsNoWord || IsSubmitReadResult){
             $(".LoadingWait").show();
         }else{
