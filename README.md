@@ -1,8 +1,8 @@
 # [Test SITE Local](http://localhost/)  |   [Test SITE online](http://52.185.134.172/)
 # Word with source code, database
 ## 1. Software and Clone
-- [download all netbean](https://drive.google.com/uc?id=1qbVaKpnXFbOQiIkqT_51VwRTiK-cEsJe&export=download)
-- Clone use GitClone.bat [on folder software]
+- [Download all Netbean](https://drive.google.com/uc?id=1qbVaKpnXFbOQiIkqT_51VwRTiK-cEsJe&export=download)
+- Clone use **GitClone.bat** [on folder software]
 ## 2. Commit and Push (Window | CMD bat)
 ```bat
 C:\xampp\htdocs\gitpush
