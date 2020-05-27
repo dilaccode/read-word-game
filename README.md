@@ -5,9 +5,9 @@
 - Clone use **GitClone.bat** [on folder software]
 ## 2. Commit and Push (Window | CMD bat)
 ```bat
-C:\xampp\htdocs\gitpush
+C:\xampp\htdocs\GitPush
 ```
-## 3. database , backup work
+## 3. Backup code, database
 ```bat
 C:\xampp\htdocs\GitBackup
 ```
