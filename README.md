@@ -1,35 +1,19 @@
 # [Test SITE Local](http://localhost/)  |   [Test SITE online](http://52.185.134.172/)
-# Commit and Push (Window | CMD bat)
+# Word with source code, database
+## 1. Software and Clone
+- [download all netbean](https://drive.google.com/uc?id=1qbVaKpnXFbOQiIkqT_51VwRTiK-cEsJe&export=download)
+- Clone use GitClone.bat [on folder software]
+## 2. Commit and Push (Window | CMD bat)
 ```bat
 C:\xampp\htdocs\gitpush
-``` 
-# Sync VPS
-```bash
-cd /var/www/html; bash gitsync
 ```
-# Software
-[download all vscode](https://www.dropbox.com/sh/sqtmrit7bmr8auu/AABm4R-uSwsFZZF2L0ERUahKa?dl=1)
- | [download all netbean](https://drive.google.com/uc?id=1ULRt6LHCkVi_3WMvv9QZ-Ee2TqiMFiHU&export=download)
-# HOW CONNECT GITHUB - VSCODE
-## setting account
-1. open terminal
-2. run command:<br>
-```bash
-git config --global user.email "congtk1992@gmail.com" & git config --global user.name "dilaccode"
-```
-## clone code, db to XAMPP folder
-run command on Terminal (any location):<br>
-```bash
-cd c:\ & RMDIR "C:\xampp\htdocs" /S /Q & MKDIR C:\xampp\htdocs & cd C:\xampp\htdocs & git clone https://github.com/dilaccode/word-like-game.git . & C:\xampp\mysql\bin\mysql.exe --user=root --password= --host=localhost --port=3306 < "C:\xampp\htdocs\database\word_database.sql"
-```
-run again if **fail**
-# database , backup work
-bk database,  commit code, db to git (now use bat for safe)
+## 3. database , backup work
 ```bat
 C:\xampp\htdocs\GitBackup
 ```
+## 4. Sync VPS
 ```bash
-C:\xampp\mysql\bin\mysqldump.exe --user=root --password= --host=localhost --port=3306 --result-file="C:\xampp\htdocs\database\word_database.sql" --databases "word" & git add -A & git commit -m "work backup: code, db" & git push
+cd /var/www/html; bash gitsync
 ```
 # Relate project
 - [word click on mean](https://github.com/dilaccode/word)
