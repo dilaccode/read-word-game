@@ -1,21 +1,21 @@
 .ReadCompletePanel{
     padding: 10px;
     position: fixed;
-    bottom: 68px;
-    width: calc(100% - 16px);
+    bottom: 60px;
+    width: 100%;
 }
 
 .NextWordPanel{
-    bottom: 8px;
+    bottom: 0px;
     position: fixed;
-    width: calc(100% - 16px);
+    width: 100%;
     padding: 8px !important;
 }
 
 .LoadingWait{
     position: fixed;
-    bottom: 11px;
-    right: 16px;
+    bottom: 4px;
+    right: 8px;
     color: #fff !important;
     font-size: 30px;
 }

@@ -1,79 +1,95 @@
-//WORD PAGE
-$(document).ready(function(){
-    console.log("WORD ready");
+$(document).ready(function () {
     /// init    
-        // enable beat
-    IsWordPage = true;
-        // Home button
-    $(".HomeButton").click(function(){
+    // Home button
+    $(".HomeButton").click(function () {
         // disable beat
         IsWordPage = false;
         //
         LoadHome();
     });
-    
-    ///
-    Run();
 });
 
-var IsWordPage = false;
-var TotalMeanLetters = 0;
 
-async function SetData(Word, Mean, View, NextWordText){
+
+var TotalMeanLetters = 0;
+/// Data
+var APP_TIME_BEAT = 100;
+var CurrentWord = null;
+var NextWord;
+var UserId = 1; // test
+var User;
+var IsInitUser = true;
+var IsNoWord = true;
+var NextWordId = 0;
+
+
+async function SetInitState() {
+    $(".Word").html("...");
+    $(".Mean").html("...");
+    $(".ViewText").html("...");
+    $(".ReadCompletePanel").hide();
+    $(".NextWordPanel").hide();
+    $(".LevelUp").hide();
+}
+
+async function SetData(Word, Mean, View, NextWordText) {
     var WordDiv = $(".Word");
     var MeanDiv = $(".Mean");
     var ViewTextSpan = $(".ViewText");
     var NextWordTextSpan = $(".NextWordText");
-    
+
     WordDiv.fadeOut();
     MeanDiv.fadeOut();
     $(".ReadCompletePanel").fadeOut();
     $(".NextWordPanel").fadeOut();
-    await Sleep(750);
+    await SleepCanSkip(IsWordPage, 750);
     /// set data
     // WORD 
     WordDiv.html(Word);
-        // word size
+    // word size
     var ClassesSize = ["w3-jumbo", "w3-xxxlarge", "w3-xxlarge", "w3-xlarge"];
     var ClassWordSize = 'w3-jumbo';
-    if(Word.length >= 7) ClassWordSize = 'w3-xxxlarge';
-    if(Word.length >= 10) ClassWordSize = 'w3-xxlarge';
-    if(Word.length >= 13) ClassWordSize = 'w3-xlarge';
-    $.each(ClassesSize, function(i, v){
+    if (Word.length >= 7)
+        ClassWordSize = 'w3-xxxlarge';
+    if (Word.length >= 10)
+        ClassWordSize = 'w3-xxlarge';
+    if (Word.length >= 13)
+        ClassWordSize = 'w3-xlarge';
+    $.each(ClassesSize, function (i, v) {
         WordDiv.removeClass(v);
     });
     WordDiv.addClass(ClassWordSize);
     // MEAN
     TotalMeanLetters = Mean.length;
-        // mean size
-    if(Mean.length >= 0 && Mean.length <= 100)
+    // mean size
+    if (Mean.length >= 0 && Mean.length <= 100)
         CssMeanFontSize = '35';
-    if(Mean.length >= 101 && Mean.length <= 180) 
+    if (Mean.length >= 101 && Mean.length <= 180)
         CssMeanFontSize = '30';
-    if(Mean.length >= 181 && Mean.length <= 210) 
+    if (Mean.length >= 181 && Mean.length <= 210)
         CssMeanFontSize = '25';
-    if(Mean.length >= 211 && Mean.length <= 375) 
+    if (Mean.length >= 211 && Mean.length <= 375)
         CssMeanFontSize = '20';
-    if(Mean.length >= 376 ) 
+    if (Mean.length >= 376)
         CssMeanFontSize = '15';
     MeanDiv.css("font-size", CssMeanFontSize + "px");
-        // animation
+    // animation
     var MeanAnimationHtml = "<span class='Tag w3-tag w3-indigo' style='font-size: "
-    + (CssMeanFontSize * 0.7) + "px;'>Mean</span> <b>";
+            + (CssMeanFontSize * 0.7) + "px;'>Mean</span> <b>";
     var Index = 0;
     var IsEndFirstSentence = false;
-    for(Index = 0; Index < Mean.length; Index++){
-        if(Mean[Index] === "\n"){ // end line
-            if(!IsEndFirstSentence){
+    for (Index = 0; Index < Mean.length; Index++) {
+        if (Mean[Index] === "\n") { // end line
+            if (!IsEndFirstSentence) {
                 IsEndFirstSentence = true;
                 MeanAnimationHtml += "</b>"; // end Mean
             }
             MeanAnimationHtml += "<br>"
-                + "<span class='Tag w3-tag w3-green' style='font-size: "
-                + (CssMeanFontSize * 0.7) + "px;'>Example</span> ";
-        }else{ // normal
-            MeanAnimationHtml += "<span class='select" + Index + "'>" 
-                        + Mean[Index] + "</span>";
+                    + "<span class='Tag w3-tag w3-green' style='font-size: "
+                    + (CssMeanFontSize * 0.7) + "px;'>Example</span> ";
+        } else { // normal
+            MeanAnimationHtml += "<span class='select" + Index + "'>"
+                    + Mean[Index] + "</span>";
         }
     }
     MeanDiv.html(MeanAnimationHtml);
@@ -85,63 +101,55 @@ async function SetData(Word, Mean, View, NextWordText){
 
     // show again
     WordDiv.fadeIn();
-    await Sleep(300);
+    await SleepCanSkip(IsWordPage, 300);
     MeanDiv.fadeIn();
 }
 
-async function RunAnimation(){
-        var Index = 0;
-        var TIME_BEAT = 50;
-        for(Index = 0; Index < TotalMeanLetters; Index++){
-            await Sleep(TIME_BEAT);
-            $(".select"+Index).addClass("w3-light-blue");
-        }
+async function RunAnimation() {
+    var Index = 0;
+    var TIME_BEAT = 50;
+    for (Index = 0; Index < TotalMeanLetters; Index++) {
+        await SleepCanSkip(IsWordPage, TIME_BEAT);
+        $(".select" + Index).addClass("w3-light-blue");
+    }
 }
-async function ShowCompletePanel(AmountExp){
-        // init data
-        $(".AmountExp").text(AmountExp);
-        $(".ProgressBarPercent").css("width", User.CurrentPercent + "%");
-        $(".ProgressBarText").text(User.CurrentExp + "/" + User.ThisLevelTotalExp);
-        var ProgressBarText = User.CurrentPercent > 15 ? (User.CurrentPercent + "%") : "";
-        $(".ProgressBarPercent").text(ProgressBarText);
-        // show
-        await Sleep(100);
-        $(".ReadCompletePanel").show();
-        await Sleep(600);  // for panel above show
-        ThisLevelTotalExp =  User.ThisLevelTotalExp;
-        var PercentPartFive = 0;
-        var TotalPercent = User.NewPercent - User.CurrentPercent;
-        var TotalTimeSleepProgressBar = 200; // ms, balance here
-        var SleepBeatTime = TotalTimeSleepProgressBar / TotalPercent;
-        for(PercentPartFive = User.CurrentPercent; 
+async function ShowCompletePanel(AmountExp) {
+    // init data
+    $(".AmountExp").text(AmountExp);
+    $(".ProgressBarPercent").css("width", User.CurrentPercent + "%");
+    $(".ProgressBarText").text(User.CurrentExp + "/" + User.ThisLevelTotalExp);
+    var ProgressBarText = User.CurrentPercent > 15 ? (User.CurrentPercent + "%") : "";
+    $(".ProgressBarPercent").text(ProgressBarText);
+    // show
+    await SleepCanSkip(IsWordPage, 100);
+    $(".ReadCompletePanel").show();
+    await SleepCanSkip(IsWordPage, 600);  // for panel above show
+    ThisLevelTotalExp = User.ThisLevelTotalExp;
+    var PercentPartFive = 0;
+    var TotalPercent = User.NewPercent - User.CurrentPercent;
+    var TotalTimeSleepProgressBar = 200; // ms, balance here
+    var SleepBeatTime = TotalTimeSleepProgressBar / TotalPercent;
+    for (PercentPartFive = User.CurrentPercent;
             PercentPartFive <= User.NewPercent;
             PercentPartFive += 0.2)
-        {
-            await Sleep(SleepBeatTime);
-            var PercentUI = PercentPartFive > 100 ? 100 : PercentPartFive; // fix overflow >100%       
-             $(".ProgressBarPercent").css("width", PercentUI + "%");
-            if(PercentUI >=15)
-                $(".ProgressBarPercent").text(parseFloat(PercentUI).toFixed(1) + "%");
-            
-            CurrentExpTemp = Math.round(PercentUI * ThisLevelTotalExp / 100);
-            $(".ProgressBarText").text(CurrentExpTemp + "/" + ThisLevelTotalExp);
-        }
-}
-/// Data
-var APP_TIME_BEAT = 100;
-var CurrentWord = null;
-var NextWord;
-var UserId = 1; // test
-var User;
-var IsInitUser = true;
-var IsNoWord = true;
-var NextWordId = 0;
+    {
+        await SleepCanSkip(IsWordPage, SleepBeatTime);
+        var PercentUI = PercentPartFive > 100 ? 100 : PercentPartFive; // fix overflow >100%       
+        $(".ProgressBarPercent").css("width", PercentUI + "%");
+        if (PercentUI >= 15)
+            $(".ProgressBarPercent").text(parseFloat(PercentUI).toFixed(1) + "%");
 
-async function FetchDataBeat(){
-    while(IsWordPage){
-        if(IsNoWord){
+        CurrentExpTemp = Math.round(PercentUI * ThisLevelTotalExp / 100);
+        $(".ProgressBarText").text(CurrentExpTemp + "/" + ThisLevelTotalExp);
+    }
+}
+
+
+async function FetchDataBeat() {
+    while (IsWordPage) {
+        if (IsNoWord) {
             // init
-            if(NextWordId === 0){
+            if (NextWordId === 0) {
                 NextWordId = StartWordId;
             }
             //
@@ -149,7 +157,7 @@ async function FetchDataBeat(){
             NextWord = JSON.parse(JSONStr);
 
             // init User data first time
-            if(IsInitUser){
+            if (IsInitUser) {
                 IsInitUser = false;
                 var JSONStr1 = await GetData("/word/AjaxGetUser/" + UserId + "/" + NextWord.Id);
                 User = JSON.parse(JSONStr1);
@@ -157,84 +165,94 @@ async function FetchDataBeat(){
 
             IsNoWord = false;
             NextWordId = NextWord.NextWordId;
-        }else{
+        } else {
             // do no thing
         }
-        await Sleep(APP_TIME_BEAT);
+        await SleepCanSkip(IsWordPage, APP_TIME_BEAT);
     }
 }
 
 /// Operation
 var IsPlayWord = false;
 var IsSubmitReadResult = false;
-async function WordBeat(){
-    while(IsWordPage){
+async function WordBeat() {
+    while (IsWordPage) {
         var HaveWord = !IsNoWord;
         var IsFree = !IsPlayWord;
-        if(HaveWord && IsFree){
+        if (HaveWord && IsFree) {
             CurrentWord = NextWord;
             IsNoWord = true;
             IsPlayWord = true;
             $(".LoadingWait").hide();
-            var WordObj = CurrentWord;
+            var WordObj = CurrentWord
             await SetData(WordObj.Word, WordObj.Mean, WordObj.View, WordObj.NextWord);
             await RunAnimation();
-            
-            //
-            var Exp = WordObj.Mean.length;
-            await ShowCompletePanel(Exp);
+            //            
+            if(IsWordPage){
+                var Exp = WordObj.Mean.length;
+                await ShowCompletePanel(Exp);
 
-            // level up
-            if(User.NewPercent >= 100){
-                await Sleep(500); // for user watch some
+                // level up
+                if (User.NewPercent >= 100) {
+                    await SleepCanSkip(IsWordPage, 500); // for user watch some
 
-                ShowLevelUp(parseInt(User.Level) + 1);
-                while(IsLevelUpPopupShow){ // script in LevelUp.php
-                    await Sleep(100);
+                    ShowLevelUp(parseInt(User.Level) + 1);
+                    while (IsLevelUpPopupShow) { // script in LevelUp.php
+                        await SleepCanSkip(IsWordPage, 100);
+                    }
+
+                    await SleepCanSkip(IsWordPage, 500); // for fadeOut working...
                 }
-
-                await Sleep(500); // for fadeOut working...
+            }
+            
+            // next word
+            if(IsWordPage){
+                $(".NextWordPanel").show();
+                await SleepCanSkip(IsWordPage, 600);  // for panel above show  
+            }
+            
+            if(IsWordPage){   
+                // submit result: for user view complete panel            
+                IsSubmitReadResult = true;
+                var JSONStr1 = await GetData("/Word/AjaxReadComplete/"
+                        + User.Id + "/" + WordObj.Id + "/" + NextWord.Id);
+                // will wrong if NextWord.Id noy loading next yet.
+                User = JSON.parse(JSONStr1); // user store updated data
+                IsSubmitReadResult = false;
             }
 
-            // next word
-            $(".NextWordPanel").show();
-            await Sleep(600);  // for panel above show  
-            // submit result: for user view complete panel
-            IsSubmitReadResult = true; 
-            var JSONStr1 = await GetData("/Word/AjaxReadComplete/" 
-                            + User.Id + "/" + WordObj.Id + "/" + NextWord.Id);
-                            // will wrong if NextWord.Id noy loading next yet.
-            User = JSON.parse(JSONStr1); // user store updated data
-            IsSubmitReadResult = false;
-
             IsPlayWord = false;
-        }else if(IsPlayWord){
+        } else if (IsPlayWord) {
             // no case here
-        }else{
+        } else {
             // wait new word
         }
         //
-        await Sleep(APP_TIME_BEAT);
+        await SleepCanSkip(IsWordPage, APP_TIME_BEAT);
     }
 }
 
 //
-async function OtherBeat(){
+async function OtherBeat() {
     // loading show...
-    while(IsWordPage){
+    while (IsWordPage) {
         console.log("beat running...")
-        if(IsNoWord || IsSubmitReadResult){
+        if (IsNoWord || IsSubmitReadResult) {
             $(".LoadingWait").show();
-        }else{
+        } else {
             $(".LoadingWait").hide();
         }
         //
-        await Sleep(APP_TIME_BEAT);
+        await SleepCanSkip(IsWordPage, APP_TIME_BEAT);
     }
 }
 
-async function Run(){
+async function WordRun() {
+    //
+    SetInitState();
+    // beat
     FetchDataBeat();
     WordBeat();
     OtherBeat();
 }
+

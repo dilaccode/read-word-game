@@ -1,21 +1,25 @@
 $(document).ready(function () {
     LoadHome();
 });
-/// navigation
-function LoadHome() {
-    Load("/Home/Start", "Home", "Home");
-}
+/// global var
+var IsWordPage = false; // for disable/enable beat
 
-function LoadWord() {
-    Load("/Word", "Word", "Word");
+// navigation
+function LoadHome() {
+    Load("/Home/Start", "HomeScreen", "Home");
+}
+async function LoadWord() {
+    await Load("/Word", "WordScreen", "Word", true);
+    WordRun();
 }
 
 // load 
-async function Load(URI, ClassName, JsName = "") {
+async function Load(URI, ClassName, JsName = "", IsShowLoadingOnExistScreen = false) {
     if (!IsLoaded(ClassName)) {
         $(".Loading").fadeIn();
         $(".Current").hide();
-        
+        $(".Current").removeClass("Current");
+
         var HtmlStr = await GetData(URI);
         if (JsName.length > 0) {
             await LoadJs(JsName);
@@ -24,7 +28,7 @@ async function Load(URI, ClassName, JsName = "") {
         $("body").prepend("<!-- " + ClassName + " -->");
         $("body").prepend("<div class='" + ClassName + " Screen Current'></div>");
         $('.' + ClassName).html(HtmlStr);
-        
+
         $(".Loading").fadeOut();
 
         // load manage
@@ -34,8 +38,14 @@ async function Load(URI, ClassName, JsName = "") {
         console.log("Loaded: " + ClassName);
         //
         $(".Current").fadeOut();
-        Sleep(500);
+        await Sleep(250);
+        if (IsShowLoadingOnExistScreen)
+            $(".Loading").fadeIn();
+        $(".Current").removeClass("Current");
         $("." + ClassName).fadeIn();
+        $("." + ClassName).addClass("Current");
+        if (IsShowLoadingOnExistScreen)
+            $(".Loading").hide();
 }
 }
 
