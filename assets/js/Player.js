@@ -46,7 +46,7 @@ async function Load(URI, ClassName, JsName = "", IsShowLoadingOnExistScreen = fa
         $("." + ClassName).addClass("Current");
         if (IsShowLoadingOnExistScreen)
             $(".Loading").fadeOut();
-}
+    }
 }
 
 
