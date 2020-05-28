@@ -21,9 +21,9 @@ async function SetLevelHomeScreen(Level = 0, IsNoAjax = false) {
     // set level
     var HomeLevelDiv = $(".HomeLevel");
     HomeLevelDiv.html("");
-    HomeLevelDiv.append("<span class=\"LevelPartGroup w3-tag w3-xlarge w3-indigo\">LEVEL</span>");
+    HomeLevelDiv.append("<span class=\"LevelPartGroup w3-tag w3-indigo\">LEVEL</span>");
     for (let Index = 0; Index < LevelStr.length; Index++) {
-        HomeLevelDiv.append("<span class=\"LevelPartGroup w3-tag w3-xlarge w3-green\">"
+        HomeLevelDiv.append("<span class=\"LevelPartGroup w3-tag w3-green\">"
                 + LevelStr[Index] + "</span>");
 }
 }

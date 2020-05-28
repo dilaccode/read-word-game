@@ -9,6 +9,7 @@ class Home extends BaseController {
     public function index() {
         echo view("Header");
         echo view("Body");
+        $this->JavascriptVar();
     }
 
     public function Start() {
@@ -17,6 +18,15 @@ class Home extends BaseController {
 
     public function test() {
         Debug(IsMobile(), IsTablet());
+    }
+
+//    GLOBAL VAR JAVASCRIPT
+    private function JavascriptVar() {
+        echo view("JavascriptVar", array(
+            "ArrayVar" => array(
+                "IsPhone" => IsPhone(),
+            ),
+        ));
     }
 
 }

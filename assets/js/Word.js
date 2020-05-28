@@ -46,36 +46,37 @@ async function SetData(Word, Mean, View, NextWordText) {
     /// set data
     // WORD 
     WordDiv.html(Word);
-    // word size
-    var ClassesSize = ["w3-jumbo", "w3-xxxlarge", "w3-xxlarge", "w3-xlarge"];
-    var ClassWordSize = 'w3-jumbo';
-    if (Word.length >= 7)
-        ClassWordSize = 'w3-xxxlarge';
-    if (Word.length >= 10)
-        ClassWordSize = 'w3-xxlarge';
-    if (Word.length >= 13)
-        ClassWordSize = 'w3-xlarge';
-    $.each(ClassesSize, function (i, v) {
-        WordDiv.removeClass(v);
-    });
-    WordDiv.addClass(ClassWordSize);
+    // change size on phone. Tablet, PC keep jumbo
+    var WordFontSize = IsPhone ? '64' : '70';
+    if (IsPhone) {
+        if (Word.length >= 7)
+            WordFontSize = '48';
+        if (Word.length >= 10)
+            WordFontSize = '36';
+        if (Word.length >= 13)
+            WordFontSize = '24';
+    }
+    WordDiv.css("font-size", WordFontSize + "px");
     // MEAN
     TotalMeanLetters = Mean.length;
     // mean size
-    if (Mean.length >= 0 && Mean.length <= 100)
-        CssMeanFontSize = '35';
-    if (Mean.length >= 101 && Mean.length <= 180)
-        CssMeanFontSize = '30';
-    if (Mean.length >= 181 && Mean.length <= 210)
-        CssMeanFontSize = '25';
-    if (Mean.length >= 211 && Mean.length <= 375)
-        CssMeanFontSize = '20';
-    if (Mean.length >= 376)
-        CssMeanFontSize = '15';
-    MeanDiv.css("font-size", CssMeanFontSize + "px");
+    var MeanFontSize = IsPhone ? '35' : '40';
+    if (IsPhone) {
+        if (Mean.length >= 0 && Mean.length <= 100)
+            MeanFontSize = '35';
+        if (Mean.length >= 101 && Mean.length <= 180)
+            MeanFontSize = '30';
+        if (Mean.length >= 181 && Mean.length <= 210)
+            MeanFontSize = '25';
+        if (Mean.length >= 211 && Mean.length <= 375)
+            MeanFontSize = '20';
+        if (Mean.length >= 376)
+            MeanFontSize = '15';
+    }
+    MeanDiv.css("font-size", MeanFontSize + "px");
     // animation
     var MeanAnimationHtml = "<span class='Tag w3-tag w3-indigo' style='font-size: "
-            + (CssMeanFontSize * 0.7) + "px;'>Mean</span> <b>";
+            + (MeanFontSize * 0.7) + "px;'>Mean</span> <b>";
     var Index = 0;
     var IsEndFirstSentence = false;
     for (Index = 0; Index < Mean.length; Index++) {
@@ -86,7 +87,7 @@ async function SetData(Word, Mean, View, NextWordText) {
             }
             MeanAnimationHtml += "<br>"
                     + "<span class='Tag w3-tag w3-green' style='font-size: "
-                    + (CssMeanFontSize * 0.7) + "px;'>Example</span> ";
+                    + (MeanFontSize * 0.7) + "px;'>Example</span> ";
         } else { // normal
             MeanAnimationHtml += "<span class='select" + Index + "'>"
                     + Mean[Index] + "</span>";

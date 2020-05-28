@@ -8,27 +8,7 @@
 ?>
 
 <!-- LEVEL UP -->
-<style>
-    .LevelUp{
-        width: 100%;
-        height: 100%;
 
-        background-image: url(/assets/images/CompleteBackground.jpg);
-        background-position: top;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    .LevelUpContent{
-        width: 100%;
-    }
-    .LevelUpText{
-        font-size: 40px;
-    }
-    .LevelUpCloseButton{
-        width: 165px;
-        height: 66px;
-    }
-</style>
 <script>
     var IsLevelUpPopupShow = false;
     async function ShowLevelUp(Level) {
@@ -46,7 +26,7 @@
         var DivLevelPart = $(".LevelPart0");
         for (Index = 1; Index < LevelStr.length; Index++) {
             DivLevelPart.after("<div class=\"LevelPart"
-                    + Index + " LevelPartGroup w3-tag w3-xxxlarge w3-green\">X</div>");
+                    + Index + " LevelPartGroup LevelUpText2nd w3-tag w3-green\">X</div>");
             $(".LevelPart" + Index).text(LevelStr[Index]);
             DivLevelPart = $(".LevelPart" + Index);
         }
@@ -87,22 +67,20 @@
 
         <div class="Spacing" style="margin-top: 16px;"></div>  
 
-        <div class="ShakeGroup w3-tag w3-xxxlarge w3-green">
+        <div class="ShakeGroup LevelUpText2nd w3-tag w3-green">
             <i class="fa fa-angle-double-up"></i>
         </div>
-        <div class="LevelPart0 LevelPartGroup w3-tag w3-xxxlarge w3-green">9</div>
-        <div class="ShakeGroup w3-tag w3-xxxlarge w3-green">
+        <div class="LevelPart0 LevelUpText2nd LevelPartGroup w3-tag w3-green">9</div>
+        <div class="ShakeGroup LevelUpText2nd w3-tag w3-green">
             <i class="fa fa-angle-double-up"></i>
         </div>
 
-        <blockquote class=""
-                    style="margin: 25px 15px 0 15px !important; padding: 10px;">
-            <span class="w3-large w3-text-white" style="font-style: italic;">"Read much make you professional."</span>
+        <blockquote class="Tutorial">
+            <span class="Text w3-text-white" style="font-style: italic;">"Read much make you professional."</span>
             <br>
-            <span class="w3-medium w3-text-sand">Professor Tom</span>
+            <span class="Author w3-text-sand">Professor Tom</span>
         </blockquote>
-        <div class="LevelUpCloseButton ButtonImage DivBlockCenter"
-             style="margin-top: 25px;">
+        <div class="LevelUpCloseButton ButtonImage DivBlockCenter">
             <img src="/assets/images/NextButton.png"/>
         </div>
     </div>

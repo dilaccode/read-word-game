@@ -22,7 +22,7 @@
 <!--HOME-->
 <div class=" w3-center ">
     <!--title-->
-    <div class="" style="margin-top: 40px;">
+    <div class="HomeTitleSpacing">
         <div class="w3-left-align" style="
              margin-left: -40px;
              display: inline-block;">
@@ -31,7 +31,7 @@
             <div class="TitleText w3-tag  w3-yellow">A</div>
             <div class="TitleText w3-tag  w3-yellow">D</div>
         </div>
-        <div class="EndLine"></div>
+        <div class="TitleLineSpacing"></div>
         <div class="w3-left-align" style="
              margin-top: 10px;
              margin-left: 40px;
@@ -44,7 +44,7 @@
         </div>
     </div>
     <!-- Play Button -->
-    <div style="margin-top: 40px;">
+    <div class="HomeTitleSpacing">
         <div class="PlayButton ButtonImage DivBlockCenter">
             <img src="/assets/images/PlayButton.png"/>
         </div>
