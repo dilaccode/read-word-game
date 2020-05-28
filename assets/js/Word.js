@@ -188,15 +188,15 @@ async function WordBeat() {
             await SetData(WordObj.Word, WordObj.Mean, WordObj.View, WordObj.NextWord);
             await RunAnimation();
             //            
-            if(IsWordPage){
+            if (IsWordPage) {
                 var Exp = WordObj.Mean.length;
                 await ShowCompletePanel(Exp);
 
                 // level up
                 if (User.NewPercent >= 100) {
                     await SleepCanSkip(IsWordPage, 500); // for user watch some
-
                     ShowLevelUp(parseInt(User.Level) + 1);
+                    SetLevelHomeScreen(parseInt(User.Level) + 1, true);
                     while (IsLevelUpPopupShow) { // script in LevelUp.php
                         await SleepCanSkip(IsWordPage, 100);
                     }
@@ -204,14 +204,14 @@ async function WordBeat() {
                     await SleepCanSkip(IsWordPage, 500); // for fadeOut working...
                 }
             }
-            
+
             // next word
-            if(IsWordPage){
+            if (IsWordPage) {
                 $(".NextWordPanel").show();
                 await SleepCanSkip(IsWordPage, 600);  // for panel above show  
             }
-            
-            if(IsWordPage){   
+
+            if (IsWordPage) {
                 // submit result: for user view complete panel            
                 IsSubmitReadResult = true;
                 var JSONStr1 = await GetData("/Word/AjaxReadComplete/"

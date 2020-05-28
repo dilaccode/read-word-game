@@ -37,7 +37,7 @@
              margin-left: 40px;
              display: inline-block;
              ">
-            <div class="TitleText w3-tag  w3-yellow">W</div>
+            <div class="TitleText w3-tag  w3-yellow Shake">W</div>
             <div class="TitleText w3-tag  w3-yellow">O</div>
             <div class="TitleText w3-tag  w3-yellow">R</div>
             <div class="TitleText w3-tag  w3-yellow">D</div>
@@ -50,11 +50,7 @@
         </div>
     </div>
 
-    <!-- fotter -->
-    <div class="w3-left-align w3-text-indigo w3-large"
-         style="padding-top: 0.5em; padding-left: 0.5em;">
-        <?php echo "Level: $User->Level" ?>
-    </div>
-
+    <!-- Level -->
+    <div class="HomeLevel w3-display-bottomleft" style="margin: 4px;"></div>
     <!-- / w3-container -->
 </div>

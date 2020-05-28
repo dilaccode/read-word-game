@@ -31,7 +31,7 @@
 </style>
 <script>
     var IsLevelUpPopupShow = false;
-    function ShowLevelUp(Level) {
+    async function ShowLevelUp(Level) {
         IsLevelUpPopupShow = true;
         // remove level part (for 2nd)
         var ArrayLevelPart = $('div[class*="LevelPart"]');
@@ -46,12 +46,22 @@
         var DivLevelPart = $(".LevelPart0");
         for (Index = 1; Index < LevelStr.length; Index++) {
             DivLevelPart.after("<div class=\"LevelPart"
-                    + Index + " w3-tag w3-xxxlarge w3-green\">X</div>");
+                    + Index + " LevelPartGroup w3-tag w3-xxxlarge w3-green\">X</div>");
             $(".LevelPart" + Index).text(LevelStr[Index]);
             DivLevelPart = $(".LevelPart" + Index);
         }
         // show
         $(".LevelUp").fadeIn();
+        // Shake animation
+        var ArrayShake = $(".ShakeGroup");
+        var ArrayAnimation = [];
+        ArrayShake.each(function () {
+            ArrayAnimation.push($(this));
+        });
+        for (let Index = 0; Index < ArrayAnimation.length; Index++) {
+            ArrayAnimation[Index].addClass("Shake");
+            await Sleep(100);
+        }
     }
 
     $(document).ready(function () {
@@ -77,11 +87,11 @@
 
         <div class="Spacing" style="margin-top: 16px;"></div>  
 
-        <div class="w3-tag w3-xxxlarge w3-green">
+        <div class="ShakeGroup w3-tag w3-xxxlarge w3-green">
             <i class="fa fa-angle-double-up"></i>
         </div>
-        <div class="LevelPart0 w3-tag w3-xxxlarge w3-green">9</div>
-        <div class="w3-tag w3-xxxlarge w3-green">
+        <div class="LevelPart0 LevelPartGroup w3-tag w3-xxxlarge w3-green">9</div>
+        <div class="ShakeGroup w3-tag w3-xxxlarge w3-green">
             <i class="fa fa-angle-double-up"></i>
         </div>
 
