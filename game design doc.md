@@ -1,4 +1,5 @@
 # Interesting word game
+## read article mode
 ## some information
 1. make people read all mean (definition) sentences.<br>
   /make people interesting read all mean sentences.
