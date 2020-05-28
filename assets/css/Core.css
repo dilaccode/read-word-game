@@ -48,15 +48,19 @@ body {
 /*HOME*/
 .HomeScreen{
     /*background*/
-    background-image: url("/assets/images/background.png");
-    height: 100%;
+    background-image: url("/assets/images/Background.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+.TitleText{
+    font-size: 50px; 
+}
 
 /*WORD*/
-.HomeButton{
-    margin: 2px 0 0 2px;
-    padding: 4px 8px !important;
+.WordScreen{
+    background-image: url(/assets/images/BackgroundWord.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

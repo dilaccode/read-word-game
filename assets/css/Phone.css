@@ -1,3 +1,14 @@
+/*HOME*/
+.PlayButton{
+    width: 40%;
+}
+
+/*WORD*/
+.HomeButton{    
+    width: 12%;
+    margin-top: 3px;
+    margin-left: 2px;
+}
 .ReadCompletePanel{
     padding: 10px;
     position: fixed;

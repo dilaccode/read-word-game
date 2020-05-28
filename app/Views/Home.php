@@ -22,16 +22,30 @@
 <!--HOME-->
 <div class=" w3-center ">
     <!--title-->
-    <div class='w3-xxlarge w3-blue upper'>
-        Read Word
+    <div class="" style="margin-top: 40px;">
+        <div class="w3-left-align" style="
+             margin-left: -40px;
+             display: inline-block;">
+            <div class="TitleText w3-tag  w3-yellow">R</div>
+            <div class="TitleText w3-tag  w3-yellow">E</div>
+            <div class="TitleText w3-tag  w3-yellow">A</div>
+            <div class="TitleText w3-tag  w3-yellow">D</div>
+        </div>
+        <div class="EndLine"></div>
+        <div class="w3-left-align" style="
+             margin-top: 10px;
+             margin-left: 40px;
+             display: inline-block;
+             ">
+            <div class="TitleText w3-tag  w3-yellow">W</div>
+            <div class="TitleText w3-tag  w3-yellow">O</div>
+            <div class="TitleText w3-tag  w3-yellow">R</div>
+            <div class="TitleText w3-tag  w3-yellow">D</div>
+        </div>
     </div>
-    <!-- recommend words -->
-    <div class="w3-padding-32">
-        <!--        <button class="PlayButton w3-btn w3-green w3-round-large w3-xlarge">
-                    <i class="fa fa-play"></i>
-                    PLAY
-                </button>-->
-        <img class="PlayButton" src="/assets/images/play.png" style="width: 40%;"/>
+    <!-- Play Button -->
+    <div style="margin-top: 40px;">
+        <img class="PlayButton" src="/assets/images/PlayButton.png"/>
     </div>
 
     <!-- fotter -->

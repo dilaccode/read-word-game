@@ -7,11 +7,9 @@
     <!-- Word container -->
     <div class="Word-container">
         <!-- top bar  -->
-        <div>     
-            <!-- home button -->
-            <button class="HomeButton w3-large w3-indigo w3-btn w3-round w3-display-topleft">
-                <i class="fa fa-arrow-left"></i>
-            </button>
+        <div>
+            <img class="HomeButton w3-display-topleft"
+                 src="/assets/images/BackButton.png"/>
             <!-- views -->
             <div class="View w3-large w3-padding-small w3-text-indigo w3-display-topright"> 
                 <i class="fa fa-eye"></i><span class="ViewText">...</span>
