@@ -237,7 +237,8 @@ async function OtherBeat() {
     // loading show...
     while (IsWordPage) {
         console.log("beat running...")
-        if (IsNoWord || IsSubmitReadResult) {
+        var IsLoadingPanelShow = $(".Loading").is(":visible");
+        if ((IsNoWord || IsSubmitReadResult) && !IsLoadingPanelShow) {
             $(".LoadingWait").show();
         } else {
             $(".LoadingWait").hide();
