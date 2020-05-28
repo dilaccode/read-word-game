@@ -1,7 +1,7 @@
 # [Test SITE Local](http://localhost/)  |   [Test SITE online](http://52.185.134.172/)
 # Word with source code, database
 ## 1. Software and Clone
-- [Download all](https://drive.google.com/uc?id=1vymmiip8_JViGzHFGRXu0sl49cR65C_-&export=download)
+- [Download all](https://drive.google.com/uc?id=1vymmiip8_JViGzHFGRXu0sl49cR65C_-&export=download)  |   [Photoshop CC 2015 64bit](https://drive.google.com/uc?id=1d0b1FFqzVlqmArztTldSASrrSJ9PYoP1&export=download)
 - Clone use **GitClone.bat** [on folder software]
 ## 2. Commit and Push (Window | CMD bat)
 ```bat

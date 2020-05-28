@@ -27,10 +27,11 @@
     </div>
     <!-- recommend words -->
     <div class="w3-padding-32">
-        <button class="PlayButton w3-btn w3-green w3-round-large w3-xlarge">
-            <i class="fa fa-play"></i>
-            PLAY
-        </button>
+        <!--        <button class="PlayButton w3-btn w3-green w3-round-large w3-xlarge">
+                    <i class="fa fa-play"></i>
+                    PLAY
+                </button>-->
+        <img class="PlayButton" src="/assets/images/play.png" style="width: 40%;"/>
     </div>
 
     <!-- fotter -->

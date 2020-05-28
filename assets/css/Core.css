@@ -45,6 +45,16 @@ body {
     padding: 1.5px 6px;
 }
 
+/*HOME*/
+.HomeScreen{
+    /*background*/
+    background-image: url("/assets/images/background.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /*WORD*/
 .HomeButton{
     margin: 2px 0 0 2px;
