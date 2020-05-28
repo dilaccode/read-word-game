@@ -1,10 +1,25 @@
+/* Add the decaration on top */
+@font-face { 
+    font-family: 'Roboto';
+    src: url('/assets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+@font-face { 
+    font-family: 'COMIC';
+    src: url('/assets/fonts/COMIC.TTF') format('truetype');
+}
+
 /* full screen */
 html, body {
     height: 100%;
 }
 body {
-    line-height: 1.25 !important;
+    line-height: 1.27 !important;
     text-transform: uppercase;
+    font-family: 'COMIC' !important;
+    /*cursive*/
+}
+.Mean{
+    font-family: 'Roboto' !important;
 }
 .Upper {
     text-transform: uppercase;
@@ -43,6 +58,17 @@ body {
 
 .Tag{
     padding: 1.5px 6px;
+    font-family: 'COMIC' !important;
+}
+
+.ButtonImage img{    
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+.DivBlockCenter{
+    margin: 0 auto;
 }
 
 /*HOME*/

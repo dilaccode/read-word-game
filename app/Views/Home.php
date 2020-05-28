@@ -45,7 +45,9 @@
     </div>
     <!-- Play Button -->
     <div style="margin-top: 40px;">
-        <img class="PlayButton" src="/assets/images/PlayButton.png"/>
+        <div class="PlayButton ButtonImage DivBlockCenter">
+            <img src="/assets/images/PlayButton.png"/>
+        </div>
     </div>
 
     <!-- fotter -->

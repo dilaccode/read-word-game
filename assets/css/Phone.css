@@ -1,11 +1,13 @@
 /*HOME*/
 .PlayButton{
-    width: 40%;
+    width: 165px;
+    height: 66px;
 }
 
 /*WORD*/
 .HomeButton{    
-    width: 12%;
+    width: 45px;
+    height: 45px;
     margin-top: 3px;
     margin-left: 2px;
 }

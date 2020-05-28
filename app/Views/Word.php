@@ -8,16 +8,18 @@
     <div class="Word-container">
         <!-- top bar  -->
         <div>
-            <img class="HomeButton w3-display-topleft"
-                 src="/assets/images/BackButton.png"/>
+            <div class="HomeButton ButtonImage DivBlockCenter w3-display-topleft">
+                <img class=""
+                     src="/assets/images/BackButton.png"/>
+            </div>
             <!-- views -->
-            <div class="View w3-large w3-padding-small w3-text-indigo w3-display-topright"> 
+            <div class="View w3-large w3-padding-small w3-display-topright"> 
                 <i class="fa fa-eye"></i><span class="ViewText">...</span>
             </div>
         </div>
 
         <!-- Word -->       
-        <div class='Word w3-jumbo w3-text-blue upper'
+        <div class='Word w3-jumbo w3-text-indigo'
              style="font-weight:bold; text-align: center;
              vertical-align: middle; line-height: 80px;">
             ...
@@ -49,11 +51,11 @@
             </div>
         </div>
         <!-- Next Word -->
-        <div class="NextWordPanel w3-large w3-animate-opacity w3-card-4 w3-indigo"
+        <div class="NextWordPanel w3-large w3-animate-opacity w3-card-4 w3-blue"
              style="display:none;">
             Next Word 
             <i class="fa fa-arrow-right"></i>
-            <span class="NextWordText w3-xlarge upper">AAAA</span>
+            <span class="NextWordText w3-xlarge">AAAA</span>
         </div>
 
         <!-- ajax loading-->

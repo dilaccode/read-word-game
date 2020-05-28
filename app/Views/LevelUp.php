@@ -12,8 +12,11 @@
     .LevelUp{
         width: 100%;
         height: 100%;
-        background: white;
-        border-width: 8px !important;
+
+        background-image: url(/assets/images/CompleteBackground.jpg);
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     .LevelUpContent{
         width: 100%;
@@ -21,25 +24,29 @@
     .LevelUpText{
         font-size: 40px;
     }
+    .LevelUpCloseButton{
+        width: 165px;
+        height: 66px;
+    }
 </style>
 <script>
     var IsLevelUpPopupShow = false;
-    function ShowLevelUp(Level){
+    function ShowLevelUp(Level) {
         IsLevelUpPopupShow = true;
         // remove level part (for 2nd)
         var ArrayLevelPart = $('div[class*="LevelPart"]');
         var Index = 0;
-        for(Index = 1; Index < ArrayLevelPart.length; Index ++){
+        for (Index = 1; Index < ArrayLevelPart.length; Index++) {
             ArrayLevelPart[Index].remove();
         }
         // set level
-        LevelStr = Level+"";
+        LevelStr = Level + "";
         var Index = 0;
         $(".LevelPart0").text(LevelStr[0]);
         var DivLevelPart = $(".LevelPart0");
-        for(Index = 1; Index < LevelStr.length; Index++){
-            DivLevelPart.after("<div class=\"LevelPart" 
-                                + Index + " w3-tag w3-xxxlarge w3-green\">X</div>");
+        for (Index = 1; Index < LevelStr.length; Index++) {
+            DivLevelPart.after("<div class=\"LevelPart"
+                    + Index + " w3-tag w3-xxxlarge w3-green\">X</div>");
             $(".LevelPart" + Index).text(LevelStr[Index]);
             DivLevelPart = $(".LevelPart" + Index);
         }
@@ -47,16 +54,16 @@
         $(".LevelUp").fadeIn();
     }
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         // close button
-        $(".LevelUpCloseButton").click(function(){
+        $(".LevelUpCloseButton").click(function () {
             $(".LevelUp").fadeOut();
             IsLevelUpPopupShow = false;
         });
 
     });
 </script>
-<div class="LevelUp w3-display-middle w3-border w3-border-yellow w3-center" 
+<div class="LevelUp w3-display-middle w3-center" 
      style="display: none;">
     <div class="LevelUpContent LevelUpContentByDevice">
         <div class="LevelUpText w3-tag  w3-yellow">L</div>
@@ -77,15 +84,16 @@
         <div class="w3-tag w3-xxxlarge w3-green">
             <i class="fa fa-angle-double-up"></i>
         </div>
-        
+
         <blockquote class=""
                     style="margin: 25px 15px 0 15px !important; padding: 10px;">
-           <span class="w3-large" style="font-style: italic;">"Read much make you professional."</span>
-           <br>
-           <span class="w3-medium">Professor Tom</span>
-        </blockquote>  
-
-        <a class="LevelUpCloseButton w3-btn w3-indigo w3-xlarge" href="#" style="
-            margin-top: 25px;">Next ❯</a>
+            <span class="w3-large w3-text-white" style="font-style: italic;">"Read much make you professional."</span>
+            <br>
+            <span class="w3-medium w3-text-sand">Professor Tom</span>
+        </blockquote>
+        <div class="LevelUpCloseButton ButtonImage DivBlockCenter"
+             style="margin-top: 25px;">
+            <img src="/assets/images/NextButton.png"/>
+        </div>
     </div>
 </div>
