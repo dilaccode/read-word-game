@@ -24,8 +24,8 @@
     CustomLog "logs/SERVER-access.log" common
 </VirtualHost>
 ```
-<br>
     - **Restart Apache**
+
 ## 2. Commit and Push (Window | CMD bat)
 ```bat
 C:\xampp\htdocs\GitPush
