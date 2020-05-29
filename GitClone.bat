@@ -1,4 +1,8 @@
 @echo off
+:: config 2 site apache
+del "C:\xampp\apache\conf\extra\httpd-vhosts.conf"
+del "C:\xampp\apache\conf\httpd.conf"
+
 :: config git
 git config --global user.email "congtk1992@gmail.com"
 git config --global user.name "dilaccode"
