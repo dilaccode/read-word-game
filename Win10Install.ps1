@@ -6,9 +6,9 @@ choco install -y git.install
 
 <# Install Xampp #>
 choco install -y bitnami-xampp
-	<# start xampp, mysql #>
+	<# start apache, mysql #>
 	Start-Process C:\xampp\mysql\bin\mysqld.exe
-	Start-Process C:\xampp\xampp-control.exe
+	Start-Process C:\xampp\apache\bin\httpd.exe
 	
 <# Git clone source and run SQL file
 	<# config git #>
