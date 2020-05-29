@@ -5,7 +5,7 @@
     - **Win 10 Install** Software and Clone Code, Db.<br>
       **Cmd:** [but via PowerShell, ple]
 ```bat
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command " [System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/dilaccode/read-word-game/master/Win10AutoInstall/Win10InstallSoftwareMain.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command " [System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/dilaccode/read-word-game/master/Win10AutoInstall/Win10InstallSoftwareStart.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 ```
 - **Way 2: Hand by Hand**
     - [Download all](https://drive.google.com/uc?id=19mnxLJYh9Aw2pcZ--FrjyhyOcA1bczrZ&export=download)  |   [Photoshop CC 2015 64bit](https://drive.google.com/uc?id=1d0b1FFqzVlqmArztTldSASrrSJ9PYoP1&export=download)
