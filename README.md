@@ -4,7 +4,7 @@
 - [Download all](https://drive.google.com/uc?id=19mnxLJYh9Aw2pcZ--FrjyhyOcA1bczrZ&export=download)  |   [Photoshop CC 2015 64bit](https://drive.google.com/uc?id=1d0b1FFqzVlqmArztTldSASrrSJ9PYoP1&export=download)
 - Clone use **GitClone.bat** [on folder software]
 - Set up 2 sites apache
-    - add to last file **C:\xampp\apache\conf\extra\httpd-vhosts.conf** 
+    1. add to last file **C:\xampp\apache\conf\extra\httpd-vhosts.conf**
 ```html
 <VirtualHost *:80>
     ServerAdmin webmaster@dummy-host.example.com
@@ -24,7 +24,7 @@
     CustomLog "logs/SERVER-access.log" common
 </VirtualHost>
 ```
-    - **Restart Apache**
+    2. **Restart Apache**
 ## 2. Commit and Push (Window | CMD bat)
 ```bat
 C:\xampp\htdocs\GitPush
