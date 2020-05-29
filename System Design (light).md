@@ -1,0 +1,13 @@
+# Split to Server/Client architecture
+- SOURCE FOLDER/
+    - SERVER
+        - PHP CI 4 files
+        - use **other domain**: **http://<domain>/api** or **/api**
+    - CLIENT
+        - HTML, CSS, JSS files
+        - ASSETS (images, fonts)  files
+        - use **main domain**: **http://<domain>** or **/**
+    - Others files:
+        - .md (markdown) for document
+        - .bat .bash for online server
+        - and more...
