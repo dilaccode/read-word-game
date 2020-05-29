@@ -10,23 +10,13 @@ choco install -y bitnami-xampp
 	Start-Process C:\xampp\mysql\bin\mysqld.exe
 	Start-Process C:\xampp\apache\bin\httpd.exe
 	
-<# Git clone source and run SQL file
-	<# config git #>
-	git config --global user.email "congtk1992@gmail.com"
-	git config --global user.name "dilaccode"
-	
-	<# clone source #>
-	cd c:\
-	Remove-Item -LiteralPath "C:\xampp\htdocs" -Force -Recurse
-	New-Item -ItemType Directory -Force -Path "C:\xampp\htdocs"
-	cd C:\xampp\htdocs
-	git clone https://github.com/dilaccode/read-word-game.git .
-
-<# Open Chrome for test localhost #>
-start "http://localhost"
-
-<# go back #>
-cd c:\
+<# Git clone source and run SQL file, run cmd bat beacause mysql error on Powershell #>
+	<# Download GitClone.bat file #>
+	Invoke-WebRequest https://raw.githubusercontent.com/dilaccode/read-word-game/master/GitClone.bat -OutFile C:\GitClone.bat
+	<# Execute #>
+	Start-Process C:\GitClone.bat
+	<# Open Chrome for test localhost #>
+	start "http://localhost"
 
 <# Install Netbeans (will include JDK version X) #>
 choco install -y netbeans-php
