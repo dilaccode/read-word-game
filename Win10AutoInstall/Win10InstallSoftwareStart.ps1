@@ -8,3 +8,6 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 Invoke-WebRequest https://raw.githubusercontent.com/dilaccode/read-word-game/master/Win10AutoInstall/Win10InstallSoftwareMain.bat -OutFile C:\Win10InstallSoftwareMain.bat
 <# Execute #>
 Start-Process C:\Win10InstallSoftwareMain.bat
+
+<# Bye #>
+exit
