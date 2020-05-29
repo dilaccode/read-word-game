@@ -5,7 +5,7 @@
 - Clone use **GitClone.bat** [on folder software]
 - Set up 2 sites apache
     - add to last file **C:\xampp\apache\conf\extra\httpd-vhosts.conf** 
-```conf
+```
     <VirtualHost *:80>
         ServerAdmin webmaster@dummy-host.example.com
         DocumentRoot "C:/xampp/htdocs/CLIENT"
