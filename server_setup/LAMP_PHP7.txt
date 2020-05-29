@@ -1,7 +1,7 @@
 #!/bin/bash
 #######################################################
 #
-# yum -y install wget && wget -q https://raw.githubusercontent.com/dilaccode/word-like-game/master/server_setup/LAMP_PHP7.txt -O /root/install_script && bash /root/install_script
+# yum -y install wget && wget -q https://raw.githubusercontent.com/dilaccode/read-word-game/master/server_setup/LAMP_PHP7.txt -O /root/install_script && bash /root/install_script
 #
 #######################################################
 ## NOTES
@@ -41,7 +41,7 @@ sudo yum -y install php php-fpm php-mysqli php-pecl-json
 yum -y install git
 
 ### clone source
-git clone https://github.com/dilaccode/word-like-game.git /var/www/html
+git clone https://github.com/dilaccode/read-word-game.git /var/www/html
 
 # fix caches error
 chown -R apache /var/www/html/writable
