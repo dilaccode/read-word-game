@@ -30,5 +30,6 @@ cd c:\
 
 <# Install Netbeans (will include JDK version X) #>
 choco install -y netbeans-php
-Start-Process "C:\Program Files\NetBeans 8.2\bin\netbeans64.exe"
 
+<# Notify Done #>
+start "https://www.google.com/search?q=INSTALL+DONE"
