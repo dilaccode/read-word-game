@@ -5,11 +5,12 @@
 - Clone use **GitClone.bat** [on folder software]
 - Set up 2 sites apache
     - add to last file **C:\xampp\apache\conf\extra\httpd-vhosts.conf** 
+
 ```
     <VirtualHost *:80>
         ServerAdmin webmaster@dummy-host.example.com
         DocumentRoot "C:/xampp/htdocs/CLIENT"
-        ServerName readword.com
+        ServerName 127.0.0.1:80
     #    ServerAlias www.dummy-host.example.com
         ErrorLog "logs/CLIENT-error.log"
         CustomLog "logs/CLIENT-access.log" common
@@ -18,12 +19,13 @@
     <VirtualHost *:80>
         ServerAdmin webmaster@dummy-host2.example.com
         DocumentRoot "C:/xampp/htdocs/SERVER"
-        ServerName api.readword.com
+        ServerName 127.0.0.1:81
     #   ServerAlias www.dummy-host.example.com
         ErrorLog "logs/SERVER-error.log"
         CustomLog "logs/SERVER-access.log" common
     </VirtualHost>
-```    
+``` 
+   
     - **Restart Apache**
 ## 2. Commit and Push (Window | CMD bat)
 ```bat
