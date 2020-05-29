@@ -1,3 +1,4 @@
+# WORK:
 - work of PowerShell and Chocolatey hero, but via Cmd ok, he stable
  /work of **Win10InstallSoftwareStart.ps1**
 	- install Chocolatey (download via PowerShell)
