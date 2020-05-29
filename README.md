@@ -15,7 +15,7 @@
     CustomLog "logs/CLIENT-access.log" common
 </VirtualHost>
 
-<VirtualHost *:80>
+<VirtualHost *:81>
     ServerAdmin webmaster@dummy-host2.example.com
     DocumentRoot "C:/xampp/htdocs/SERVER"
     ServerName 127.0.0.1:81
@@ -23,6 +23,10 @@
     ErrorLog "logs/SERVER-error.log"
     CustomLog "logs/SERVER-access.log" common
 </VirtualHost>
+```
+    - add to **C:\xampp\apache\conf\httpd.conf** after **Listen 80**:
+```html
+Listen 81
 ```
     - **Restart Apache**
 
