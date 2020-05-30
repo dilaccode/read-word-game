@@ -1,4 +1,7 @@
-# [Test SITE Local](http://localhost/)  |   [Test SITE online](http://52.185.134.172/)
+# Test SITE [Local Client](http://localhost/)
+ / [Local Server](http://localhost:81/)
+  |   [Online Client](http://52.246.167.52)
+ / [Online Server](http://52.246.167.52:81)
 # Word with source code, database
 ## 1. Software and Clone
 - [Download all](https://drive.google.com/uc?id=1iRfLp6JRmmy9NRNoEEYwU9v_uedabUuy&export=download)  |   [Photoshop CC 2015 64bit](https://drive.google.com/uc?id=1d0b1FFqzVlqmArztTldSASrrSJ9PYoP1&export=download)
