@@ -9,7 +9,7 @@
 <VirtualHost *:80>
     ServerAdmin webmaster@dummy-host.example.com
     DocumentRoot "C:/xampp/htdocs/CLIENT"
-    ServerName 127.0.0.1:80
+    ServerName localhost:80
 #    ServerAlias www.dummy-host.example.com
     ErrorLog "logs/CLIENT-error.log"
     CustomLog "logs/CLIENT-access.log" common
@@ -18,7 +18,7 @@
 <VirtualHost *:81>
     ServerAdmin webmaster@dummy-host2.example.com
     DocumentRoot "C:/xampp/htdocs/SERVER"
-    ServerName 127.0.0.1:81
+    ServerName localhost:81
 #   ServerAlias www.dummy-host.example.com
     ErrorLog "logs/SERVER-error.log"
     CustomLog "logs/SERVER-access.log" common
