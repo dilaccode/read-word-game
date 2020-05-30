@@ -44,9 +44,9 @@ yum -y install git
 git clone https://github.com/dilaccode/read-word-game.git /var/www/html
 
 # fix caches error
-chown -R apache /var/www/html/writable
-chcon -t httpd_sys_content_rw_t /var/www/html/writable
-chcon -R -t httpd_sys_content_rw_t /var/www/html/writable
+chown -R apache /var/www/html/SERVER/writable
+chcon -t httpd_sys_content_rw_t /var/www/html/SERVER/writable
+chcon -R -t httpd_sys_content_rw_t /var/www/html/SERVER/writable
 systemctl reload httpd.service
 
 # Override httpd.conf file (required clone git source)
