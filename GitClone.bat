@@ -15,15 +15,7 @@ C:\xampp\mysql\bin\mysql.exe --user=root --password= --host=localhost --port=330
 
 :: copy apache config
 xcopy /R /Y "C:\xampp\htdocs\server_setup\XAMPP_httpd.conf" "C:\xampp\apache\conf\httpd.conf"
-:: restart Xampp
-start C:\xampp\xampp_stop.exe
-:: sleep 5s
-timeout 5 > NUL
-start C:\xampp\xampp_start.exe
-:: start mysql
-start C:\xampp\mysql\bin\mysqld.exe
 
 :: open test site
-explorer "https://localhost"
-explorer "https://localhost:81"
-
+explorer "http://localhost"
+explorer "http://localhost:81"
