@@ -1,8 +1,6 @@
 # Test SITE:
-- [Local Client](http://localhost/)
-- [Local Server](http://localhost:81/)
-- [Online Client](http://52.246.167.52)
-- [Online Server](http://52.246.167.52:81)
+- [Local Client](http://localhost/)    |    [Local Server](http://localhost:81/)
+- [Online Client](http://52.246.167.52)    |    [Online Server](http://52.246.167.52:81)
 
 # Word with source code, database
 ## 1. Software and Clone
