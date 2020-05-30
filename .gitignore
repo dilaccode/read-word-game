@@ -101,7 +101,8 @@ _modules/*
 *.iml
 
 # Netbeans
-nbproject/
+# disable for create Netbean config for 2 sites server/client
+# nbproject/
 build/
 nbbuild/
 dist/
