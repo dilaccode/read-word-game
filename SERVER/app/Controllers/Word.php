@@ -7,19 +7,9 @@ use App\Models\SimpleModel;
 class Word extends BaseController {
 
     public function index() {
-        $SM = new SimpleModel();
-
-        $WordRandom = $SM->Query("SELECT * FROM word order by RAND() limit 1")
-                ->getRow(0);
-        ///
-        $Data = array(
-            'StartWordId' => $WordRandom->Id,
-            "ViewLevelUp" => view("LevelUp"),
-        );
-        echo view('Word', $Data);
+        ServerHiYou();
     }
 
-    /// AJAX ==================
     /// get random
     public function StartId() {
         $SM = new SimpleModel();
@@ -30,12 +20,7 @@ class Word extends BaseController {
 
     // return JSON Word
     public function GetWord($WordId) {
-        $SM = new SimpleModel();
-
-        // fake
-        // for($i= 0; $i<5000;$i++){
-        // 	$SM->Query("select sum(length(Mean)) from word");
-        // }
+        $SM = new SimpleModel();        
         // Word
         $WordObj = $SM->Find("word", $WordId);
         // update view
@@ -54,14 +39,8 @@ class Word extends BaseController {
     // return JSON User
     public function GetUser($UserId, $WordId) {
         $SM = new SimpleModel();
-
-        // fake
-        // for($i= 0; $i<5000;$i++){
-        // 	$SM->Query("select sum(length(Mean)) from word");
-        // }
         // Word
         $WordObj = $SM->Find("word", $WordId);
-
         // User
         $User = $SM->Find("user", $UserId);
         $Levels = GetGameLevels($User->Level + 1);
@@ -76,14 +55,9 @@ class Word extends BaseController {
     }
 
     // return JSON User: store exp for next word
-    public function AjaxReadComplete($UserId, $WordId, $NextWordId) {
+    public function ReadComplete($UserId, $WordId, $NextWordId) {
         $SM = new SimpleModel();
-
-        // fake
-        // for($i= 0; $i<5000;$i++){
-        // 	$SM->Query("select sum(length(Mean)) from word");
-        // }
-
+        //
         $WordObj = $SM->Find('word', $WordId);
         $User = $SM->Find('user', $UserId);
         $Exp = strlen($WordObj->Mean); // length of mean
@@ -105,7 +79,7 @@ class Word extends BaseController {
         $SM->Update("word", $WordObj);
 
         // user data for next word (after update)
-        echo $this->AjaxGetUser($UserId, $NextWordId);
+        echo $this->GetUser($UserId, $NextWordId);
     }
 
     /// ============================================

@@ -7,6 +7,9 @@ $(document).ready(function () {
         //
         LoadHome();
     });
+
+    // load components
+    LoadComponent("/Html/LevelUp.html", "LevelUp", "WordScreen", "LevelUp");
 });
 
 
@@ -47,8 +50,8 @@ async function SetData(Word, Mean, View, NextWordText) {
     // WORD 
     WordDiv.html(Word);
     // change size on phone. Tablet, PC keep jumbo
-    var WordFontSize = IsPhone ? '64' : '70';
-    if (IsPhone) {
+    var WordFontSize = Config.IsPhone ? '64' : '70';
+    if (Config.IsPhone) {
         if (Word.length >= 7)
             WordFontSize = '48';
         if (Word.length >= 10)
@@ -60,8 +63,8 @@ async function SetData(Word, Mean, View, NextWordText) {
     // MEAN
     TotalMeanLetters = Mean.length;
     // mean size
-    var MeanFontSize = IsPhone ? '35' : '40';
-    if (IsPhone) {
+    var MeanFontSize = Config.IsPhone ? '35' : '40';
+    if (Config.IsPhone) {
         if (Mean.length >= 0 && Mean.length <= 100)
             MeanFontSize = '35';
         if (Mean.length >= 101 && Mean.length <= 180)
@@ -186,7 +189,7 @@ async function WordBeat() {
             IsNoWord = true;
             IsPlayWord = true;
             $(".LoadingWait").hide();
-            var WordObj = CurrentWord
+            var WordObj = CurrentWord;
             await SetData(WordObj.Word, WordObj.Mean, WordObj.View, WordObj.NextWord);
             await RunAnimation();
             //            
@@ -216,7 +219,7 @@ async function WordBeat() {
             if (IsWordPage) {
                 // submit result: for user view complete panel            
                 IsSubmitReadResult = true;
-                var JSONStr1 = await GetData("/Word/AjaxReadComplete/"
+                var JSONStr1 = await GetData(SERVER_URL + "/Word/ReadComplete/"
                         + User.Id + "/" + WordObj.Id + "/" + NextWord.Id);
                 // will wrong if NextWord.Id noy loading next yet.
                 User = JSON.parse(JSONStr1); // user store updated data

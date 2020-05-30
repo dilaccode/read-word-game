@@ -7,7 +7,7 @@ use App\Models\SimpleModel;
 class User extends BaseController {
 
     public function index() {
-        
+        ServerHiYou();
     }
 
     // return int;

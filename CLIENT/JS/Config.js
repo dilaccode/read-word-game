@@ -10,7 +10,7 @@ $(document).ready(function () {
 });
 async function GetConfigIsPhone() {
     var ConfigStr = await GetData(SERVER_URL + "/ClientConfig/IsPhone");
-    var Config = JSON.parse(ConfigStr);
+    Config = JSON.parse(ConfigStr);
     IsLoadedConfigFromServer = true;
     // Load Device css
     $("head").append("<!-- Device CSS -->");

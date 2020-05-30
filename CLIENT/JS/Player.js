@@ -48,7 +48,19 @@ async function Load(URI, ClassName, JsName = "", IsShowLoadingOnExistScreen = fa
             $(".Loading").fadeOut();
 }
 }
-
+// load 
+async function LoadComponent(URI, ClassName, ClassParent, JsName = "") {
+    if (!IsLoaded(ClassName)) {
+        var HtmlStr = await GetData(URI);
+        if (JsName.length > 0) {
+            await LoadJs(JsName);
+        }
+        $('.' + ClassParent).append(HtmlStr);
+        // load manage
+        console.log("Load new: " + ClassName);
+        ListLoaded.push(ClassName);
+}
+}
 
 /// MANAGE LOADING RESOURCES
 // loading thing 1 time, unique by ClassName
