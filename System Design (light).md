@@ -21,9 +21,9 @@
                 - Home.js
                 - Word.js
             - CSS
-                Core.css
-                Phone.css
-                TabletAndPc.css
+                - Core.css
+                - Phone.css
+                - TabletAndPc.css
             - Images
             - Fonts
     - Others files:

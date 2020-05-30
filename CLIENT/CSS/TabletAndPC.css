@@ -1,0 +1,104 @@
+/*SHARE*/
+.LevelPartGroup{
+    margin-right: 4px;
+}
+
+/*HOME*/
+.HomeScreen{
+    /*background*/
+    background-image: url("/Images/BackgroundTablet.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.HomeTitleSpacing{
+    margin-top: 60px;
+}
+.TitleText{
+    font-size: 75px; 
+}
+.TitleLineSpacing{
+    height: 4px;
+}
+
+.HomeLevel .LevelPartGroup{
+    font-size: 50px;
+}
+
+.PlayButton{
+    width: 250px;
+    height: 100px;
+}
+
+/*WORD*/
+.HomeButton{    
+    width: 68px;
+    height: 68px;
+    margin-top: 3px;
+    margin-left: 2px;
+}
+
+.View{
+    font-size: 30px;
+}
+
+.ReadCompletePanel{
+    padding: 10px;
+    width: 70%;
+    margin: 8px auto;
+    font-size: 32px;
+}
+.ReadCompletePanel .ProgressBarPercent{
+    height: 26px;
+    font-size: 21px;
+}
+.ReadCompletePanel .ProgressBarText{
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.NextWordPanel{
+    margin-top: 16px;
+    padding: 8px !important;
+    font-size: 30px;
+}
+.NextWordPanel .NextWordText{
+    font-size: 35px;
+}
+
+.LoadingWait{
+    margin-top: 8px;
+    font-size: 45px;
+}
+
+/*LEVEL UP*/
+.LevelUpContentByDevice{
+    margin-top: 150px;
+}
+.LevelUpText{
+    font-size: 80px;
+    margin-right: 6px;
+}
+.LevelUpText2nd{
+    font-size: 96px;
+}
+
+.LevelUpCloseButton{
+    width: 250px;
+    height: 100px;
+}
+.Tutorial{
+    margin: 35px 15px 0 15px !important;
+    padding: 10px;
+}
+.Tutorial .Text{
+    font-size: 27px;
+}
+.Tutorial .Author{
+    font-size: 22px;
+}
+
+.LevelUpCloseButton{
+    margin-top: 35px;
+}

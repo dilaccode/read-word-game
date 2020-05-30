@@ -1,0 +1,18 @@
+CRITICAL - 2020-05-30 07:23:13 --> Call to undefined function App\Controllers\ClientConfig()
+#0 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\ClientConfig->index()
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ClientConfig))
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2020-05-30 07:23:17 --> Call to undefined function App\Controllers\ClientConfig()
+#0 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\ClientConfig->index()
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ClientConfig))
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2020-05-30 08:04:41 --> Call to a member function Query() on null
+#0 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\Word->StartId()
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Word))
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}

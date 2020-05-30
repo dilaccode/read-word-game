@@ -7,10 +7,10 @@ use App\Models\SimpleModel;
 class Word extends BaseController {
 
     public function index() {
-         $SM = new SimpleModel();
-         
+        $SM = new SimpleModel();
+
         $WordRandom = $SM->Query("SELECT * FROM word order by RAND() limit 1")
-                        ->getRow(0);
+                ->getRow(0);
         ///
         $Data = array(
             'StartWordId' => $WordRandom->Id,
@@ -19,10 +19,17 @@ class Word extends BaseController {
         echo view('Word', $Data);
     }
 
-
     /// AJAX ==================
+    /// get random
+    public function StartId() {
+        $SM = new SimpleModel();
+        $WordRandom = $SM->Query("SELECT * FROM word order by RAND() limit 1")
+                ->getRow(0);
+        echo json_encode((int) $WordRandom->Id);
+    }
+
     // return JSON Word
-    public function AjaxGetWord($WordId) {
+    public function GetWord($WordId) {
         $SM = new SimpleModel();
 
         // fake
@@ -45,7 +52,7 @@ class Word extends BaseController {
     }
 
     // return JSON User
-    public function AjaxGetUser($UserId, $WordId) {
+    public function GetUser($UserId, $WordId) {
         $SM = new SimpleModel();
 
         // fake
@@ -145,7 +152,5 @@ class Word extends BaseController {
         where Word='$Word'")->getRow(1);
         return isset($WordObj);
     }
-    
-    
 
 }

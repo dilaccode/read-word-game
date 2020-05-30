@@ -1,0 +1,128 @@
+/* Add the decaration on top */
+@font-face { 
+    font-family: 'Roboto';
+    src: url('/Fonts/Roboto-Regular.ttf') format('truetype');
+}
+@font-face { 
+    font-family: 'COMIC';
+    src: url('/Fonts/COMIC.TTF') format('truetype');
+}
+
+/* full screen */
+html, body {
+    height: 100%;
+}
+body {
+    line-height: 1.27 !important;
+    text-transform: uppercase;
+    font-family: 'COMIC' !important;
+    /*cursive*/
+}
+.Mean{
+    font-family: 'Roboto' !important;
+}
+.Upper {
+    text-transform: uppercase;
+}
+.btn-word{
+    padding: 3px 4px !important;
+}
+.btn-word-viewed{
+    background-color: white !important;
+    color: black !important;
+}
+.WordMark{
+    padding: 0 0.2em;
+}
+.WordMeanMarkViewed{
+    float:right;
+}
+.Screen{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.Loading{
+    z-index: 1000; /* top over all */
+}
+.Loading .Spinner{
+    margin-top: 100px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1001;
+}
+.Loading .Text{
+    position: relative;    
+    z-index: 1002;
+}
+
+.Tag{
+    padding: 1.5px 6px;
+    font-family: 'COMIC' !important;
+}
+
+.ButtonImage img{    
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+.DivBlockCenter{
+    margin: 0 auto;
+}
+
+
+
+/*HOME*/
+
+
+/*WORD*/
+.WordScreen{
+    background-image: url(/Images/BackgroundWord.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Word{
+    font-weight:bold;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 80px;
+}
+
+.Shake{
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 1.0s;
+
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/*LEVEL UP*/
+.LevelUp{
+    width: 100%;
+    height: 100%;
+
+    background-image: url(/assets/images/CompleteBackground.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.LevelUpContent{
+    width: 100%;
+}

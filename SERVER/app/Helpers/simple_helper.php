@@ -1,6 +1,10 @@
 <?php
 /// add by Di Lac
 
+function ServerHiYou(){
+    echo "Hi, I am Server.";
+}
+
 /// type: Param=data1_data2_data3
 function GETDataUrlToArray($Param){
     $ArrayResult = array();
@@ -88,3 +92,4 @@ function IsTablet(){
     $IsTablet = $detect->isTablet();
     return $IsMobile && $IsTablet;
 }
+
