@@ -285,3 +285,15 @@ CRITICAL - 2020-06-03 07:42:25 --> syntax error, unexpected 'public' (T_PUBLIC)
 #3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
 #5 {main}
+CRITICAL - 2020-06-03 08:27:03 --> Unknown column 'IsSound' in 'where clause'
+#0 C:\xampp\htdocs\SERVER\system\Database\MySQLi\Connection.php(331): mysqli->query('select * from w...')
+#1 C:\xampp\htdocs\SERVER\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select * from w...')
+#2 C:\xampp\htdocs\SERVER\system\Database\BaseConnection.php(666): CodeIgniter\Database\BaseConnection->simpleQuery('select * from w...')
+#3 C:\xampp\htdocs\SERVER\app\Models\SimpleModel.php(76): CodeIgniter\Database\BaseConnection->query('select * from w...')
+#4 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(30): App\Models\SimpleModel->Query('select * from w...')
+#5 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(11): App\Controllers\TempSound->CurrentWord()
+#6 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#7 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#8 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#10 {main}
