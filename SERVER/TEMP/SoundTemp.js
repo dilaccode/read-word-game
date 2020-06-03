@@ -32,7 +32,7 @@ async function Beat() {
             //
             IsTabInit = true;
         }
-        await Sleep(500);
+        await Sleep(250);
     }
 }
 

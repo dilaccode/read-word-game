@@ -40,7 +40,7 @@ class TempSound extends BaseController {
 
     public function AutoRefresh() {
         /// auto refresh
-        $TimeBeat = 2000;
+        $TimeBeat = 1500;
         echo "<script>"
         . "setTimeout(function(){ location.reload(); }, $TimeBeat);"
         . "</script>";
@@ -67,7 +67,10 @@ class TempSound extends BaseController {
             echo "<div style='margin: 25px;'>";
             echo "<a class='w3-btn w3-red' href='/TempSound/DeleteAllSound' target='_blank'>Delete All</a>";
             echo "<div style='margin-top: 50px'></div>";
-            echo "<a class='w3-btn w3-green' href='/TempSound/AddSound/$WordObj->Id' target='_blank'>Add Sound</a>";
+            
+            echo ucfirst($WordObj->Word)." arrived.<br><br>"; 
+            echo "<a class='w3-btn w3-green' href='/TempSound/AddSound/$WordObj->Id' target='_blank'>Approve</a>";
+            echo "<br><br>You are welcome!";
             echo "</div>";
         }else{
             echo "<span class='w3-xxlarge' style='margin: 10px;'>I waiting MP3 file... (sound file)</span>";
