@@ -8,19 +8,8 @@ class TempSound extends BaseController {
 
     public function index() {
 
-        $this->CurrentWord();
-        $this->AutoRefresh();
-
-        /// read and play sound
-        $path = 'C:\xampp\htdocs\SERVER\TEMP\Work';
-        $files = scandir($path);
-        $files = array_diff(scandir($path), array('.', '..'));
-        if (!empty($files[2])) {
-            $AudioName = $files[2];
-            echo "<audio controls autoplay>
-                <source src='/TEMP/Work/$AudioName' type='audio/mpeg'>
-        </audio>";
-        }
+       echo "temp";
+        
     }
 
     public function CurrentWord() {
@@ -36,6 +25,18 @@ class TempSound extends BaseController {
         //
         return $WordObj;
     }
+    
+    public function PlaySound(){
+        $path = 'C:\xampp\htdocs\SERVER\TEMP\Work';
+        $files = scandir($path);
+        $files = array_diff(scandir($path), array('.', '..'));
+        if (!empty($files[2])) {
+            $AudioName = $files[2];
+            echo "<audio controls autoplay>
+                <source src='/TEMP/Work/$AudioName' type='audio/mpeg'>
+        </audio>";
+        }
+    }
 
     public function AutoRefresh() {
         /// auto refresh
@@ -43,6 +44,10 @@ class TempSound extends BaseController {
         echo "<script>"
         . "setTimeout(function(){ location.reload(); }, $TimeBeat);"
         . "</script>";
+    }
+    public function OpenSoundPage(){
+        echo "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>";
+        echo "<script src=\"/TEMP/SoundTemp.js\"></script>";
     }
 
     public function Panel() {
@@ -52,9 +57,10 @@ class TempSound extends BaseController {
         $files = array_diff(scandir($path), array('.', '..'));
         $IsFileExist = !empty($files[2]);
         //
-        $WordObj = $this->CurrentWord();
+        $WordObj = $this->CurrentWord();        
+        $this->PlaySound();
         $this->AutoRefresh();
-
+        
         echo "<hr>";
         /// buttons
         if ($IsFileExist) {
@@ -106,6 +112,15 @@ class TempSound extends BaseController {
                 $this->DeleteAllSound(); // tab will close here
             }
         }
+    }
+    
+    /// AJAX ===============
+    public function AjaxGetWord(){
+        $SM = new SimpleModel();
+        $WordObj = $SM->Query("select * from wordtemp where IsSound=0")
+                ->GetRow(0);
+        echo json_encode($WordObj);
+        
     }
 
 }
