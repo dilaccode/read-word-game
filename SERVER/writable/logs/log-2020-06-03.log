@@ -1,0 +1,287 @@
+CRITICAL - 2020-06-03 06:19:23 --> scandir(/TEMP/Work,/TEMP/Work): The system cannot find the path specified. (code: 3)
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(/TEMP/W...', 'C:\\xampp\\htdocs...', 11, Array)
+#1 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(11): scandir('/TEMP/Work')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#4 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2020-06-03 06:19:47 --> scandir(/TEMP/Work,/TEMP/Work): The system cannot find the path specified. (code: 3)
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(/TEMP/W...', 'C:\\xampp\\htdocs...', 11, Array)
+#1 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(11): scandir('/TEMP/Work')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#4 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2020-06-03 06:20:07 --> scandir(\TEMP\Work,\TEMP\Work): The system cannot find the path specified. (code: 3)
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(\\TEMP\\W...', 'C:\\xampp\\htdocs...', 11, Array)
+#1 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(11): scandir('\\TEMP\\Work')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#4 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2020-06-03 06:20:08 --> scandir(\TEMP\Work,\TEMP\Work): The system cannot find the path specified. (code: 3)
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(\\TEMP\\W...', 'C:\\xampp\\htdocs...', 11, Array)
+#1 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(11): scandir('\\TEMP\\Work')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#4 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2020-06-03 06:20:08 --> scandir(\TEMP\Work,\TEMP\Work): The system cannot find the path specified. (code: 3)
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(\\TEMP\\W...', 'C:\\xampp\\htdocs...', 11, Array)
+#1 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(11): scandir('\\TEMP\\Work')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#4 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2020-06-03 06:20:09 --> scandir(\TEMP\Work,\TEMP\Work): The system cannot find the path specified. (code: 3)
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(\\TEMP\\W...', 'C:\\xampp\\htdocs...', 11, Array)
+#1 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(11): scandir('\\TEMP\\Work')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#4 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2020-06-03 06:24:18 --> syntax error, unexpected '$files' (T_VARIABLE), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:24:19 --> syntax error, unexpected '$files' (T_VARIABLE), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:24:32 --> syntax error, unexpected '$files' (T_VARIABLE), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:24:32 --> syntax error, unexpected '$files' (T_VARIABLE), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:24:32 --> syntax error, unexpected '$files' (T_VARIABLE), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:24:37 --> syntax error, unexpected '" type="' (T_CONSTANT_ENCAPSED_STRING), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:24:38 --> syntax error, unexpected '" type="' (T_CONSTANT_ENCAPSED_STRING), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:24:38 --> syntax error, unexpected '" type="' (T_CONSTANT_ENCAPSED_STRING), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:31:55 --> Function name must be a string
+#0 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2020-06-03 06:32:07 --> Function name must be a string
+#0 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2020-06-03 06:32:08 --> Function name must be a string
+#0 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2020-06-03 06:32:08 --> Function name must be a string
+#0 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2020-06-03 06:32:50 --> Function name must be a string
+#0 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2020-06-03 06:35:01 --> syntax error, unexpected '$path' (T_VARIABLE), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:35:09 --> Undefined variable: Word
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(16): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 16, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:35:10 --> Undefined variable: Word
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(16): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 16, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:35:10 --> Undefined variable: Word
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(16): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 16, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:36:52 --> Undefined offset: 2
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(21): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 21, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:48:11 --> syntax error, unexpected '$TimeBeat' (T_VARIABLE), expecting ';' or ','
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 06:57:05 --> syntax error, unexpected 'deleted' (T_STRING)
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:25 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:28 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:30 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:32 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:34 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:36 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:38 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:41 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:43 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:11:45 --> Undefined variable: AudioName
+#0 C:\xampp\htdocs\SERVER\app\Controllers\TempSound.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 20, Array)
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->index()
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:12:04 --> Too few arguments to function App\Controllers\TempSound::AddSound(), 0 passed in C:\xampp\htdocs\SERVER\system\CodeIgniter.php on line 924 and exactly 1 expected
+#0 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(924): App\Controllers\TempSound->AddSound()
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TempSound))
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2020-06-03 07:13:52 --> syntax error, unexpected '$path' (T_VARIABLE)
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:13:53 --> syntax error, unexpected '$path' (T_VARIABLE)
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound/Pane...')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound/Pane...')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:42:24 --> syntax error, unexpected 'public' (T_PUBLIC)
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2020-06-03 07:42:25 --> syntax error, unexpected 'public' (T_PUBLIC)
+#0 C:\xampp\htdocs\SERVER\system\Router\Router.php(192): CodeIgniter\Router\Router->autoRoute('/TempSound/Pane...')
+#1 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(799): CodeIgniter\Router\Router->handle('/TempSound/Pane...')
+#2 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(360): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\SERVER\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\SERVER\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
