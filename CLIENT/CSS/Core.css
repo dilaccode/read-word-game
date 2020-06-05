@@ -87,6 +87,11 @@ body {
     text-align: center;
     vertical-align: middle;
     line-height: 80px;
+
+    user-select: none;
+}
+.Mean{
+    user-select: none;
 }
 
 .Shake{
