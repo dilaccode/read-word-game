@@ -41,6 +41,10 @@ Click, 212, 793
 Sleep, 100
 Click, 228, 793
 Sleep, 100
+Click, 244, 793
+Sleep, 100
+Click, 260, 793
+Sleep, 100
 
 MouseMove, 391, 78
 

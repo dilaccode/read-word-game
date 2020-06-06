@@ -8,8 +8,7 @@ class TempSound extends BaseController {
 
     public function index() {
 
-       echo "temp";
-        
+        echo "temp";
     }
 
     public function CurrentWord() {
@@ -18,15 +17,21 @@ class TempSound extends BaseController {
         $SM = new SimpleModel();
         $WordObj = $SM->Query("select * from wordtemp where IsSound=0")
                 ->GetRow(0);
+        $Done = $SM->Query("select count(*) as Done from wordtemp where IsSound=1")
+                        ->GetRow(0)->Done;
+        $Total = $SM->Query("select count(*) as Total from wordtemp")
+                        ->GetRow(0)->Total;
+        $Percent = round((float) $Done / (float) $Total * 100, 1);
 
         $Link = "https://dictionary.cambridge.org/dictionary/english/$WordObj->Word";
-        echo "current: <a class='w3-text-indigo' style='font-size: 50px;font-weight:bold;  text-transform: uppercase;' target='_blank' href='$Link'>$WordObj->Word</a><br>";
+        echo "current: <a class='w3-text-indigo' style='font-size: 50px;font-weight:bold;  text-transform: uppercase;' target='_blank'"
+        . " href='$Link'>$WordObj->Word</a>  ,  $Done/$Total - $Percent%<br>";
 
         //
         return $WordObj;
     }
-    
-    public function PlaySound(){
+
+    public function PlaySound() {
         $path = 'C:\xampp\htdocs\SERVER\TEMP\Work';
         $files = scandir($path);
         $files = array_diff(scandir($path), array('.', '..'));
@@ -45,7 +50,8 @@ class TempSound extends BaseController {
         . "setTimeout(function(){ location.reload(); }, $TimeBeat);"
         . "</script>";
     }
-    public function OpenSoundPage(){
+
+    public function OpenSoundPage() {
         echo "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>";
         echo "<script src=\"/TEMP/SoundTemp.js\"></script>";
     }
@@ -57,22 +63,22 @@ class TempSound extends BaseController {
         $files = array_diff(scandir($path), array('.', '..'));
         $IsFileExist = !empty($files[2]);
         //
-        $WordObj = $this->CurrentWord();        
+        $WordObj = $this->CurrentWord();
         $this->PlaySound();
         $this->AutoRefresh();
-        
+
         echo "<hr>";
         /// buttons
         if ($IsFileExist) {
             echo "<div style='margin: 25px;'>";
             echo "<a class='w3-btn w3-red' href='/TempSound/DeleteAllSound' target='_blank'>Delete All</a>";
             echo "<div style='margin-top: 50px'></div>";
-            
-            echo ucfirst($WordObj->Word)." arrived.<br><br>"; 
+
+            echo ucfirst($WordObj->Word) . " arrived.<br><br>";
             echo "<a class='w3-btn w3-green' href='/TempSound/AddSound/$WordObj->Id' target='_blank'>Approve</a>";
             echo "<br><br>You are welcome!";
             echo "</div>";
-        }else{
+        } else {
             echo "<span class='w3-xxlarge' style='margin: 10px;'>I waiting MP3 file... (sound file)</span>";
         }
     }
@@ -116,14 +122,13 @@ class TempSound extends BaseController {
             }
         }
     }
-    
+
     /// AJAX ===============
-    public function AjaxGetWord(){
+    public function AjaxGetWord() {
         $SM = new SimpleModel();
         $WordObj = $SM->Query("select * from wordtemp where IsSound=0")
                 ->GetRow(0);
         echo json_encode($WordObj);
-        
     }
 
 }
