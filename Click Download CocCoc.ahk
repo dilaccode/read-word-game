@@ -46,6 +46,8 @@ return
 ; APPROVED AND MOVE TO NEW SOUND
 F2::
 CoordMode, Mouse, Screen
+Click, 600,600
+Sleep, 100
 Click, 600,500
 Sleep, 200
 
