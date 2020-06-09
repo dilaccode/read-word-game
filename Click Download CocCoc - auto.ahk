@@ -36,6 +36,7 @@ return
 ; NEW APPROVED
 F1::		
 	IsApproved := true
+	Send {Ctrl} ; for show mouse active
 return
 F5::	
 	IsStart := !IsStart
