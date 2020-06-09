@@ -16,7 +16,7 @@ while(true){
 			; approved work
 			Send {F10}
 			; sleep some for loading new sound page + approved work
-			Sleep, 1500
+			Sleep, 2500
 		}else{
 			GuiControl,, Talk, I downloading sound...
 			; downloading work
@@ -64,20 +64,15 @@ Click, 406, 191
 Sleep, 1000
 Click, 1050, 331
 
-Sleep, 100
-MouseMove, 391, 78
 return
 
 ; APPROVED AND MOVE TO NEW SOUND
 F10::
 CoordMode, Mouse, Screen
-Click, 600,600
+Click, 600,800
 Sleep, 100
 Click, 600,500
 Sleep, 200
-
-
-MouseMove, 391, 78
 
 return
 
