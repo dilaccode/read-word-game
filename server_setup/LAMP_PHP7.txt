@@ -15,9 +15,10 @@
 sudo yum -y install httpd
 sudo systemctl start httpd.service
 sudo systemctl enable httpd.service
-# open port 80,
+# open port 80, 81
 # check port: firewall-cmd --list-all
 sudo firewall-cmd --add-port=80/tcp --permanent
+sudo firewall-cmd --add-port=81/tcp --permanent
 
 ## MySQL (MariaDB)
 sudo yum -y install mariadb-server mariadb
