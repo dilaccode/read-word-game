@@ -16,7 +16,7 @@ while(true){
 			; approved work
 			Send {F10}
 			; sleep some for loading new sound page + approved work
-			Sleep, 2500
+			Sleep, 4000
 		}else{
 			GuiControl,, Talk, I downloading sound...
 			; downloading work
