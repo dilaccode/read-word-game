@@ -22,25 +22,20 @@ CoordMode, Mouse, Screen
 
 ; play sound (16x16 icon)
 Click, 180, 793
-Sleep, 100
 Click, 196, 793
-Sleep, 100
 Click, 212, 793
-Sleep, 100
 Click, 228, 793
-Sleep, 100
 Click, 244, 793
-Sleep, 100
 Click, 260, 793
-Sleep, 100
 
 ; download
 Click, 406, 191
 Sleep, 1000
 Click, 1050, 331
 
+;wait server read word
+Sleep, 1000
 ; go Approved button
-Sleep, 100
 MouseMove, 385, 65
 return
 
@@ -48,9 +43,7 @@ return
 F2::
 CoordMode, Mouse, Screen
 Click, 600,600
-Sleep, 100
 Click, 600,500
-Sleep, 200
 
 ;wait new page load
 Sleep, 6000
