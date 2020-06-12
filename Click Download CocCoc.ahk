@@ -39,8 +39,9 @@ Click, 406, 191
 Sleep, 1000
 Click, 1050, 331
 
+; go Approved button
 Sleep, 100
-MouseMove, 391, 78
+MouseMove, 385, 65
 return
 
 ; APPROVED AND MOVE TO NEW SOUND
@@ -51,8 +52,10 @@ Sleep, 100
 Click, 600,500
 Sleep, 200
 
-
-MouseMove, 391, 78
+;wait new page load
+Sleep, 6000
+; go Download button
+MouseMove, 385, 92
 
 return
 
