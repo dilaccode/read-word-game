@@ -37,6 +37,7 @@ Click, 1050, 331
 Sleep, 1000
 ; go Approved button
 MouseMove, 385, 65
+SoundPlay, C:\xampp\htdocs\tempzzz\CheckingApproved.mp3
 return
 
 ; APPROVED AND MOVE TO NEW SOUND
@@ -46,9 +47,11 @@ Click, 600,600
 Click, 600,500
 
 ;wait new page load
+SoundPlay, C:\xampp\htdocs\tempzzz\PLeaseWaitPageLoading.mp3
 Sleep, 6000
 ; go Download button
 MouseMove, 385, 92
+SoundPlay, C:\xampp\htdocs\tempzzz\DownloadMe.mp3
 
 return
 

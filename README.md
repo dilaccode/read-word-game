@@ -37,3 +37,6 @@ CodeIgniter.php line 483... **but slow**
 ```php
     protected $helpers = ['simple_helper'];
 ```
+
+# Sound page
+- [Nice sound - text to voice](http://fromtexttospeech.com/)
