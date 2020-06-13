@@ -20,18 +20,16 @@ class Word extends BaseController {
 
     // return JSON Word
     public function GetWord($WordId) {
-        $SM = new SimpleModel();        
+        $SM = new SimpleModel();
         // Word
         $WordObj = $SM->Find("word", $WordId);
         // update view
         $WordObj->View++;
         $SM->Update("word", $WordObj);
         // get next word
-        $ListWordMeans = $this->GetListWordMeansRandom($WordObj->Mean, 1);
-        $NextWord = count($ListWordMeans) === 1 ? $ListWordMeans[0] : "ability";
-        $WordObj->NextWord = $NextWord;
-        $WordObj->NextWordId = $SM->Query("select * from word where word='$NextWord'")
-                        ->getRow(1)->Id;
+        $NextWordObj = $this->GetNextWordFromMean($WordObj->Mean);
+        $WordObj->NextWord = $NextWordObj->Word;
+        $WordObj->NextWordId = $NextWordObj->Id;
 
         echo json_encode($WordObj);
     }
@@ -83,48 +81,33 @@ class Word extends BaseController {
     }
 
     /// ============================================
-    /// return Mean (sentence) as array (Word,IsExist)
-    /// random : X elements
-    /// and exist words
-    private function GetListWordMeansRandom($Mean, $AmountMeansAllow) {
-        $SearchArr = array("(", ")", ".", ",", ";", "  ");
-        $ReplaceArr = array(" ", " ", " ", " ", " ", " ");
+    /// return Next Word (obj) from Mean (str)
+    private function GetNextWordFromMean($Mean) {
+        $SM = new SimpleModel();
+        $SearchArr = array("(", ")", ".", ",", ";", "  ", "\n");
+        $ReplaceArr = array(" ", " ", " ", " ", " ", " ", "");
         // split
         $Mean = str_replace($SearchArr, $ReplaceArr, $Mean);
-        $ArrayMean = explode(" ", $Mean);
-        $ArrayMeansResult = array();
-        foreach ($ArrayMean as $Word) {
+        $ArrayMeanWords = array_unique(explode(" ", $Mean));
+        $ArrayMeanWordObjs = array();
+        foreach ($ArrayMeanWords as $Word) {
             if (strlen($Word) > 0) {
-                if ($this->checkWorkExist($Word) && !in_array($Word, $ArrayMeansResult) // for unique
-                ) {
-                    array_push($ArrayMeansResult, $Word);
-                }
-            }
-        }
-
-        // return randoms array
-        $ArrayMeansResultRandom = array();
-        if (count($ArrayMeansResult) > $AmountMeansAllow) {
-            $ArrayIndex = array_rand($ArrayMeansResult, $AmountMeansAllow);
-            if (is_array($ArrayIndex)) {
-                foreach ($ArrayIndex as $Index) {
-                    array_push($ArrayMeansResultRandom, $ArrayMeansResult[$Index]);
-                }
-            } else { // 1 item: int
-                array_push($ArrayMeansResultRandom, $ArrayMeansResult[$ArrayIndex]);
-            }
-        } else { // case ; 0, 1, 2, 3, X.... <= $AmountMeansAllow, no need random
-            $ArrayMeansResultRandom = $ArrayMeansResult;
-        }
-        return $ArrayMeansResultRandom;
-    }
-
-    /// return TRUE/FALSE
-    private function checkWorkExist($Word) {
-        $SM = new SimpleModel();
-        $WordObj = $SM->Query("select * from word
+                // check exist
+                $Word = str_replace("'", "\'", $Word);
+                $WordObj = $SM->Query("select * from word
         where Word='$Word'")->getRow(1);
-        return isset($WordObj);
+                $IsWordExist = isset($WordObj);
+                //
+                if ($IsWordExist) {
+                    array_push($ArrayMeanWordObjs, $WordObj);
+                }
+            }
+        }
+        // sort by View
+        usort($ArrayMeanWordObjs, function($a, $b) {
+            return (int) $a->View > (int) $b->View;
+        });
+        return $ArrayMeanWordObjs[0];
     }
 
 }
