@@ -31,9 +31,20 @@ class Word extends BaseController {
         $SM->Update("word", $WordObj);
         // get next word
         // temp for map (scenario)
-        if ((int) $WordId === 1) {
-            $NextWordObj = $SM->Find("word", 2);
-        } else {
+        $MapObj = $SM->Query("Select * from map where WordId = $WordId")->getRow(0);
+        $IsRandomFromMean = true;
+        // case 1: run map
+        $IsMap = isset($MapObj);
+        if ($IsMap) {
+            $MaxMapWordId = $SM->Query("Select * from map ORDER by Id DESC limit 1")->getRow(0)->WordId;
+            if ((int) $WordId !== (int) $MaxMapWordId) {
+                $NextMapObj = $SM->Query("Select * from map where Id > $MapObj->Id")->GetRow(0);
+                $NextWordObj = $SM->Find("word", $NextMapObj->WordId);
+                $IsRandomFromMean = false;
+            }
+        }
+        // case 2: run from mean
+        if ($IsRandomFromMean) {
             $NextWordObj = $this->GetNextWordFromMean($WordObj->Mean);
         }
 
@@ -104,7 +115,7 @@ class Word extends BaseController {
                 // check exist
                 $Word = str_replace("'", "\'", $Word);
                 $WordObj = $SM->Query("select * from word
-        where Word='$Word'")->getRow(1);
+        where Word='$Word'")->getRow(0);
                 $IsWordExist = isset($WordObj);
                 //
                 if ($IsWordExist) {
