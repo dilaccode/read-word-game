@@ -107,9 +107,10 @@ build/
 nbbuild/
 dist/
 nbdist/
-nbactions.xml
-nb-configuration.xml
+# nbactions.xml
+# nb-configuration.xml
 .nb-gradle/
+# end disabled
 
 # Sublime Text
 *.tmlanguage.cache
