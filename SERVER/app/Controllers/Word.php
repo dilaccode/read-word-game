@@ -30,7 +30,13 @@ class Word extends BaseController {
         $WordObj->View++;
         $SM->Update("word", $WordObj);
         // get next word
-        $NextWordObj = $this->GetNextWordFromMean($WordObj->Mean);
+        // temp for map (scenario)
+        if ((int) $WordId === 1) {
+            $NextWordObj = $SM->Find("word", 2);
+        } else {
+            $NextWordObj = $this->GetNextWordFromMean($WordObj->Mean);
+        }
+
         $WordObj->NextWord = $NextWordObj->Word;
         $WordObj->NextWordId = $NextWordObj->Id;
 
