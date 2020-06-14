@@ -10,6 +10,11 @@
         class="w3-btn w3-white w3-border w3-border-blue w3-round w3-margin">
             Update Words Length
         </a>
+        
+        <a href="/Admin/ResetData"
+        class="w3-btn w3-red w3-round w3-margin">
+            Reset Data
+        </a>
     </div>
 
 <!-- / w3-container -->
