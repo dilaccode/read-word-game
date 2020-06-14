@@ -39,4 +39,5 @@ CodeIgniter.php line 483... **but slow**
 ```
 
 # Sound page
+- [Nice sound more - text to sound](https://ttsmp3.com/)
 - [Nice sound - text to voice](http://fromtexttospeech.com/)
