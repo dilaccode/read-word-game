@@ -21,6 +21,7 @@ F1::
 CoordMode, Mouse, Screen
 
 ; play sound (16x16 icon)
+Click, 164, 793
 Click, 180, 793
 Click, 196, 793
 Click, 212, 793
