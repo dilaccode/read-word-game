@@ -23,7 +23,23 @@ class Admin extends BaseController {
         echo view("Admin/Stats", $StatsData);
     }
 
-    public function UpdateWordsLength() {
+    public function UpdateExamplesLength() {
+        $SM = new SimpleModel();
+
+        $Result = $SM->Query("update example set Length=length(Example)");
+        $Message = $Result->AmountRows === 0 ? "No Word" : "Update Success $Result->AmountRows Word";
+        $Data = array(
+            'Title' => "Update Examples Length",
+            'Message' => $Message,
+            'NextActionText' => "<i class=\"fa fa-arrow-left\"></i> Back To Admin",
+            'NextActionLink' => "/Admin",
+        );
+
+        echo view("Css");
+        echo view("Message", $Data);
+    }
+    
+     public function UpdateWordsLength() {
         $SM = new SimpleModel();
 
         $Result = $SM->Query("update Word set WordLength=length(Word)");
