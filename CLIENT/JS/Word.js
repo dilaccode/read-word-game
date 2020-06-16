@@ -45,6 +45,10 @@ async function SetData(Word, Mean, View, NextWordText) {
     MeanDiv.fadeOut();
     $(".ReadCompletePanel").fadeOut();
     $(".NextWordPanel").fadeOut();
+    // remove all sound
+    $(".Sound").each(function () {
+        $(this).remove();
+    });
     await SleepCanSkip(IsWordPage, 750);
     /// set data
     // WORD 
@@ -107,6 +111,9 @@ async function SetData(Word, Mean, View, NextWordText) {
     WordDiv.fadeIn();
     await SleepCanSkip(IsWordPage, 300);
     MeanDiv.fadeIn();
+    // add sound and play
+    var WordFileNameMp3 = Word.toLowerCase().split(" ").join("_");
+    $("body").append("<audio controls autoplay class=\"Sound\"  style=\"display:none\"><source src=\"/Sounds/Word/" + WordFileNameMp3 + ".mp3\" type=\"audio/mpeg\"></audio>");
 }
 
 async function RunAnimation() {
