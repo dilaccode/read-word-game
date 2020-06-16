@@ -62,8 +62,19 @@ class Word extends BaseController {
                         . " Id in (select ExampleId from wordexample where WordId = $WordObj->Id)")
                 ->getResult();
         $ListExamplesStr = array();
-        foreach ($ListExamples as $Example) {
-            array_push($ListExamplesStr, $Example->Example);
+
+        $LIMIT_LENGTH = 150;
+        if (count($ListExamples) > 1) {
+            array_push($ListExamplesStr, $ListExamples[0]->Example);
+            $CurrentLength = strlen($WordObj->Mean) + strlen($ListExamples[0]->Example);
+            // limit length
+            for ($Index = 1; $Index < count($ListExamples); $Index ++) {
+                $ExampleLength = strlen($ListExamples[$Index]->Example);
+                if ($CurrentLength + $ExampleLength < $LIMIT_LENGTH) {
+                    array_push($ListExamplesStr, $ListExamples[$Index]->Example);
+                    $CurrentLength += $ExampleLength;
+                }
+            }
         }
         return $ListExamplesStr;
     }
