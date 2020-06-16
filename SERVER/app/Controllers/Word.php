@@ -50,8 +50,22 @@ class Word extends BaseController {
 
         $WordObj->NextWord = $NextWordObj->Word;
         $WordObj->NextWordId = $NextWordObj->Id;
+        $WordObj->ListExamples = $this->GetListExampleStr($WordObj);
+
 
         echo json_encode($WordObj);
+    }
+
+    private function GetListExampleStr($WordObj) {
+        $SM = new SimpleModel();
+        $ListExamples = $SM->Query("select * from example where"
+                        . " Id in (select ExampleId from wordexample where WordId = $WordObj->Id)")
+                ->getResult();
+        $ListExamplesStr = array();
+        foreach ($ListExamples as $Example) {
+            array_push($ListExamplesStr, $Example->Example);
+        }
+        return $ListExamplesStr;
     }
 
     // return JSON User
@@ -64,7 +78,9 @@ class Word extends BaseController {
         $Levels = GetGameLevels($User->Level + 1);
         $User->ThisLevelTotalExp = $Levels[$User->Level + 1]->Exp;
         $User->CurrentExp = $User->TotalExp - $Levels[$User->Level]->TotalExp;
-        $NewExp = strlen($WordObj->Mean);
+        // 
+        $ListExamples = $this->GetListExampleStr($WordObj);
+        $NewExp = strlen($WordObj->Mean . implode("\n", $ListExamples));
         $User->NewExp = $User->CurrentExp + $NewExp;
         $User->CurrentPercent = round($User->CurrentExp / $User->ThisLevelTotalExp * 100, 1);
         $User->NewPercent = round($User->NewExp / $User->ThisLevelTotalExp * 100, 1);

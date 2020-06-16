@@ -35,11 +35,12 @@ async function SetInitState() {
     $(".LevelUp").hide();
 }
 
-async function SetData(Word, Mean, View, NextWordText) {
+async function SetData(Word, Mean, ListExamples, View, NextWordText) {
     var WordDiv = $(".Word");
     var MeanDiv = $(".Mean");
     var ViewTextSpan = $(".ViewText");
     var NextWordTextSpan = $(".NextWordText");
+
 
     WordDiv.fadeOut();
     MeanDiv.fadeOut();
@@ -65,6 +66,12 @@ async function SetData(Word, Mean, View, NextWordText) {
     }
     WordDiv.css("font-size", WordFontSize + "px");
     // MEAN
+    // temp
+    if (ListExamples.length > 0) {
+        Mean += "\n";
+        Mean += ListExamples.join("\n");
+    }
+    //
     TotalMeanLetters = Mean.length;
     // mean size
     var MeanFontSize = Config.IsPhone ? '35' : '40';
@@ -197,11 +204,16 @@ async function WordBeat() {
             IsPlayWord = true;
             $(".LoadingWait").hide();
             var WordObj = CurrentWord;
-            await SetData(WordObj.Word, WordObj.Mean, WordObj.View, WordObj.NextWord);
+            await SetData(WordObj.Word, WordObj.Mean, WordObj.ListExamples, WordObj.View, WordObj.NextWord);
             await RunAnimation();
             //            
             if (IsWordPage) {
-                var Exp = WordObj.Mean.length;
+                var TempMean = WordObj.Mean;
+                if (WordObj.ListExamples.length > 0) {
+                    TempMean += "\n";
+                    TempMean += WordObj.ListExamples.join("\n");
+                }
+                var Exp = TempMean.length;
                 await ShowCompletePanel(Exp);
 
                 // level up
