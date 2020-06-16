@@ -64,7 +64,7 @@ class Word extends BaseController {
         $ListExamplesStr = array();
 
         $LIMIT_LENGTH = 150;
-        if (count($ListExamples) > 1) {
+        if (count($ListExamples) >= 1) {
             array_push($ListExamplesStr, $ListExamples[0]->Example);
             $CurrentLength = strlen($WordObj->Mean) + strlen($ListExamples[0]->Example);
             // limit length
