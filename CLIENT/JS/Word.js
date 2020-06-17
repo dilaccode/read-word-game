@@ -66,25 +66,25 @@ async function SetData(WordObj) {
     }
     WordDiv.css("font-size", WordFontSize + "px");
     // MEAN
-    // temp
+    var MeanAndExamples = WordObj.Mean;
     if (WordObj.ListExamples.length > 0) {
-        WordObj.Mean += "\n";
-        WordObj.Mean += WordObj.ListExamples.join("\n");
+        MeanAndExamples += "\n";
+        MeanAndExamples += WordObj.ListExamples.join("\n");
     }
     //
-    TotalMeanLetters = WordObj.Mean.length;
+    TotalMeanLetters = MeanAndExamples.length;
     // mean size
     var MeanFontSize = Config.IsPhone ? '35' : '40';
     if (Config.IsPhone) {
-        if (WordObj.Mean.length >= 0 && WordObj.Mean.length <= 100)
+        if (MeanAndExamples.length >= 0 && MeanAndExamples.length <= 100)
             MeanFontSize = '35';
-        if (WordObj.Mean.length >= 101 && WordObj.Mean.length <= 180)
+        if (MeanAndExamples.length >= 101 && MeanAndExamples.length <= 180)
             MeanFontSize = '30';
-        if (WordObj.Mean.length >= 181 && WordObj.Mean.length <= 210)
+        if (MeanAndExamples.length >= 181 && MeanAndExamples.length <= 210)
             MeanFontSize = '25';
-        if (WordObj.Mean.length >= 211 && WordObj.Mean.length <= 375)
+        if (MeanAndExamples.length >= 211 && MeanAndExamples.length <= 375)
             MeanFontSize = '20';
-        if (WordObj.Mean.length >= 376)
+        if (MeanAndExamples.length >= 376)
             MeanFontSize = '15';
     }
     MeanDiv.css("font-size", MeanFontSize + "px");
@@ -93,8 +93,8 @@ async function SetData(WordObj) {
             + (MeanFontSize * 0.7) + "px;'>Mean</span> <b>";
     var Index = 0;
     var IsEndFirstSentence = false;
-    for (Index = 0; Index < WordObj.Mean.length; Index++) {
-        if (WordObj.Mean[Index] === "\n") { // end line
+    for (Index = 0; Index < MeanAndExamples.length; Index++) {
+        if (MeanAndExamples[Index] === "\n") { // end line
             if (!IsEndFirstSentence) {
                 IsEndFirstSentence = true;
                 MeanAnimationHtml += "</b>"; // end Mean
@@ -104,7 +104,7 @@ async function SetData(WordObj) {
                     + (MeanFontSize * 0.7) + "px;'>Example</span> ";
         } else { // normal
             MeanAnimationHtml += "<span class='select" + Index + "'>"
-                    + WordObj.Mean[Index] + "</span>";
+                    + MeanAndExamples[Index] + "</span>";
         }
     }
     MeanDiv.html(MeanAnimationHtml);
@@ -116,11 +116,11 @@ async function SetData(WordObj) {
 
     // show again
     WordDiv.fadeIn();
-    await SleepCanSkip(IsWordPage, 150);  
-        // sound
-        $(".Sound"+WordObj.Id).get(0).play();
-        $(".Sound"+WordObj.Id).addClass("SoundRemove");
-    await SleepCanSkip(IsWordPage, 150);  
+    await SleepCanSkip(IsWordPage, 150);
+    // sound
+    $(".Sound" + WordObj.Id).get(0).play();
+    $(".Sound" + WordObj.Id).addClass("SoundRemove");
+    await SleepCanSkip(IsWordPage, 150);
     //
     MeanDiv.fadeIn();
 }
@@ -218,12 +218,11 @@ async function WordBeat() {
             await RunAnimation();
             //            
             if (IsWordPage) {
-                var TempMean = WordObj.Mean;
+                var MeanAndExamples = WordObj.Mean;
                 if (WordObj.ListExamples.length > 0) {
-                    TempMean += "\n";
-                    TempMean += WordObj.ListExamples.join("\n");
+                    MeanAndExamples += WordObj.ListExamples.join("");
                 }
-                var Exp = TempMean.length;
+                var Exp = MeanAndExamples.length;
                 await ShowCompletePanel(Exp);
 
                 // level up

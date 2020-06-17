@@ -47,6 +47,10 @@ class Word extends BaseController {
         if ($IsRandomFromMean) {
             $NextWordObj = $this->GetNextWordFromMean($WordObj->Mean);
         }
+        // case 3: no word from mean | no any word
+        if(empty($NextWordObj)){
+            $NextWordObj = $SM->Find("word", 57348); // english
+        }
 
         $WordObj->NextWord = $NextWordObj->Word;
         $WordObj->NextWordId = $NextWordObj->Id;
@@ -91,7 +95,7 @@ class Word extends BaseController {
         $User->CurrentExp = $User->TotalExp - $Levels[$User->Level]->TotalExp;
         // 
         $ListExamples = $this->GetListExampleStr($WordObj);
-        $NewExp = strlen($WordObj->Mean . implode("\n", $ListExamples));
+        $NewExp = strlen($WordObj->Mean . implode("", $ListExamples));
         $User->NewExp = $User->CurrentExp + $NewExp;
         $User->CurrentPercent = round($User->CurrentExp / $User->ThisLevelTotalExp * 100, 1);
         $User->NewPercent = round($User->NewExp / $User->ThisLevelTotalExp * 100, 1);
@@ -107,7 +111,7 @@ class Word extends BaseController {
         $User = $SM->Find('user', $UserId);
 
         $ListExamples = $this->GetListExampleStr($WordObj);
-        $Exp = strlen($WordObj->Mean . implode("\n", $ListExamples));
+        $Exp = strlen($WordObj->Mean . implode("", $ListExamples));
         $User->TotalExp += $Exp;
         // check level up
         $ListLevels = GetGameLevels($User->Level + 2);
