@@ -105,8 +105,9 @@ class Word extends BaseController {
         //
         $WordObj = $SM->Find('word', $WordId);
         $User = $SM->Find('user', $UserId);
-        $Exp = strlen($WordObj->Mean); // length of mean
 
+        $ListExamples = $this->GetListExampleStr($WordObj);
+        $Exp = strlen($WordObj->Mean . implode("\n", $ListExamples));
         $User->TotalExp += $Exp;
         // check level up
         $ListLevels = GetGameLevels($User->Level + 2);

@@ -35,7 +35,7 @@ async function SetInitState() {
     $(".LevelUp").hide();
 }
 
-async function SetData(Word, Mean, ListExamples, View, NextWordText) {
+async function SetData(WordObj) {
     var WordDiv = $(".Word");
     var MeanDiv = $(".Mean");
     var ViewTextSpan = $(".ViewText");
@@ -46,45 +46,45 @@ async function SetData(Word, Mean, ListExamples, View, NextWordText) {
     MeanDiv.fadeOut();
     $(".ReadCompletePanel").fadeOut();
     $(".NextWordPanel").fadeOut();
-    // remove all sound
-    $(".Sound").each(function () {
+    // remove all done sound
+    $(".SoundRemove").each(function () {
         $(this).remove();
     });
     await SleepCanSkip(IsWordPage, 750);
     /// set data
     // WORD 
-    WordDiv.html(Word);
+    WordDiv.html(WordObj.Word);
     // change size on phone. Tablet, PC keep jumbo
     var WordFontSize = Config.IsPhone ? '64' : '70';
     if (Config.IsPhone) {
-        if (Word.length >= 7)
+        if (WordObj.Word.length >= 7)
             WordFontSize = '48';
-        if (Word.length >= 10)
+        if (WordObj.Word.length >= 10)
             WordFontSize = '36';
-        if (Word.length >= 13)
+        if (WordObj.Word.length >= 13)
             WordFontSize = '24';
     }
     WordDiv.css("font-size", WordFontSize + "px");
     // MEAN
     // temp
-    if (ListExamples.length > 0) {
-        Mean += "\n";
-        Mean += ListExamples.join("\n");
+    if (WordObj.ListExamples.length > 0) {
+        WordObj.Mean += "\n";
+        WordObj.Mean += WordObj.ListExamples.join("\n");
     }
     //
-    TotalMeanLetters = Mean.length;
+    TotalMeanLetters = WordObj.Mean.length;
     // mean size
     var MeanFontSize = Config.IsPhone ? '35' : '40';
     if (Config.IsPhone) {
-        if (Mean.length >= 0 && Mean.length <= 100)
+        if (WordObj.Mean.length >= 0 && WordObj.Mean.length <= 100)
             MeanFontSize = '35';
-        if (Mean.length >= 101 && Mean.length <= 180)
+        if (WordObj.Mean.length >= 101 && WordObj.Mean.length <= 180)
             MeanFontSize = '30';
-        if (Mean.length >= 181 && Mean.length <= 210)
+        if (WordObj.Mean.length >= 181 && WordObj.Mean.length <= 210)
             MeanFontSize = '25';
-        if (Mean.length >= 211 && Mean.length <= 375)
+        if (WordObj.Mean.length >= 211 && WordObj.Mean.length <= 375)
             MeanFontSize = '20';
-        if (Mean.length >= 376)
+        if (WordObj.Mean.length >= 376)
             MeanFontSize = '15';
     }
     MeanDiv.css("font-size", MeanFontSize + "px");
@@ -93,8 +93,8 @@ async function SetData(Word, Mean, ListExamples, View, NextWordText) {
             + (MeanFontSize * 0.7) + "px;'>Mean</span> <b>";
     var Index = 0;
     var IsEndFirstSentence = false;
-    for (Index = 0; Index < Mean.length; Index++) {
-        if (Mean[Index] === "\n") { // end line
+    for (Index = 0; Index < WordObj.Mean.length; Index++) {
+        if (WordObj.Mean[Index] === "\n") { // end line
             if (!IsEndFirstSentence) {
                 IsEndFirstSentence = true;
                 MeanAnimationHtml += "</b>"; // end Mean
@@ -104,23 +104,25 @@ async function SetData(Word, Mean, ListExamples, View, NextWordText) {
                     + (MeanFontSize * 0.7) + "px;'>Example</span> ";
         } else { // normal
             MeanAnimationHtml += "<span class='select" + Index + "'>"
-                    + Mean[Index] + "</span>";
+                    + WordObj.Mean[Index] + "</span>";
         }
     }
     MeanDiv.html(MeanAnimationHtml);
 
     // 
-    ViewTextSpan.text(View);
+    ViewTextSpan.text(WordObj.View);
     //
-    NextWordTextSpan.text(NextWordText);
+    NextWordTextSpan.text(WordObj.NextWord);
 
     // show again
     WordDiv.fadeIn();
     await SleepCanSkip(IsWordPage, 300);
+    // sound
+    $(".Sound"+WordObj.Id).get(0).play();
+    $(".Sound"+WordObj.Id).addClass("SoundRemove");
+    await SleepCanSkip(IsWordPage, 500);
+    //
     MeanDiv.fadeIn();
-    // add sound and play
-    var WordFileNameMp3 = Word.toLowerCase().split(" ").join("_");
-    $("body").append("<audio controls autoplay class=\"Sound\"  style=\"display:none\"><source src=\"/Sounds/Word/" + WordFileNameMp3 + ".mp3\" type=\"audio/mpeg\"></audio>");
 }
 
 async function RunAnimation() {
@@ -174,6 +176,14 @@ async function FetchDataBeat() {
             //
             var JSONStr = await GetData(SERVER_URL + "/Word/GetWord/" + NextWordId);
             NextWord = JSON.parse(JSONStr);
+            // load word sound here
+            var WordFileNameMp3 = NextWord.Word.toLowerCase().split(" ").join("_");
+            var SoundClass = "Sound" + NextWord.Id;
+            var SoundHtml = "<audio controls class=\"" + SoundClass + "\""
+                    + "style=\"display:none\">"
+                    + "<source src=\"/Sounds/Word/" + WordFileNameMp3 + ".mp3\""
+                    + "type=\"audio/mpeg\"></audio>";
+            $("body").append(SoundHtml);
 
             // init User data first time
             if (IsInitUser) {
@@ -204,7 +214,7 @@ async function WordBeat() {
             IsPlayWord = true;
             $(".LoadingWait").hide();
             var WordObj = CurrentWord;
-            await SetData(WordObj.Word, WordObj.Mean, WordObj.ListExamples, WordObj.View, WordObj.NextWord);
+            await SetData(WordObj);
             await RunAnimation();
             //            
             if (IsWordPage) {
