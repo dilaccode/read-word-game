@@ -205,5 +205,22 @@ class ExampleTemp extends BaseController {
         }
     }
 
-    // 34796
+    public function CountUse() {
+        echo view("Css");
+        echo "<style> body{margin: 50px;}</style>";
+        $SM = new SimpleModel();
+
+        $ListExample = $SM->Query("select * from example"
+                        . " where IsWork = 0 limit 1000")->getResult();
+        foreach ($ListExample as $ExampleObj) {
+            $Total = $SM->Query("select count(*) as Total from wordexample"
+                                    . " where ExampleId = $ExampleObj->Id")
+                            ->getRow(0)->Total;
+
+            $ExampleObj->CountUse = $Total;
+            $ExampleObj->IsWork = 1;
+            echo $SM->Update("example", $ExampleObj);
+        }
+    }
+
 }
