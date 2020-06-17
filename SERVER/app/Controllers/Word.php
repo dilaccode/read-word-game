@@ -48,7 +48,7 @@ class Word extends BaseController {
             $NextWordObj = $this->GetNextWordFromMean($WordObj->Mean);
         }
         // case 3: no word from mean | no any word
-        if(empty($NextWordObj)){
+        if (empty($NextWordObj)) {
             $NextWordObj = $SM->Find("word", 57348); // english
         }
 
@@ -136,18 +136,17 @@ class Word extends BaseController {
     /// return Next Word (obj) from Mean (str)
     private function GetNextWordFromMean($Mean) {
         $SM = new SimpleModel();
-        $SearchArr = array("(", ")", ".", ",", ";", "  ", "\n");
-        $ReplaceArr = array(" ", " ", " ", " ", " ", " ", "");
+        $SearchArr = array("(", ")", ".", ",", ";", "  ", "\n", "\"");
+        $ReplaceArr = array(" ", " ", " ", " ", " ", " ", "", "");
         // split
         $Mean = str_replace($SearchArr, $ReplaceArr, $Mean);
         $ArrayMeanWords = array_unique(explode(" ", $Mean));
         $ArrayMeanWordObjs = array();
         foreach ($ArrayMeanWords as $Word) {
+            $Word = trim($Word);
             if (strlen($Word) > 0) {
                 // check exist
-                $Word = str_replace("\"", "", $Word); // for double quote
                 $Word = str_replace("'", "\'", $Word); // for SQL
-                $Word = trim($Word);
                 $WordObj = $SM->Query("select * from word
         where Word='$Word'")->getRow(0);
                 $IsWordExist = isset($WordObj);
