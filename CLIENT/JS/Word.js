@@ -120,7 +120,6 @@ async function SetData(WordObj) {
     // sound
     $(".Sound"+WordObj.Id).get(0).play();
     $(".Sound"+WordObj.Id).addClass("SoundRemove");
-    await SleepCanSkip(IsWordPage, 500);
     //
     MeanDiv.fadeIn();
 }
