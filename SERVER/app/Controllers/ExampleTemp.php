@@ -117,4 +117,93 @@ class ExampleTemp extends BaseController {
         }
     }
 
+    public function IndexWordExample() {
+        echo view("Css");
+        echo "<style> body{margin: 50px;}</style>";
+        $SM = new SimpleModel();
+
+        $ListWord = $SM->Query("select * from word where Id > 1000"
+                        . " AND IsWork = 0"
+                        . " limit 1000")->getResult();
+        echo PHP_EOL;
+        foreach ($ListWord as $WordObj) {
+            $WordSearch = $WordObj->Word;
+            $SPACE = " ";
+            $SQL = "Select * from example"
+                    . " where Example Like '$WordSearch$SPACE%'" // first
+                    . " OR Example Like '%$SPACE$WordSearch$SPACE%'" // middle
+                    . " OR Example Like '%$SPACE$WordSearch,%'" // middle
+                    . " OR Example Like '%$SPACE$WordSearch!%'"
+                    . " OR Example Like '%$SPACE$WordSearch?%'"
+                    . " OR Example Like '%$SPACE$WordSearch.%'" // last
+                    . " LIMIT 3";
+            $ListExample = $SM->Query($SQL)->getResult();
+            echo $WordObj->Word . PHP_EOL;
+            foreach ($ListExample as $ExampleObj) {
+                $SM->Add('wordexample', array(
+                    'WordId' => $WordObj->Id,
+                    'ExampleId' => $ExampleObj->Id,
+                ));
+                echo "   > " . $ExampleObj->Example . PHP_EOL;
+            }
+            echo PHP_EOL;
+            $WordObj->IsWork = 1;
+            $SM->Update("word", $WordObj);
+        }
+    }
+
+    public function IndexWordExampleSpecial() {
+        echo view("Css");
+        echo "<style> body{margin: 50px;}</style>";
+        $SM = new SimpleModel();
+
+        $ListWord = $SM->Query("select * from word where Id > 1000"
+                        . " AND IsWork = 1"
+                        . " AND Id not IN (select DISTINCT WordId from wordexample)"
+                        . " limit 10")->getResult();
+
+        echo PHP_EOL;
+        foreach ($ListWord as $WordObj) {
+            $WordSearch = $WordObj->Word;
+            $SPACE = " ";
+            // ..y
+            $WordSearchIES_SQL = "";
+            if ($WordSearch[strlen($WordSearch) - 1] === 'y') {
+                $WordSearchIES = $WordSearch;
+                $WordSearchIES[strlen($WordSearch) - 1] = "i";
+                $WordSearchIES .= "es";
+                $WordSearchIES_SQL = " OR Example Like '%$WordSearchIES%'";
+            }
+            // ..ed , add D only
+            $WordSearchDonly_SQL = "";
+            if ($WordSearch[strlen($WordSearch) - 1] === 'e') {
+                $WordSearchDonly = $WordSearch;
+                $WordSearchDonly .= "d";
+                $WordSearchDonly_SQL = " OR Example Like '% $WordSearchDonly%'";
+            }
+            //
+            $SQL = "Select * from example"
+                    . " where Example Like '%$WordSearch" . "ed%'"
+                    . $WordSearchDonly_SQL
+                    . " OR Example Like '%$WordSearch" . "s%'"
+                    . " OR Example Like '%$WordSearch" . "es%'"
+                    . " OR Example Like '%$WordSearch" . "ing%'"
+                    . $WordSearchIES_SQL
+                    . " LIMIT 3";
+            $ListExample = $SM->Query($SQL)->getResult();
+            echo $WordObj->Word . PHP_EOL;
+            foreach ($ListExample as $ExampleObj) {
+                $SM->Add('wordexample', array(
+                    'WordId' => $WordObj->Id,
+                    'ExampleId' => $ExampleObj->Id,
+                ));
+                echo "   > " . $ExampleObj->Example . PHP_EOL;
+            }
+            echo PHP_EOL;
+            $WordObj->IsWork = 2;
+            $SM->Update("word", $WordObj);
+        }
+    }
+
+    // 34796
 }
