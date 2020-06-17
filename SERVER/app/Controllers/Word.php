@@ -145,7 +145,9 @@ class Word extends BaseController {
         foreach ($ArrayMeanWords as $Word) {
             if (strlen($Word) > 0) {
                 // check exist
-                $Word = str_replace("'", "\'", $Word);
+                $Word = str_replace("\"", "", $Word); // for double quote
+                $Word = str_replace("'", "\'", $Word); // for SQL
+                $Word = trim($Word);
                 $WordObj = $SM->Query("select * from word
         where Word='$Word'")->getRow(0);
                 $IsWordExist = isset($WordObj);
