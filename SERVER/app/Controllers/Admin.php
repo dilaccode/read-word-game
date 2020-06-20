@@ -38,8 +38,8 @@ class Admin extends BaseController {
         echo view("Css");
         echo view("Message", $Data);
     }
-    
-     public function UpdateWordsLength() {
+
+    public function UpdateWordsLength() {
         $SM = new SimpleModel();
 
         $Result = $SM->Query("update Word set WordLength=length(Word)");
@@ -74,6 +74,13 @@ class Admin extends BaseController {
 
         echo view("Css");
         echo view("Message", $Data);
+    }
+
+    public function Test() {
+        $ret = exec("su ls", $out, $err);
+        var_dump($ret);
+        var_dump($out);
+        var_dump($err);
     }
 
 }
