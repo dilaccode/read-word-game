@@ -47,9 +47,9 @@ async function SetData(WordObj) {
     $(".ReadCompletePanel").fadeOut();
     $(".NextWordPanel").fadeOut();
     // remove all done sound
-    $(".SoundRemove").each(function () {
-        $(this).remove();
-    });
+//    $(".SoundRemove").each(function () {
+//        $(this).remove();
+//    });
     await SleepCanSkip(IsWordPage, 750);
     /// set data
     // WORD 
@@ -118,8 +118,8 @@ async function SetData(WordObj) {
     WordDiv.fadeIn();
     await SleepCanSkip(IsWordPage, 150);
     // sound
-    $(".Sound" + WordObj.Id).get(0).play();
-    $(".Sound" + WordObj.Id).addClass("SoundRemove");
+    $(".Sound").get(0).play();
+//    $(".Sound" + WordObj.Id).addClass("SoundRemove");
     await SleepCanSkip(IsWordPage, 150);
     //
     MeanDiv.fadeIn();
@@ -178,12 +178,13 @@ async function FetchDataBeat() {
             NextWord = JSON.parse(JSONStr);
             // load word sound here
             var WordFileNameMp3 = NextWord.Word.toLowerCase().split(" ").join("_");
-            var SoundClass = "Sound" + NextWord.Id;
-            var SoundHtml = "<audio controls class=\"" + SoundClass + "\""
-                    + "style=\"display:none\">"
-                    + "<source src=\"/Sounds/Word/" + WordFileNameMp3 + ".mp3\""
-                    + "type=\"audio/mpeg\"></audio>";
-            $("body").append(SoundHtml);
+//            var SoundClass = "Sound" + NextWord.Id;
+//            var SoundHtml = "<audio controls class=\"" + SoundClass + "\""
+//                    + "style=\"display:none\">"
+//                    + "<source src=\"/Sounds/Word/" + WordFileNameMp3 + ".mp3\""
+//                    + "type=\"audio/mpeg\"></audio>";
+//            $("body").append(SoundHtml);
+            $(".Sound").attr("src","/Sounds/Word/" + WordFileNameMp3 + ".mp3");
 
             // init User data first time
             if (IsInitUser) {
