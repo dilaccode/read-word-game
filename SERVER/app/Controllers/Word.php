@@ -47,9 +47,9 @@ class Word extends BaseController {
         if ($IsRandomFromMean) {
             $NextWordObj = $this->GetNextWordFromMean($WordObj->Mean);
         }
-        // case 3: no word from mean | no any word
+        // case 3: no word from mean | no any word > random 1 word
         if (empty($NextWordObj)) {
-            $NextWordObj = $SM->Find("word", 57348); // english
+            $NextWordObj = $SM->Query("select * from word order by RAND() limit 1")->GetRow(0);
         }
 
         $WordObj->NextWord = $NextWordObj->Word;
