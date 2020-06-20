@@ -77,8 +77,8 @@ class Admin extends BaseController {
     }
 
     public function Test() {
-        $ret = shell_exec("ls /var/www/html 2>&1");
-        var_dump($ret);
+        $Result = RunBash("cd /var/www/html; bash gitsync");
+        Debug($Result);
     }
 
 }
