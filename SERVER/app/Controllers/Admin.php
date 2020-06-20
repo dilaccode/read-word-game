@@ -77,8 +77,11 @@ class Admin extends BaseController {
     }
 
     public function Test() {
-        $Result = RunBash("bash /var/www/html/gitsync");
-        Debug($Result);
+        $connection = ssh2_connect('45.77.38.76', 22);
+        ssh2_auth_password($connection, 'root', '2Wj#7UbTC+.sv!G+');
+
+        $stream = ssh2_exec($connection, 'bash /var/www/html/gitsync');
+        Debug( $stream);
     }
 
 }
