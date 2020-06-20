@@ -77,10 +77,8 @@ class Admin extends BaseController {
     }
 
     public function Test() {
-        $ret = exec("su ls", $out, $err);
+        $ret = shell_exec("su ls");
         var_dump($ret);
-        var_dump($out);
-        var_dump($err);
     }
 
 }
