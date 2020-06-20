@@ -76,12 +76,5 @@ class Admin extends BaseController {
         echo view("Message", $Data);
     }
 
-    public function Test() {
-        $connection = ssh2_connect('45.77.38.76', 22);
-        ssh2_auth_password($connection, 'root', '2Wj#7UbTC+.sv!G+');
-
-        $stream = ssh2_exec($connection, 'bash /var/www/html/gitsync');
-        Debug( $stream);
-    }
-
+   
 }
