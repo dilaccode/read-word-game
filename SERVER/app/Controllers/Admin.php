@@ -77,7 +77,7 @@ class Admin extends BaseController {
     }
 
     public function Test() {
-        $Result = RunBash("sudo bash /var/www/html/gitsync");
+        $Result = RunBash("whoami");
         Debug($Result);
     }
 
