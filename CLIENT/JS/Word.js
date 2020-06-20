@@ -46,10 +46,7 @@ async function SetData(WordObj) {
     MeanDiv.fadeOut();
     $(".ReadCompletePanel").fadeOut();
     $(".NextWordPanel").fadeOut();
-    // remove all done sound
-//    $(".SoundRemove").each(function () {
-//        $(this).remove();
-//    });
+
     await SleepCanSkip(IsWordPage, 750);
     /// set data
     // WORD 
@@ -117,9 +114,11 @@ async function SetData(WordObj) {
     // show again
     WordDiv.fadeIn();
     await SleepCanSkip(IsWordPage, 150);
-    // sound
-    $(".Sound").get(0).play();
-//    $(".Sound" + WordObj.Id).addClass("SoundRemove");
+    // word sound
+    var ClassSoundFile = "Sound" + WordObj.Id;
+    $("." + ClassSoundFile).get(0).play();
+    $("." + ClassSoundFile).removeClass("SoundWaiting");
+    $("." + ClassSoundFile).removeClass(ClassSoundFile);
     await SleepCanSkip(IsWordPage, 150);
     //
     MeanDiv.fadeIn();
@@ -178,13 +177,18 @@ async function FetchDataBeat() {
             NextWord = JSON.parse(JSONStr);
             // load word sound here
             var WordFileNameMp3 = NextWord.Word.toLowerCase().split(" ").join("_");
-//            var SoundClass = "Sound" + NextWord.Id;
-//            var SoundHtml = "<audio controls class=\"" + SoundClass + "\""
-//                    + "style=\"display:none\">"
-//                    + "<source src=\"/Sounds/Word/" + WordFileNameMp3 + ".mp3\""
-//                    + "type=\"audio/mpeg\"></audio>";
-//            $("body").append(SoundHtml);
-            $(".Sound").attr("src","/Sounds/Word/" + WordFileNameMp3 + ".mp3");
+            var SoundClass = "Sound" + NextWord.Id;
+            var IsAddToAudio1 = !$(".Audio1").attr("class")
+                    .includes("SoundWaiting");
+            if (IsAddToAudio1) {
+                $(".Audio1").attr("src", "/Sounds/Word/" + WordFileNameMp3 + ".mp3");
+                $(".Audio1").addClass(SoundClass);
+                $(".Audio1").addClass("SoundWaiting");
+            } else {
+                $(".Audio2").attr("src", "/Sounds/Word/" + WordFileNameMp3 + ".mp3");
+                $(".Audio2").addClass(SoundClass);
+                $(".Audio2").addClass("SoundWaiting");
+            }
 
             // init User data first time
             if (IsInitUser) {
