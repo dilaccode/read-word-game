@@ -55,7 +55,7 @@ async function SetData(WordObj) {
     var WordFontSize = Config.IsPhone ? '64' : '70';
     if (Config.IsPhone) {
         if (WordObj.Word.length >= 7)
-            WordFontSize = '48';
+            WordFontSize = '44';
         if (WordObj.Word.length >= 10)
             WordFontSize = '36';
         if (WordObj.Word.length >= 13)

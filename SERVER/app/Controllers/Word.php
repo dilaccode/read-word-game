@@ -12,13 +12,9 @@ class Word extends BaseController {
 
     /// get random
     public function StartId() {
-//        $SM = new SimpleModel();
-//        $WordRandom = $SM->Query("SELECT * FROM word order by RAND() limit 1")
-//                ->getRow(0);
-//        echo json_encode((int) $WordRandom->Id);
-//        
-        /// TEST
         echo json_encode(1);
+        /// TEST
+//        echo json_encode(54272);
     }
 
     // return JSON Word
