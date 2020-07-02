@@ -132,8 +132,8 @@ class Word extends BaseController {
     /// return Next Word (obj) from Mean (str)
     private function GetNextWordFromMean($Mean) {
         $SM = new SimpleModel();
-        $SearchArr = array("(", ")", ".", ",", ";", "  ", "\n", "\"");
-        $ReplaceArr = array(" ", " ", " ", " ", " ", " ", "", "");
+        $SearchArr = array("(", ")", ".", ",", ";", "  ", "\n", "\"", "'");
+        $ReplaceArr = array(" ", " ", " ", " ", " ", " ", "", "", " ");
         // split
         $Mean = str_replace($SearchArr, $ReplaceArr, $Mean);
         $ArrayMeanWords = array_unique(explode(" ", $Mean));
@@ -148,8 +148,13 @@ class Word extends BaseController {
                 $ConditionS = "";
                 if ($Word[strlen($Word) - 1] === "s") {
                     $WordNoS = substr($Word, 0, strlen($Word) - 1);
-                    $WordNoS = str_replace("'", "\'", $WordNoS); // for SQL
                     $ConditionS = " OR Word='$WordNoS'";
+                }
+                // ...es
+                $ConditionES = "";
+                if (substr($Word, strlen($Word) - 2, 2) === "es") {
+                    $WordNoES = substr($Word, 0, strlen($Word) - 2);
+                    $ConditionES = " OR Word='$WordNoES'";
                 }
                 // ...ies > y
                 $ConditionIES = "";
@@ -180,12 +185,28 @@ class Word extends BaseController {
                     $ConditionING = " OR Word='$WordNoING'";
                     $ConditionING .= " OR Word='$WordNoINGWithE'";
                 }
+                // ...est
+                $ConditionEST = "";
+                if (substr($Word, strlen($Word) - 3, 3) === "est") {
+                    $WordNoEST = substr($Word, 0, strlen($Word) - 3);
+                    $WordNoESTWithE = $WordNoEST . "e";
+                    $ConditionEST = " OR Word='$WordNoEST'";
+                    $ConditionEST .= " OR Word='$WordNoESTWithE'";
+                }
+                // ...er
+                $ConditionER = "";
+                if (substr($Word, strlen($Word) - 2, 2) === "er") {
+                    $WordNoER = substr($Word, 0, strlen($Word) - 2);
+                    $WordNoERWithE = $WordNoER . "e";
+                    $ConditionER = " OR Word='$WordNoER'";
+                    $ConditionER .= " OR Word='$WordNoERWithE'";
+                }
                 /// QUERY
                 $Sql = "select * from word where Word='$Word'";
-                $Sql .= $ConditionS;
-                $Sql .= $ConditionIES;
-                $Sql .= $ConditionED;
-                $Sql .= $ConditionING;
+                $Sql .= $ConditionS . $ConditionES . $ConditionIES
+                        . $ConditionED
+                        . $ConditionING
+                        . $ConditionEST . $ConditionER;
                 $WordObj = $SM->Query($Sql)->getRow(0);
                 $IsWordExist = isset($WordObj);
                 if ($IsWordExist) {
