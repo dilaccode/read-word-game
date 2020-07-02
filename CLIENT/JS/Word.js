@@ -71,18 +71,25 @@ async function SetData(WordObj) {
     //
     TotalMeanLetters = MeanAndExamples.length;
     // mean size
+//    var Test = 240;
+//    MeanAndExamples = MeanAndExamples.substring(0,Test);
+//    var Need = Test - MeanAndExamples.length;
+//    for(var Index=0;Index<Need;Index+=5)
+//        MeanAndExamples+="0000 ";
+//    Log(MeanAndExamples.length);
+     
     var MeanFontSize = Config.IsPhone ? '35' : '40';
     if (Config.IsPhone) {
         if (MeanAndExamples.length >= 0 && MeanAndExamples.length <= 100)
-            MeanFontSize = '35';
+            MeanFontSize = '40';
         if (MeanAndExamples.length >= 101 && MeanAndExamples.length <= 180)
+            MeanFontSize = '35';
+        if (MeanAndExamples.length >= 181 && MeanAndExamples.length <= 240)
             MeanFontSize = '30';
-        if (MeanAndExamples.length >= 181 && MeanAndExamples.length <= 210)
+        if (MeanAndExamples.length >= 241 && MeanAndExamples.length <= 375)
             MeanFontSize = '25';
-        if (MeanAndExamples.length >= 211 && MeanAndExamples.length <= 375)
-            MeanFontSize = '20';
         if (MeanAndExamples.length >= 376)
-            MeanFontSize = '15';
+            MeanFontSize = '20';
     }
     MeanDiv.css("font-size", MeanFontSize + "px");
     // animation
