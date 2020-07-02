@@ -12,7 +12,7 @@ class Word extends BaseController {
 
     /// get random
     public function StartId() {
-        echo json_encode(53727);
+        echo json_encode(1);
     }
 
     // return JSON Word
