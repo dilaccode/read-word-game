@@ -6,6 +6,8 @@ $(document).ready(function () {
         IsWordPage = true;
     });
     SetLevelHomeScreen();
+    // set Stats link
+    $(".StatsLink").attr("href", SERVER_URL + "/stats");
 });
 
 async function SetLevelHomeScreen(Level = 0, IsNoAjax = false) {
