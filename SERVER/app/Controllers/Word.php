@@ -218,11 +218,13 @@ class Word extends BaseController {
         usort($ArrayMeanWordObjs, function($a, $b) {
             return (int) $a->View > (int) $b->View;
         });
-
-        echo count($ArrayMeanWordObjs) . PHP_EOL;
-        foreach ($ArrayMeanWordObjs as $Test) {
-            echo $Test->Word . PHP_EOL;
-        }
+        
+//        // TEST DEBUG
+//        echo count($ArrayMeanWordObjs) . PHP_EOL;
+//        foreach ($ArrayMeanWordObjs as $Test) {
+//            echo $Test->Word . PHP_EOL;
+//        }
+//        // END TEST DEBUG
 
         return $ArrayMeanWordObjs[0];
     }
