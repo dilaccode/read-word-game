@@ -30,8 +30,6 @@ async function SetInitState() {
     $(".Word").html("...");
     $(".Mean").html("...");
     $(".ViewText").html("...");
-    $(".ReadCompletePanel").hide();
-    $(".NextWordPanel").hide();
     $(".LevelUp").hide();
 }
 
@@ -39,13 +37,10 @@ async function SetData(WordObj) {
     var WordDiv = $(".Word");
     var MeanDiv = $(".Mean");
     var ViewTextSpan = $(".ViewText");
-    var NextWordTextSpan = $(".NextWordText");
 
 
     WordDiv.fadeOut();
     MeanDiv.fadeOut();
-    $(".ReadCompletePanel").fadeOut();
-    $(".NextWordPanel").fadeOut();
 
     await SleepCanSkip(IsWordPage, 750);
     /// set data
@@ -76,20 +71,20 @@ async function SetData(WordObj) {
 //    var Need = Test - MeanAndExamples.length;
 //    for(var Index=0;Index<Need;Index+=5)
 //        MeanAndExamples+="0000 ";
-//    Log(MeanAndExamples.length);
+    Log(MeanAndExamples.length);
      
     var MeanFontSize = Config.IsPhone ? '35' : '40';
     if (Config.IsPhone) {
         if (MeanAndExamples.length >= 0 && MeanAndExamples.length <= 100)
-            MeanFontSize = '37';
+            MeanFontSize = '35';
         if (MeanAndExamples.length >= 101 && MeanAndExamples.length <= 180)
-            MeanFontSize = '32';
+            MeanFontSize = '30';
         if (MeanAndExamples.length >= 181 && MeanAndExamples.length <= 240)
-            MeanFontSize = '27';
+            MeanFontSize = '25';
         if (MeanAndExamples.length >= 241 && MeanAndExamples.length <= 375)
-            MeanFontSize = '22';
+            MeanFontSize = '20';
         if (MeanAndExamples.length >= 376)
-            MeanFontSize = '17';
+            MeanFontSize = '15';
     }
     MeanDiv.css("font-size", MeanFontSize + "px");
     // animation
@@ -115,8 +110,11 @@ async function SetData(WordObj) {
 
     // 
     ViewTextSpan.text(WordObj.View);
-    //
-    NextWordTextSpan.text(WordObj.NextWord);
+    // Read Complete Data
+    AmountExp = MeanAndExamples.length;
+    $(".WordExpText").text(AmountExp);
+    $(".UserExpText").text(User.CurrentExp + "/" + User.ThisLevelTotalExp);
+    $(".UserExpPercentText").text(User.CurrentPercent + "%");
 
     // show again
     WordDiv.fadeIn();
@@ -140,34 +138,12 @@ async function RunAnimation() {
     }
 }
 async function ShowCompletePanel(AmountExp) {
-    // init data
-    $(".AmountExp").text(AmountExp);
-    $(".ProgressBarPercent").css("width", User.CurrentPercent + "%");
-    $(".ProgressBarText").text(User.CurrentExp + "/" + User.ThisLevelTotalExp);
-    var ProgressBarText = User.CurrentPercent > 15 ? (User.CurrentPercent + "%") : "";
-    $(".ProgressBarPercent").text(ProgressBarText);
-    // show
-    await SleepCanSkip(IsWordPage, 100);
-    $(".ReadCompletePanel").show();
-    await SleepCanSkip(IsWordPage, 600);  // for panel above show
-    ThisLevelTotalExp = User.ThisLevelTotalExp;
-    var PercentPartFive = 0;
-    var TotalPercent = User.NewPercent - User.CurrentPercent;
-    var TotalTimeSleepProgressBar = 200; // ms, balance here
-    var SleepBeatTime = TotalTimeSleepProgressBar / TotalPercent;
-    for (PercentPartFive = User.CurrentPercent;
-            PercentPartFive <= User.NewPercent;
-            PercentPartFive += 0.2)
-    {
-        await SleepCanSkip(IsWordPage, SleepBeatTime);
-        var PercentUI = PercentPartFive > 100 ? 100 : PercentPartFive; // fix overflow >100%       
-        $(".ProgressBarPercent").css("width", PercentUI + "%");
-        if (PercentUI >= 15)
-            $(".ProgressBarPercent").text(parseFloat(PercentUI).toFixed(1) + "%");
-
-        CurrentExpTemp = Math.round(PercentUI * ThisLevelTotalExp / 100);
-        $(".ProgressBarText").text(CurrentExpTemp + "/" + ThisLevelTotalExp);
-    }
+//    // read complete data
+//    $(".WordExpText").text(AmountExp);
+//    $(".UserExpText").text(User.CurrentExp + "/" + User.ThisLevelTotalExp);
+//    $(".UserExpPercentText").text(User.CurrentPercent + "%");
+//    // show
+//    $(".ReadCompletePanel").show();    
 }
 
 
@@ -250,12 +226,7 @@ async function WordBeat() {
                 }
             }
 
-            // next word
-            if (IsWordPage) {
-                $(".NextWordPanel").show();
-                await SleepCanSkip(IsWordPage, 600);  // for panel above show  
-            }
-
+            
             if (IsWordPage) {
                 // submit result: for user view complete panel            
                 IsSubmitReadResult = true;
