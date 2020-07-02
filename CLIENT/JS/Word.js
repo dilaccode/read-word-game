@@ -81,15 +81,15 @@ async function SetData(WordObj) {
     var MeanFontSize = Config.IsPhone ? '35' : '40';
     if (Config.IsPhone) {
         if (MeanAndExamples.length >= 0 && MeanAndExamples.length <= 100)
-            MeanFontSize = '40';
+            MeanFontSize = '37';
         if (MeanAndExamples.length >= 101 && MeanAndExamples.length <= 180)
-            MeanFontSize = '35';
+            MeanFontSize = '32';
         if (MeanAndExamples.length >= 181 && MeanAndExamples.length <= 240)
             MeanFontSize = '27';
         if (MeanAndExamples.length >= 241 && MeanAndExamples.length <= 375)
-            MeanFontSize = '25';
+            MeanFontSize = '22';
         if (MeanAndExamples.length >= 376)
-            MeanFontSize = '20';
+            MeanFontSize = '17';
     }
     MeanDiv.css("font-size", MeanFontSize + "px");
     // animation
