@@ -146,9 +146,45 @@ class Word extends BaseController {
                 $WordObj = $SM->Query("select * from word
         where Word='$Word'")->getRow(0);
                 $IsWordExist = isset($WordObj);
-                //
                 if ($IsWordExist) {
                     array_push($ArrayMeanWordObjs, $WordObj);
+                }
+                // check exist with ...S
+                if ($Word[strlen($Word) - 1] === "s") {
+                    $WordNoS = substr($Word, 0, strlen($Word) - 1);
+                    $WordNoS = str_replace("'", "\'", $WordNoS); // for SQL
+                    $WordNoSObj = $SM->Query("select * from word
+        where Word='$WordNoS'")->getRow(0);
+                    $IsWordExistWithLastS = isset($WordNoSObj);
+                    if ($IsWordExistWithLastS) {
+                        array_push($ArrayMeanWordObjs, $WordNoSObj);
+                    }
+                }
+                // check exist with ...ies > y
+                if (substr($Word, strlen($Word) - 3, 3) === "ies") {
+                    $WordNoIES = substr($Word, 0, strlen($Word) - 3);
+                    $WordNoIES.="y";
+                    $WordNoIES = str_replace("'", "\'", $WordNoIES); // for SQL
+                    $WordNoIESObj = $SM->Query("select * from word
+        where Word='$WordNoIES'")->getRow(0);
+                    $IsWordExistWithLastIES = isset($WordNoIESObj);
+                    if ($IsWordExistWithLastIES) {
+                        array_push($ArrayMeanWordObjs, $WordNoIESObj);
+                    }
+                }
+                // check exist with ...ED
+                if (substr($Word, strlen($Word) - 2, 2) === "ed") {
+                    $WordNoED = substr($Word, 0, strlen($Word) - 2);
+                   
+                    $WordNoED = str_replace("'", "\'", $WordNoED); // for SQL
+                     $WordNoEDWithE = $WordNoED."e"; // ex: stored > store
+                     $WordNoEDWithE = str_replace("'", "\'", $WordNoEDWithE); // for SQL
+                    $WordNoEDObj = $SM->Query("select * from word
+        where Word='$WordNoED' OR Word='$WordNoEDWithE'")->getRow(0);
+                    $IsWordExistWithLastED = isset($WordNoEDObj);
+                    if ($IsWordExistWithLastED) {
+                        array_push($ArrayMeanWordObjs, $WordNoEDObj);
+                    }
                 }
             }
         }
@@ -156,6 +192,12 @@ class Word extends BaseController {
         usort($ArrayMeanWordObjs, function($a, $b) {
             return (int) $a->View > (int) $b->View;
         });
+
+        echo count($ArrayMeanWordObjs) . PHP_EOL;
+        foreach ($ArrayMeanWordObjs as $Test) {
+            echo $Test->Word . PHP_EOL;
+        }
+
         return $ArrayMeanWordObjs[0];
     }
 
