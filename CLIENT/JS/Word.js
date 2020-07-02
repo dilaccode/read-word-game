@@ -47,14 +47,15 @@ async function SetData(WordObj) {
     // WORD 
     WordDiv.html(WordObj.Word);
     // change size on phone. Tablet, PC keep jumbo
-    var WordFontSize = Config.IsPhone ? '64' : '70';
+    var WordFontSize = Config.IsPhone ? '62' : '70';
+    Log(WordObj.Word.length);
     if (Config.IsPhone) {
         if (WordObj.Word.length >= 7)
-            WordFontSize = '44';
+            WordFontSize = '42';
         if (WordObj.Word.length >= 10)
-            WordFontSize = '36';
+            WordFontSize = '34';
         if (WordObj.Word.length >= 13)
-            WordFontSize = '24';
+            WordFontSize = '22';
     }
     WordDiv.css("font-size", WordFontSize + "px");
     // MEAN
@@ -73,10 +74,10 @@ async function SetData(WordObj) {
 //        MeanAndExamples+="0000 ";
     Log(MeanAndExamples.length);
      
-    var MeanFontSize = Config.IsPhone ? '35' : '40';
+    var MeanFontSize = Config.IsPhone ? '34' : '40';
     if (Config.IsPhone) {
         if (MeanAndExamples.length >= 0 && MeanAndExamples.length <= 100)
-            MeanFontSize = '35';
+            MeanFontSize = '34';
         if (MeanAndExamples.length >= 101 && MeanAndExamples.length <= 180)
             MeanFontSize = '30';
         if (MeanAndExamples.length >= 181 && MeanAndExamples.length <= 240)
