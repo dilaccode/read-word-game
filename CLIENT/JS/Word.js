@@ -85,7 +85,7 @@ async function SetData(WordObj) {
         if (MeanAndExamples.length >= 101 && MeanAndExamples.length <= 180)
             MeanFontSize = '35';
         if (MeanAndExamples.length >= 181 && MeanAndExamples.length <= 240)
-            MeanFontSize = '30';
+            MeanFontSize = '28';
         if (MeanAndExamples.length >= 241 && MeanAndExamples.length <= 375)
             MeanFontSize = '25';
         if (MeanAndExamples.length >= 376)
