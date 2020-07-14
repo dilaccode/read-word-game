@@ -12,7 +12,10 @@ class Word extends BaseController {
 
     /// get random
     public function StartId() {
-        echo json_encode(1);
+        $SM = new SimpleModel();
+        $LastWordId = $SM->Query("select Value from setting where Field='LastWordId'")
+                        ->getRow(0)->Value;
+        echo json_encode((int) $LastWordId);
     }
 
     // return JSON Word
@@ -50,7 +53,11 @@ class Word extends BaseController {
         $WordObj->NextWordId = $NextWordObj->Id;
         $WordObj->ListExamples = $this->GetListExampleStr($WordObj);
 
+        // update last word id
+        $SM->Query("update setting set Value='$WordObj->Id' where Field='LastWordId'");
 
+
+        //
         echo json_encode($WordObj);
     }
 
@@ -216,7 +223,7 @@ class Word extends BaseController {
         usort($ArrayMeanWordObjs, function($a, $b) {
             return (int) $a->View > (int) $b->View;
         });
-        
+
 //        // TEST DEBUG
 //        echo count($ArrayMeanWordObjs) . PHP_EOL;
 //        foreach ($ArrayMeanWordObjs as $Test) {
