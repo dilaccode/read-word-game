@@ -75,3 +75,8 @@ async function LoadJs(JsName) {
     var HtmlJs = "<script type='text/javascript' src='/JS/" + JsName + ".js'></script>";
     $("head").append(HtmlJs);
 }
+
+async function ResetSound(){
+    $(".Audio1").attr("class","Audio1");
+    $(".Audio2").attr("class","Audio2");
+}

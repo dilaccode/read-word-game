@@ -14,16 +14,7 @@ $(document).ready(function () {
 
 
 
-var TotalMeanLetters = 0;
-/// Data
-var APP_TIME_BEAT = 100;
-var CurrentWord = null;
-var NextWord;
-var UserId = 1; // test
-var User;
-var IsInitUser = true;
-var IsNoWord = true;
-var NextWordId = 0;
+
 
 
 async function SetInitState() {
@@ -73,14 +64,14 @@ async function SetData(WordObj) {
 //    for(var Index=0;Index<Need;Index+=5)
 //        MeanAndExamples+="0000 ";
     Log(MeanAndExamples.length);
-     
+
     var MeanFontSize = Config.IsPhone ? '34' : '40';
     if (Config.IsPhone) {
         if (MeanAndExamples.length >= 0 && MeanAndExamples.length <= 100)
             MeanFontSize = '34';
         if (MeanAndExamples.length >= 101 && MeanAndExamples.length <= 140)
             MeanFontSize = '30';
-         if (MeanAndExamples.length >= 141 && MeanAndExamples.length <= 180)
+        if (MeanAndExamples.length >= 141 && MeanAndExamples.length <= 180)
             MeanFontSize = '27';
         if (MeanAndExamples.length >= 181 && MeanAndExamples.length <= 240)
             MeanFontSize = '25';
@@ -124,10 +115,14 @@ async function SetData(WordObj) {
     await SleepCanSkip(IsWordPage, 150);
     // word sound
     var ClassSoundFile = "Sound" + WordObj.Id;
-    $("." + ClassSoundFile).get(0).play();
-    $("." + ClassSoundFile).removeClass("SoundWaiting");
-    $("." + ClassSoundFile).removeClass(ClassSoundFile);
-    await SleepCanSkip(IsWordPage, 150);
+    if ($("." + ClassSoundFile).length > 0) {
+        $("." + ClassSoundFile).get(0).play();
+        $("." + ClassSoundFile).removeClass("SoundWaiting");
+        $("." + ClassSoundFile).removeClass(ClassSoundFile);
+        await SleepCanSkip(IsWordPage, 150);
+    }else{
+        Log("sound empty");
+    }
     //
     MeanDiv.fadeIn();
 }
@@ -157,6 +152,13 @@ async function FetchDataBeat() {
             if (NextWordId === 0) {
                 var Str = await GetData(SERVER_URL + "/Word/StartId");
                 NextWordId = JSON.parse(Str);
+            }
+            // random
+            if (IsRandomWord) {
+                IsRandomWord = false; // OFF
+                var Str = await GetData(SERVER_URL + "/Word/LowViewWordId");
+                NextWordId = JSON.parse(Str);
+                Log("random");
             }
             //
             var JSONStr = await GetData(SERVER_URL + "/Word/GetWord/" + NextWordId);
@@ -229,7 +231,7 @@ async function WordBeat() {
                 }
             }
 
-            
+
             if (IsWordPage) {
                 // submit result: for user view complete panel            
                 IsSubmitReadResult = true;

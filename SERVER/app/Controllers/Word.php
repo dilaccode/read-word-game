@@ -17,6 +17,13 @@ class Word extends BaseController {
                         ->getRow(0)->Value;
         echo json_encode((int) $LastWordId);
     }
+    /// fact: get low view word
+     public function LowViewWordId() {
+        $SM = new SimpleModel();
+        $LowViewWordId = $SM->Query("select Id from word order by View, WordLength limit 1")
+                        ->getRow(0)->Id;
+        echo json_encode((int) $LowViewWordId);
+    }
 
     // return JSON Word
     public function GetWord($WordId) {

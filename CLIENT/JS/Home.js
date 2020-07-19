@@ -6,12 +6,28 @@ $(document).ready(function () {
         IsWordPage = true;
     });
     //
-    $(".HowToButton").click(function () {
+    $(".StartOverButton").click(function () {
+        //
+        ResetSound();
+        NextWordId = 1;
+        IsNoWord = true;
         //
         LoadWord();
         // enable beat
         IsWordPage = true;
     });
+    //
+    $(".RandomButton").click(function () {
+        //
+        ResetSound();
+        IsRandomWord = true;
+        IsNoWord = true;
+        //
+        LoadWord();
+        // enable beat
+        IsWordPage = true;
+    });
+    //
     SetLevelHomeScreen();
     // set Stats link
     $(".StatsLink").attr("href", SERVER_URL + "/stats");
