@@ -33,7 +33,7 @@ sudo systemctl enable mariadb.service
 
 
 ### PHP7
-sudo yum update
+sudo yum -y update
 sudo yum search php
 sudo yum -y install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
 sudo yum -y install php php-fpm php-mysqli php-pecl-json
