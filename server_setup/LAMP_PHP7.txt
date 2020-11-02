@@ -27,6 +27,8 @@ sudo systemctl enable mariadb.service
 
 # setting password
 # sudo mysql_secure_installation
+# open port for remote login / working (reboot):
+# sudo firewall-cmd --add-port=3306/tcp --permanent
 
 # pass: xxx__X444__
 # change pass: SET PASSWORD FOR 'root'@'localhost' = PASSWORD('xxx__X444__');
