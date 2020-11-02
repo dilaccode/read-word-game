@@ -25,14 +25,22 @@ sudo yum -y install mariadb-server mariadb
 sudo systemctl start mariadb
 sudo systemctl enable mariadb.service
 
-# setting password
+# MySQL 1. setting password
 # sudo mysql_secure_installation
-# open port for remote login / working (reboot):
-# sudo firewall-cmd --add-port=3306/tcp --permanent
-
-# pass: xxx__X444__
-# change pass: SET PASSWORD FOR 'root'@'localhost' = PASSWORD('xxx__X444__');
-
+# MySQL 2. [if need] change pass: SET PASSWORD FOR 'root'@'localhost' = PASSWORD('{YOU_PASS}');
+# MySQL 3. [if need] allow remote: https://mariadb.com/kb/en/library/configuring-mariadb-for-remote-client-access/
+#    1. - [if CentOS 7] open file: /etc/my.cnf.d/server.cnf , add below [mysqld]:
+#       bind-address = 0.0.0.0
+#       - [if CentOS 8] open file: /etc/my.cnf.d/mariadb-server.cnf , uncomment this line:
+#       bind-address = 0.0.0.0
+#    2. Run command:
+#       mysql -u root -p , then enter {Pass}
+#       GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'  IDENTIFIED BY '{YOU_PASS}' WITH GRANT OPTION;
+#       can replace 'root'@'%' , %= ip white list
+#    3. open port 3306
+#       sudo firewall-cmd --add-port=3306/tcp --permanent
+#    4. restart service
+#       sudo service mariadb restart
 
 ### PHP7
 # sudo yum -y update
